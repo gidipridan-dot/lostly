@@ -59,7 +59,12 @@ export const HeroSection = () => {
             <Button variant="accent" size="lg" className="min-w-48 text-lg">
               Request Partnership
             </Button>
-            <Button variant="outline" size="lg" className="min-w-48 text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="min-w-48 text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              onClick={() => document.getElementById('learn-more')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Learn More
             </Button>
           </div>
