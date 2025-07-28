@@ -18,7 +18,8 @@ import {
   Package,
   Smartphone,
   Wallet,
-  Key
+  Key,
+  DollarSign
 } from "lucide-react";
 
 interface DemoModalProps {
@@ -94,38 +95,48 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderChooseJourney = () => (
     <div className="space-y-6">
       <div className="text-center">
-        <h3 className="text-2xl font-bold mb-4">Experience Lostly</h3>
-        <p className="text-muted-foreground">
-          Choose your journey to see how Lostly connects people with their belongings
+        <h3 className="text-xl sm:text-2xl font-bold mb-2">✨ Experience Lostly</h3>
+        <p className="text-muted-foreground text-sm sm:text-base">
+          Choose your journey to see how we reunite people with their belongings
         </p>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-6">
-        <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setCurrentStep("lost-report")}>
-          <CardHeader className="text-center">
-            <div className="mx-auto w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4">
-              <Search className="w-8 h-8 text-red-600 dark:text-red-400" />
+      <div className="grid gap-4 sm:gap-6">
+        <Card 
+          className="cursor-pointer hover:shadow-lg transition-all hover:scale-105 active:scale-95" 
+          onClick={() => setCurrentStep("lost-report")}
+        >
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <Search className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="text-lg sm:text-xl font-bold text-foreground mb-1">😔 I Lost Something</h4>
+                <p className="text-muted-foreground text-sm">
+                  Report & recover your lost items quickly
+                </p>
+              </div>
             </div>
-            <CardTitle>I Lost Something</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-center">
-              See how easy it is to report and recover your lost items
-            </p>
           </CardContent>
         </Card>
         
-        <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setCurrentStep("found-report")}>
-          <CardHeader className="text-center">
-            <div className="mx-auto w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
-              <Package className="w-8 h-8 text-green-600 dark:text-green-400" />
+        <Card 
+          className="cursor-pointer hover:shadow-lg transition-all hover:scale-105 active:scale-95" 
+          onClick={() => setCurrentStep("found-report")}
+        >
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <Package className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="text-lg sm:text-xl font-bold text-foreground mb-1">🎉 I Found Something</h4>
+                <p className="text-muted-foreground text-sm">
+                  Help someone reunite with their belongings
+                </p>
+              </div>
             </div>
-            <CardTitle>I Found Something</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-center">
-              Discover how to help others reunite with their belongings
-            </p>
           </CardContent>
         </Card>
       </div>
@@ -134,48 +145,95 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   const renderLostReport = () => (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("choose-journey")}>
+      <div className="flex items-center gap-2 sm:gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("choose-journey")} className="p-2">
           <ArrowLeft className="w-4 h-4" />
         </Button>
-        <div>
-          <h3 className="text-xl font-bold">Report Lost Item</h3>
-          <p className="text-muted-foreground">Tell us what you've lost</p>
+        <div className="flex-1">
+          <h3 className="text-lg sm:text-xl font-bold">😞 Report Lost Item</h3>
+          <p className="text-muted-foreground text-sm">Tell us what you've lost</p>
         </div>
       </div>
       
       <div className="space-y-4">
         <div>
-          <label className="text-sm font-medium">What did you lose?</label>
-          <Input placeholder="e.g., Wallet, Phone, Keys..." defaultValue="Brown leather wallet" />
-        </div>
-        
-        <div>
-          <label className="text-sm font-medium">Description</label>
-          <Textarea 
-            placeholder="Describe your item in detail..." 
-            defaultValue="Brown leather wallet with my driver's license and credit cards. Has a small tear on the back corner."
+          <label className="text-sm font-medium flex items-center gap-2">
+            📦 What did you lose?
+          </label>
+          <Input 
+            placeholder="e.g., Wallet, Phone, Keys..." 
+            defaultValue="Brown leather wallet" 
+            className="mt-1"
           />
         </div>
         
-        <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <label className="text-sm font-medium">Where did you lose it?</label>
-            <Input placeholder="Location..." defaultValue="Central Park, near the pond" />
-          </div>
-          <div>
-            <label className="text-sm font-medium">When?</label>
-            <Input type="date" defaultValue="2024-01-28" />
-          </div>
+        <div>
+          <label className="text-sm font-medium flex items-center gap-2">
+            📝 Description
+          </label>
+          <Textarea 
+            placeholder="Describe your item in detail..." 
+            defaultValue="Brown leather wallet with my driver's license and credit cards. Has a small tear on the back corner."
+            className="mt-1 min-h-[80px]"
+          />
         </div>
         
-        <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
-          <Camera className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-          <p className="text-muted-foreground">Upload photos (optional)</p>
+        <div className="grid gap-4">
+          <div>
+            <label className="text-sm font-medium flex items-center gap-2">
+              📍 Where did you lose it?
+            </label>
+            <Input 
+              placeholder="Location..." 
+              defaultValue="Central Park, near the pond" 
+              className="mt-1"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium flex items-center gap-2">
+              📅 When?
+            </label>
+            <Input 
+              type="date" 
+              defaultValue="2024-01-28" 
+              className="mt-1"
+            />
+          </div>
+        </div>
+
+        {/* Reward Section */}
+        <div className="border border-orange-200 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-800 rounded-lg p-4">
+          <label className="text-sm font-medium flex items-center gap-2 mb-3">
+            💰 Offer Reward (Optional)
+          </label>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 flex-1">
+              <DollarSign className="w-4 h-4 text-orange-600" />
+              <Input 
+                type="number" 
+                placeholder="Amount" 
+                defaultValue="25"
+                className="flex-1"
+              />
+            </div>
+            <span className="text-sm text-muted-foreground">USD</span>
+          </div>
+          <p className="text-xs text-orange-700 dark:text-orange-300 mt-2">
+            💡 Tip: Offering a reward increases your chances of recovery by 3x!
+          </p>
         </div>
         
-        <Button className="w-full" onClick={() => setCurrentStep("lost-browse")}>
-          Submit Report
+        <div className="border-2 border-dashed border-border rounded-lg p-6 sm:p-8 text-center">
+          <Camera className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-muted-foreground" />
+          <p className="text-muted-foreground text-sm">📸 Upload photos (optional)</p>
+          <p className="text-xs text-muted-foreground mt-1">Photos help others identify your item</p>
+        </div>
+        
+        <Button 
+          className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
+          onClick={() => setCurrentStep("lost-browse")}
+        >
+          🚀 Submit Report & Find My Item
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>
@@ -567,9 +625,9 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Lostly Demo</DialogTitle>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
+        <DialogHeader className="text-center sm:text-left">
+          <DialogTitle className="text-lg sm:text-xl">🔍 Lostly Demo</DialogTitle>
         </DialogHeader>
         {renderCurrentStep()}
       </DialogContent>
