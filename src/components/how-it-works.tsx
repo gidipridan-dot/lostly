@@ -32,7 +32,7 @@ export const HowItWorks = () => {
             How Lostly Works
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We're not just another app—we're a behavioral shift embedded where people already are
+            A behavioral shift embedded where people already are
           </p>
         </div>
         

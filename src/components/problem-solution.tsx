@@ -1,7 +1,17 @@
-import { AlertTriangle, CheckCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useState } from "react";
 
 export const ProblemSolution = () => {
-  const problems = [
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const topProblems = [
+    "Most lost items are never reunited with owners",
+    "No incentive for finders to report what they've found"
+  ];
+
+  const allProblems = [
     "Most lost items are never reunited with owners",
     "No incentive for finders to report what they've found", 
     "Safety concerns prevent direct owner-finder contact",
@@ -9,7 +19,12 @@ export const ProblemSolution = () => {
     "People don't download apps they'll rarely use"
   ];
 
-  const solutions = [
+  const topSolutions = [
+    "Smart location-based matching increases reunion success",
+    "Reward system motivates good Samaritan behavior"
+  ];
+
+  const allSolutions = [
     "Smart location-based matching increases reunion success",
     "Reward system motivates good Samaritan behavior",
     "Anonymous, moderated system ensures safety for all",
@@ -25,7 +40,7 @@ export const ProblemSolution = () => {
             The Real Challenge
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lost & Found isn't a technology problem—it's a behavioral one. We're solving it differently.
+            Lost & Found isn't a technology problem—it's a behavioral one.
           </p>
         </div>
         
@@ -37,7 +52,7 @@ export const ProblemSolution = () => {
               Current Reality
             </h3>
             
-            {problems.map((problem, index) => (
+            {(isExpanded ? allProblems : topProblems).map((problem, index) => (
               <div key={index} className="flex items-start gap-4 p-4 bg-background border border-border rounded-xl">
                 <div className="w-2 h-2 bg-destructive rounded-full mt-3 flex-shrink-0" />
                 <p className="text-foreground leading-relaxed">{problem}</p>
@@ -52,13 +67,25 @@ export const ProblemSolution = () => {
               Lostly's Approach
             </h3>
             
-            {solutions.map((solution, index) => (
+            {(isExpanded ? allSolutions : topSolutions).map((solution, index) => (
               <div key={index} className="flex items-start gap-4 p-4 bg-gradient-card border border-primary/20 rounded-xl shadow-soft">
                 <CheckCircle className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                 <p className="text-foreground leading-relaxed">{solution}</p>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* More Info Button */}
+        <div className="text-center mt-12">
+          <Button 
+            variant="outline" 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center gap-2"
+          >
+            {isExpanded ? 'Show Less' : 'More Details'}
+            <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+          </Button>
         </div>
         
         {/* Key insight callout */}
