@@ -69,9 +69,9 @@ export const HeroSection = () => {
               Request Demo
             </Button>
             <Button 
-              variant="outline" 
+              variant="secondary" 
               size="lg" 
-              className="min-w-48 text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="min-w-48 text-lg"
               onClick={() => document.getElementById('learn-more')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Learn More
