@@ -19,7 +19,13 @@ import {
   Smartphone,
   Wallet,
   Key,
-  DollarSign
+  DollarSign,
+  Users,
+  Shield,
+  Clock,
+  AlertCircle,
+  Star,
+  ThumbsUp
 } from "lucide-react";
 
 interface DemoModalProps {
@@ -32,10 +38,16 @@ type DemoStep =
   | "lost-report"
   | "lost-browse"
   | "lost-contact"
+  | "lost-match"
+  | "lost-next-steps"
+  | "lost-verification"
   | "lost-success"
   | "found-report"
   | "found-browse"
   | "found-contact"
+  | "found-match"
+  | "found-next-steps"
+  | "found-verification"
   | "found-success";
 
 const mockFoundItems = [
@@ -346,7 +358,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           />
         </div>
         
-        <Button className="w-full" onClick={() => setCurrentStep("lost-success")}>
+        <Button className="w-full" onClick={() => setCurrentStep("lost-match")}>
           Send Secure Message
           <MessageCircle className="w-4 h-4 ml-2" />
         </Button>
@@ -551,7 +563,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           />
         </div>
         
-        <Button className="w-full" onClick={() => setCurrentStep("found-success")}>
+        <Button className="w-full" onClick={() => setCurrentStep("found-match")}>
           Send Secure Message
           <MessageCircle className="w-4 h-4 ml-2" />
         </Button>
@@ -563,6 +575,412 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     </div>
   );
 
+  // New match and verification screens
+  const renderLostMatch = () => (
+    <div className="space-y-6">
+      <div className="text-center">
+        <div className="mx-auto w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mb-4">
+          <Users className="w-10 h-10 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold mb-2">🎉 There's a Match!</h3>
+        <p className="text-muted-foreground">
+          Sarah responded to your message about the wallet
+        </p>
+      </div>
+
+      <Card className="border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <Avatar>
+              <AvatarFallback>SM</AvatarFallback>
+            </Avatar>
+            <div>
+              <h4 className="font-semibold">Sarah M.</h4>
+              <p className="text-sm text-muted-foreground">2 minutes ago</p>
+            </div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
+            <p className="text-sm">
+              "Hi! Yes, that sounds like my wallet! It's brown leather and does have a small tear on the back corner. 
+              I also have my Chase credit card and NY driver's license inside. Can we arrange to meet?"
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex gap-3">
+        <Button 
+          variant="outline" 
+          className="flex-1"
+          onClick={() => setCurrentStep("lost-browse")}
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back
+        </Button>
+        <Button 
+          className="flex-1"
+          onClick={() => setCurrentStep("lost-next-steps")}
+        >
+          What's Next?
+          <ArrowRight className="w-4 h-4 ml-2" />
+        </Button>
+      </div>
+    </div>
+  );
+
+  const renderLostNextSteps = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-match")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">What's Next?</h3>
+          <p className="text-muted-foreground">Let's verify and arrange the handover</p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <Shield className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Step 1: Verification</h4>
+                <p className="text-sm text-muted-foreground">Both parties verify item details</p>
+              </div>
+            </div>
+            <p className="text-sm">
+              To ensure this is really your wallet, Sarah will ask you to verify specific details that only the true owner would know.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-purple-200 bg-purple-50 dark:bg-purple-900/20 dark:border-purple-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Step 2: Safe Meetup</h4>
+                <p className="text-sm text-muted-foreground">Arrange meeting at secure location</p>
+              </div>
+            </div>
+            <p className="text-sm">
+              Lostly will suggest safe, public meeting spots near both of you with good lighting and security.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-orange-200 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
+                <Star className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Step 3: Complete & Rate</h4>
+                <p className="text-sm text-muted-foreground">Confirm handover and build trust</p>
+              </div>
+            </div>
+            <p className="text-sm">
+              Both parties confirm the successful handover and rate the experience to build community trust.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Button 
+        className="w-full"
+        onClick={() => setCurrentStep("lost-verification")}
+      >
+        Start Verification Process
+        <Shield className="w-4 h-4 ml-2" />
+      </Button>
+    </div>
+  );
+
+  const renderLostVerification = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-next-steps")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">Verification Process</h3>
+          <p className="text-muted-foreground">Prove the wallet is yours</p>
+        </div>
+      </div>
+
+      <Card className="border-amber-200 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <AlertCircle className="w-5 h-5 text-amber-600" />
+            <h4 className="font-semibold">Sarah needs verification</h4>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Answer these questions to prove the wallet is yours:
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-4">
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-2">Question 1 of 3</h4>
+            <p className="text-sm mb-3">What color is your driver's license photo background?</p>
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="outline" size="sm">Blue</Button>
+              <Button variant="outline" size="sm" className="bg-primary text-primary-foreground">Red</Button>
+              <Button variant="outline" size="sm">Gray</Button>
+              <Button variant="outline" size="sm">White</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="opacity-60">
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-2">Question 2 of 3</h4>
+            <p className="text-sm mb-3">What's the last 4 digits of your Chase card?</p>
+            <Input placeholder="____" disabled className="max-w-20" />
+          </CardContent>
+        </Card>
+
+        <Card className="opacity-60">
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-2">Question 3 of 3</h4>
+            <p className="text-sm mb-3">How much cash was in the wallet (approximately)?</p>
+            <Input placeholder="$" disabled className="max-w-24" />
+          </CardContent>
+        </Card>
+      </div>
+
+      <Button 
+        className="w-full"
+        onClick={() => setCurrentStep("lost-success")}
+      >
+        Submit Verification
+        <CheckCircle className="w-4 h-4 ml-2" />
+      </Button>
+    </div>
+  );
+
+  // Found item match screens
+  const renderFoundMatch = () => (
+    <div className="space-y-6">
+      <div className="text-center">
+        <div className="mx-auto w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mb-4">
+          <Users className="w-10 h-10 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold mb-2">🎉 It's a Match!</h3>
+        <p className="text-muted-foreground">
+          Alex thinks you found their keys
+        </p>
+      </div>
+
+      <Card className="border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <Avatar>
+              <AvatarFallback>AK</AvatarFallback>
+            </Avatar>
+            <div>
+              <h4 className="font-semibold">Alex K.</h4>
+              <p className="text-sm text-muted-foreground">1 minute ago</p>
+            </div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
+            <p className="text-sm">
+              "Thank you so much! Those are definitely my keys. The blue keychain is from the NY Public Library where I work. 
+              I also have my apartment keys and a small LED flashlight. Where can we meet?"
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex gap-3">
+        <Button 
+          variant="outline" 
+          className="flex-1"
+          onClick={() => setCurrentStep("found-browse")}
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back
+        </Button>
+        <Button 
+          className="flex-1"
+          onClick={() => setCurrentStep("found-next-steps")}
+        >
+          What's Next?
+          <ArrowRight className="w-4 h-4 ml-2" />
+        </Button>
+      </div>
+    </div>
+  );
+
+  const renderFoundNextSteps = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-match")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">What's Next?</h3>
+          <p className="text-muted-foreground">Help verify and arrange the handover</p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <Shield className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Step 1: Verify Ownership</h4>
+                <p className="text-sm text-muted-foreground">Ask questions only the owner would know</p>
+              </div>
+            </div>
+            <p className="text-sm">
+              Before meeting, ask Alex specific questions about the keys to ensure they're the real owner.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-purple-200 bg-purple-50 dark:bg-purple-900/20 dark:border-purple-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Step 2: Safe Meetup</h4>
+                <p className="text-sm text-muted-foreground">Meet at a secure, public location</p>
+              </div>
+            </div>
+            <p className="text-sm">
+              Lostly will suggest safe meeting spots that are convenient for both parties.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                <ThumbsUp className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Step 3: Make Their Day</h4>
+                <p className="text-sm text-muted-foreground">Complete the good deed</p>
+              </div>
+            </div>
+            <p className="text-sm">
+              You're about to make someone's day by returning their lost keys. Community heroes like you make the world better!
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Button 
+        className="w-full"
+        onClick={() => setCurrentStep("found-verification")}
+      >
+        Start Verification
+        <Shield className="w-4 h-4 ml-2" />
+      </Button>
+    </div>
+  );
+
+  const renderFoundVerification = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-next-steps")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">Verify Ownership</h3>
+          <p className="text-muted-foreground">Ask Alex to prove these are their keys</p>
+        </div>
+      </div>
+
+      <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <Shield className="w-5 h-5 text-blue-600" />
+            <h4 className="font-semibold">Verification Questions</h4>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Ask these questions to make sure Alex is the real owner:
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-4">
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="font-semibold">Question 1</h4>
+              <CheckCircle className="w-5 h-5 text-green-600" />
+            </div>
+            <p className="text-sm mb-2">What does the keychain say?</p>
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2">
+              <p className="text-sm text-green-700 dark:text-green-300">✓ "NYPL - I work at the library"</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="font-semibold">Question 2</h4>
+              <CheckCircle className="w-5 h-5 text-green-600" />
+            </div>
+            <p className="text-sm mb-2">How many keys are on the ring?</p>
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2">
+              <p className="text-sm text-green-700 dark:text-green-300">✓ "5 keys total - 2 apartment, 2 work, 1 mailbox"</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="font-semibold">Question 3</h4>
+              <CheckCircle className="w-5 h-5 text-green-600" />
+            </div>
+            <p className="text-sm mb-2">What else is attached to the keys?</p>
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2">
+              <p className="text-sm text-green-700 dark:text-green-300">✓ "A small LED flashlight for emergencies"</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <CheckCircle className="w-5 h-5 text-green-600" />
+          <h4 className="font-semibold text-green-800 dark:text-green-200">Verification Complete!</h4>
+        </div>
+        <p className="text-sm text-green-700 dark:text-green-300">
+          Alex correctly answered all questions. These are definitely their keys!
+        </p>
+      </div>
+
+      <Button 
+        className="w-full"
+        onClick={() => setCurrentStep("found-success")}
+      >
+        Arrange Meetup
+        <MapPin className="w-4 h-4 ml-2" />
+      </Button>
+    </div>
+  );
+
   const renderFoundSuccess = () => (
     <div className="space-y-6 text-center">
       <div className="mx-auto w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
@@ -570,20 +988,20 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       </div>
       
       <div>
-        <h3 className="text-2xl font-bold mb-4">Great Work!</h3>
+        <h3 className="text-2xl font-bold mb-4">You're a Hero! 🦸‍♀️</h3>
         <p className="text-muted-foreground mb-6">
-          Alex will be notified about your message. You're helping someone get their keys back! 
-          This is what makes communities stronger.
+          Meetup arranged for tomorrow at 2 PM at Central Café. 
+          Alex is so grateful - you've just made their week!
         </p>
       </div>
       
       <div className="bg-muted rounded-lg p-4 text-left">
-        <h4 className="font-semibold mb-2">What happens next?</h4>
+        <h4 className="font-semibold mb-2">Meeting Details</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>• Alex can respond with more details to verify ownership</li>
-          <li>• If confirmed, you can arrange a convenient meetup location</li>
-          <li>• Lostly suggests safe, public meeting spots</li>
-          <li>• You both rate the experience and build community trust</li>
+          <li>📍 Central Café, 123 Main St</li>
+          <li>⏰ Tomorrow at 2:00 PM</li>
+          <li>📱 Both parties will receive SMS reminders</li>
+          <li>🔒 Safe, public location with good lighting</li>
         </ul>
       </div>
       
@@ -608,6 +1026,12 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         return renderLostBrowse();
       case "lost-contact":
         return renderLostContact();
+      case "lost-match":
+        return renderLostMatch();
+      case "lost-next-steps":
+        return renderLostNextSteps();
+      case "lost-verification":
+        return renderLostVerification();
       case "lost-success":
         return renderLostSuccess();
       case "found-report":
@@ -616,6 +1040,12 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         return renderFoundBrowse();
       case "found-contact":
         return renderFoundContact();
+      case "found-match":
+        return renderFoundMatch();
+      case "found-next-steps":
+        return renderFoundNextSteps();
+      case "found-verification":
+        return renderFoundVerification();
       case "found-success":
         return renderFoundSuccess();
       default:
