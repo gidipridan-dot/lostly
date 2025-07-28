@@ -27,7 +27,7 @@ export const PartnershipCTA = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section id="partners" className="py-24 bg-background">{/* Added id for navigation */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -57,7 +57,7 @@ export const PartnershipCTA = () => {
         </div>
         
         {/* CTA Form */}
-        <div className="max-w-2xl mx-auto bg-gradient-card border border-border rounded-2xl p-8 shadow-strong">
+        <div id="contact" className="max-w-2xl mx-auto bg-gradient-card border border-border rounded-2xl p-8 shadow-strong">{/* Added contact id */}
           <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
             Get Early Partner Access
           </h3>
