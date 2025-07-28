@@ -163,91 +163,139 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         </Button>
         <div className="flex-1">
           <h3 className="text-lg sm:text-xl font-bold">😞 Report Lost Item</h3>
-          <p className="text-muted-foreground text-sm">Tell us what you've lost</p>
+          <p className="text-muted-foreground text-sm">Help us help you find what you've lost</p>
         </div>
       </div>
+
+      <Card className="border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+              <Search className="w-4 h-4 text-white" />
+            </div>
+            <h4 className="font-semibold text-red-800 dark:text-red-200">Quick Recovery Tips</h4>
+          </div>
+          <p className="text-sm text-red-700 dark:text-red-300">
+            The more details you provide, the faster we can help you recover your item. Be specific!
+          </p>
+        </CardContent>
+      </Card>
       
-      <div className="space-y-4">
-        <div>
-          <label className="text-sm font-medium flex items-center gap-2">
-            📦 What did you lose?
-          </label>
-          <Input 
-            placeholder="e.g., Wallet, Phone, Keys..." 
-            defaultValue="Brown leather wallet" 
-            className="mt-1"
-          />
-        </div>
+      <div className="space-y-5">
+        <Card>
+          <CardContent className="p-4">
+            <label className="text-sm font-medium flex items-center gap-2 mb-3">
+              <Package className="w-4 h-4 text-primary" />
+              What did you lose? *
+            </label>
+            <Input 
+              placeholder="e.g., Wallet, Phone, Keys, Laptop..." 
+              defaultValue="Brown leather wallet" 
+              className="text-base"
+            />
+          </CardContent>
+        </Card>
         
-        <div>
-          <label className="text-sm font-medium flex items-center gap-2">
-            📝 Description
-          </label>
-          <Textarea 
-            placeholder="Describe your item in detail..." 
-            defaultValue="Brown leather wallet with my driver's license and credit cards. Has a small tear on the back corner."
-            className="mt-1 min-h-[80px]"
-          />
-        </div>
+        <Card>
+          <CardContent className="p-4">
+            <label className="text-sm font-medium flex items-center gap-2 mb-3">
+              <MessageCircle className="w-4 h-4 text-primary" />
+              Detailed Description *
+            </label>
+            <Textarea 
+              placeholder="Describe your item in detail - colors, brands, unique features, what's inside..." 
+              defaultValue="Brown leather wallet with my driver's license and credit cards. Has a small tear on the back corner and a photo of my dog in the clear pocket."
+              className="min-h-[100px] text-base"
+            />
+            <p className="text-xs text-muted-foreground mt-2">
+              💡 Tip: Unique details help us match your item faster
+            </p>
+          </CardContent>
+        </Card>
         
         <div className="grid gap-4">
-          <div>
-            <label className="text-sm font-medium flex items-center gap-2">
-              📍 Where did you lose it?
-            </label>
-            <Input 
-              placeholder="Location..." 
-              defaultValue="Central Park, near the pond" 
-              className="mt-1"
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium flex items-center gap-2">
-              📅 When?
-            </label>
-            <Input 
-              type="date" 
-              defaultValue="2024-01-28" 
-              className="mt-1"
-            />
-          </div>
+          <Card>
+            <CardContent className="p-4">
+              <label className="text-sm font-medium flex items-center gap-2 mb-3">
+                <MapPin className="w-4 h-4 text-primary" />
+                Where did you lose it? *
+              </label>
+              <Input 
+                placeholder="Be as specific as possible..." 
+                defaultValue="Central Park, near the pond entrance by 5th Avenue" 
+                className="text-base"
+              />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-4">
+              <label className="text-sm font-medium flex items-center gap-2 mb-3">
+                <Calendar className="w-4 h-4 text-primary" />
+                When did you lose it? *
+              </label>
+              <Input 
+                type="date" 
+                defaultValue="2024-01-28" 
+                className="text-base"
+              />
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Reward Section */}
-        <div className="border border-orange-200 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-800 rounded-lg p-4">
-          <label className="text-sm font-medium flex items-center gap-2 mb-3">
-            💰 Offer Reward (Optional)
-          </label>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 flex-1">
-              <DollarSign className="w-4 h-4 text-orange-600" />
-              <Input 
-                type="number" 
-                placeholder="Amount" 
-                defaultValue="25"
-                className="flex-1"
-              />
+        {/* Enhanced Reward Section */}
+        <Card className="border-orange-200 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
+                <DollarSign className="w-4 h-4 text-white" />
+              </div>
+              <h4 className="font-semibold text-orange-800 dark:text-orange-200">Offer Reward (Optional)</h4>
             </div>
-            <span className="text-sm text-muted-foreground">USD</span>
-          </div>
-          <p className="text-xs text-orange-700 dark:text-orange-300 mt-2">
-            💡 Tip: Offering a reward increases your chances of recovery by 3x!
-          </p>
-        </div>
+            <p className="text-sm text-orange-700 dark:text-orange-300 mb-3">
+              💰 Items with rewards are recovered 3x faster!
+            </p>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <span className="text-sm font-medium">$</span>
+                <Input 
+                  type="number" 
+                  placeholder="Amount" 
+                  defaultValue="25"
+                  className="flex-1"
+                />
+              </div>
+              <span className="text-sm text-muted-foreground">USD</span>
+            </div>
+          </CardContent>
+        </Card>
         
-        <div className="border-2 border-dashed border-border rounded-lg p-6 sm:p-8 text-center">
-          <Camera className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-muted-foreground" />
-          <p className="text-muted-foreground text-sm">📸 Upload photos (optional)</p>
-          <p className="text-xs text-muted-foreground mt-1">Photos help others identify your item</p>
-        </div>
+        <Card className="border-2 border-dashed border-primary/30 bg-primary/5">
+          <CardContent className="p-6 text-center">
+            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Camera className="w-6 h-6 text-primary" />
+            </div>
+            <h4 className="font-medium mb-2">Add Photos (Optional)</h4>
+            <p className="text-sm text-muted-foreground mb-3">
+              Photos help others identify your item quickly
+            </p>
+            <Button variant="outline" size="sm">
+              Choose Files
+            </Button>
+          </CardContent>
+        </Card>
         
         <Button 
           className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
           onClick={() => setCurrentStep("lost-browse")}
         >
-          🚀 Submit Report & Find My Item
+          🚀 Submit Report & Start Search
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
+        
+        <p className="text-xs text-muted-foreground text-center">
+          🔒 Your personal information stays private until you choose to share it
+        </p>
       </div>
     </div>
   );
@@ -405,7 +453,6 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     </div>
   );
 
-  // Found item journey functions
   const renderFoundReport = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -413,45 +460,127 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
-          <h3 className="text-xl font-bold">Report Found Item</h3>
+          <h3 className="text-xl font-bold">🎉 Report Found Item</h3>
           <p className="text-muted-foreground">Help someone get their belongings back</p>
         </div>
       </div>
+
+      <Card className="border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+              <Package className="w-4 h-4 text-white" />
+            </div>
+            <h4 className="font-semibold text-green-800 dark:text-green-200">You're Making a Difference!</h4>
+          </div>
+          <p className="text-sm text-green-700 dark:text-green-300">
+            Thank you for being a good samaritan. Your actions help build stronger communities!
+          </p>
+        </CardContent>
+      </Card>
       
-      <div className="space-y-4">
-        <div>
-          <label className="text-sm font-medium">What did you find?</label>
-          <Input placeholder="e.g., Phone, Keys, Bag..." defaultValue="Set of car keys" />
+      <div className="space-y-5">
+        <Card>
+          <CardContent className="p-4">
+            <label className="text-sm font-medium flex items-center gap-2 mb-3">
+              <Package className="w-4 h-4 text-primary" />
+              What did you find? *
+            </label>
+            <Input 
+              placeholder="e.g., Phone, Keys, Bag, Jewelry..." 
+              defaultValue="Set of car keys" 
+              className="text-base"
+            />
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-4">
+            <label className="text-sm font-medium flex items-center gap-2 mb-3">
+              <MessageCircle className="w-4 h-4 text-primary" />
+              Detailed Description *
+            </label>
+            <Textarea 
+              placeholder="Describe the item in detail - colors, brands, unique features, contents..." 
+              defaultValue="Set of car keys with a blue rubber keychain that says 'NYPL'. Also has what looks like house keys and a small LED flashlight attached."
+              className="min-h-[100px] text-base"
+            />
+            <p className="text-xs text-muted-foreground mt-2">
+              💡 Tip: Detailed descriptions help us match with the right owner
+            </p>
+          </CardContent>
+        </Card>
+        
+        <div className="grid gap-4">
+          <Card>
+            <CardContent className="p-4">
+              <label className="text-sm font-medium flex items-center gap-2 mb-3">
+                <MapPin className="w-4 h-4 text-primary" />
+                Where did you find it? *
+              </label>
+              <Input 
+                placeholder="Be as specific as possible..." 
+                defaultValue="Downtown Metro Station, Platform B near the benches" 
+                className="text-base"
+              />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-4">
+              <label className="text-sm font-medium flex items-center gap-2 mb-3">
+                <Calendar className="w-4 h-4 text-primary" />
+                When did you find it? *
+              </label>
+              <Input 
+                type="date" 
+                defaultValue="2024-01-28" 
+                className="text-base"
+              />
+            </CardContent>
+          </Card>
         </div>
         
-        <div>
-          <label className="text-sm font-medium">Description</label>
-          <Textarea 
-            placeholder="Describe the item in detail..." 
-            defaultValue="Set of car keys with a blue rubber keychain that says 'NYPL'. Also has what looks like house keys and a small flashlight attached."
-          />
-        </div>
+        <Card className="border-2 border-dashed border-primary/30 bg-primary/5">
+          <CardContent className="p-6 text-center">
+            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Camera className="w-6 h-6 text-primary" />
+            </div>
+            <h4 className="font-medium mb-2">Add Photos (Recommended)</h4>
+            <p className="text-sm text-muted-foreground mb-3">
+              Photos help us match with the right owner quickly
+            </p>
+            <Button variant="outline" size="sm">
+              Choose Files
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <Shield className="w-4 h-4 text-white" />
+              </div>
+              <h4 className="font-semibold text-blue-800 dark:text-blue-200">Safety First</h4>
+            </div>
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              🔒 We'll verify ownership before sharing any contact details. Your safety is our priority.
+            </p>
+          </CardContent>
+        </Card>
         
-        <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <label className="text-sm font-medium">Where did you find it?</label>
-            <Input placeholder="Location..." defaultValue="Downtown Metro Station, Platform B" />
-          </div>
-          <div>
-            <label className="text-sm font-medium">When?</label>
-            <Input type="date" defaultValue="2024-01-28" />
-          </div>
-        </div>
-        
-        <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
-          <Camera className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-          <p className="text-muted-foreground">Upload photos (helps with matching)</p>
-        </div>
-        
-        <Button className="w-full" onClick={() => setCurrentStep("found-browse")}>
-          Submit Found Item
+        <Button 
+          className="w-full h-12 text-base font-semibold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700" 
+          onClick={() => setCurrentStep("found-browse")}
+        >
+          ✨ Submit Found Item
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
+        
+        <p className="text-xs text-muted-foreground text-center">
+          🤝 You're helping build a more connected community
+        </p>
       </div>
     </div>
   );
