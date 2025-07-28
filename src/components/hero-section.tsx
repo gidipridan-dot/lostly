@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { MapPin, Shield, Users, Zap } from "lucide-react";
+import { useState } from "react";
+import { DemoModal } from "@/components/demo-modal";
 
 export const HeroSection = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
@@ -56,8 +60,13 @@ export const HeroSection = () => {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="accent" size="lg" className="min-w-48 text-lg">
-              Request Partnership
+            <Button 
+              variant="accent" 
+              size="lg" 
+              className="min-w-48 text-lg"
+              onClick={() => setIsDemoOpen(true)}
+            >
+              Request Demo
             </Button>
             <Button 
               variant="outline" 
@@ -83,6 +92,8 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
+      
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </section>
   );
 };
