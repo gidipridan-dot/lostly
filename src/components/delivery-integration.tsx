@@ -56,97 +56,75 @@ export const DeliveryIntegration = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Smarter Delivery Solutions
+            Smart Delivery
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Skip the awkward meetups. Our shipping partnerships make returning lost items seamless, 
-            secure, and completely contactless with multiple delivery options.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Skip meetups. Choose your delivery partner.
           </p>
         </div>
 
         {/* Delivery Features */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-4 gap-4 mb-16">
           {deliveryFeatures.map((feature, index) => (
-            <Card key={index} className="text-center hover:shadow-elegant transition-all duration-300">
-              <CardHeader>
-                <feature.icon className="h-12 w-12 mx-auto text-primary mb-4" />
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
+            <div key={index} className="text-center p-6 rounded-lg bg-card/50 hover:bg-card transition-all duration-300">
+              <feature.icon className="h-8 w-8 mx-auto text-primary mb-3" />
+              <h3 className="font-semibold text-sm mb-2">{feature.title}</h3>
+              <p className="text-xs text-muted-foreground">{feature.description}</p>
+            </div>
           ))}
         </div>
 
         {/* Shipping Partners */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-center mb-8">Our Shipping Partners</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="mb-12">
+          <h3 className="text-xl font-semibold text-center mb-6">Delivery Partners</h3>
+          <div className="grid md:grid-cols-3 gap-6">
             {deliveryPartners.map((partner, index) => (
-              <Card key={index} className="hover:shadow-strong transition-all duration-300">
-                <CardHeader className="text-center">
-                  <div className="text-4xl mb-2">{partner.logo}</div>
-                  <CardTitle className="text-xl">{partner.name}</CardTitle>
-                  <div className="flex justify-center items-center gap-2">
-                    <Badge variant="secondary">{partner.reliability} reliable</Badge>
-                    <Badge variant="outline">{partner.cost}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {partner.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <div key={index} className="bg-card rounded-lg p-6 text-center hover:shadow-elegant transition-all duration-300">
+                <div className="text-3xl mb-3">{partner.logo}</div>
+                <h4 className="font-semibold mb-2">{partner.name}</h4>
+                <div className="flex justify-center gap-2 mb-3">
+                  <Badge variant="secondary" className="text-xs">{partner.reliability}</Badge>
+                  <Badge variant="outline" className="text-xs">{partner.cost}</Badge>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  {partner.features.slice(0, 2).join(' • ')}
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* How It Works */}
-        <Card className="bg-card/50 backdrop-blur">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl">How Delivery Works</CardTitle>
-            <CardDescription>Simple, secure, and contactless item returns</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-semibold">1</span>
-                </div>
-                <h4 className="font-semibold mb-2">Match Confirmed</h4>
-                <p className="text-sm text-muted-foreground">Item verified and ownership confirmed through our AI system</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-semibold">2</span>
-                </div>
-                <h4 className="font-semibold mb-2">Delivery Option</h4>
-                <p className="text-sm text-muted-foreground">Choose shipping partner based on urgency and item value</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-semibold">3</span>
-                </div>
-                <h4 className="font-semibold mb-2">Auto Labels</h4>
-                <p className="text-sm text-muted-foreground">Digital labels generated with secure packaging instructions</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-semibold">4</span>
-                </div>
-                <h4 className="font-semibold mb-2">Delivered Safely</h4>
-                <p className="text-sm text-muted-foreground">Real-time tracking with photo confirmation and delivery receipt</p>
-              </div>
+        {/* Simple Process */}
+        <div className="grid md:grid-cols-4 gap-4 mb-8">
+          <div className="text-center p-4">
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span className="text-primary font-semibold text-sm">1</span>
             </div>
-          </CardContent>
-        </Card>
+            <h4 className="font-medium text-sm mb-1">Match</h4>
+            <p className="text-xs text-muted-foreground">AI confirms ownership</p>
+          </div>
+          <div className="text-center p-4">
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span className="text-primary font-semibold text-sm">2</span>
+            </div>
+            <h4 className="font-medium text-sm mb-1">Choose</h4>
+            <p className="text-xs text-muted-foreground">Pick delivery option</p>
+          </div>
+          <div className="text-center p-4">
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span className="text-primary font-semibold text-sm">3</span>
+            </div>
+            <h4 className="font-medium text-sm mb-1">Ship</h4>
+            <p className="text-xs text-muted-foreground">Auto labels generated</p>
+          </div>
+          <div className="text-center p-4">
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span className="text-primary font-semibold text-sm">4</span>
+            </div>
+            <h4 className="font-medium text-sm mb-1">Deliver</h4>
+            <p className="text-xs text-muted-foreground">Track & confirm</p>
+          </div>
+        </div>
 
         {/* CTA */}
         <div className="text-center mt-12">
