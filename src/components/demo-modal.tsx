@@ -918,7 +918,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         className="w-full"
         onClick={() => setCurrentStep("lost-match")}
       >
-        Submit Verification
+        Complete Verification
         <CheckCircle className="w-4 h-4 ml-2" />
       </Button>
     </div>
@@ -1315,8 +1315,8 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         className="w-full"
         onClick={() => setCurrentStep("found-match")}
       >
-        Choose Delivery Method
-        <Package className="w-4 h-4 ml-2" />
+        Verification Complete ✓
+        <CheckCircle className="w-4 h-4 ml-2" />
       </Button>
     </div>
   );
