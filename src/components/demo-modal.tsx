@@ -928,83 +928,83 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderLostDeliveryOptions = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-verification")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-next-steps")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
-          <h3 className="text-xl font-bold">Choose Delivery Method</h3>
-          <p className="text-muted-foreground">How would you like to receive your wallet?</p>
+          <h3 className="text-xl font-bold">Approve Delivery Method</h3>
+          <p className="text-muted-foreground">Sarah suggested a delivery option for your wallet</p>
         </div>
       </div>
 
       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
         <div className="flex items-center gap-2 mb-2">
           <CheckCircle className="w-5 h-5 text-green-600" />
-          <h4 className="font-semibold text-green-800 dark:text-green-200">Verification Complete!</h4>
+          <h4 className="font-semibold text-green-800 dark:text-green-200">Delivery Suggestion Received!</h4>
         </div>
         <p className="text-sm text-green-700 dark:text-green-300">
-          Sarah confirmed this is your wallet. Choose your preferred delivery method below.
+          Sarah has verified your ownership and suggested a delivery method. Please approve payment to proceed.
         </p>
       </div>
 
-      <div className="space-y-4">
-        <Card className="cursor-pointer hover:shadow-md transition-all border-primary/50 bg-primary/5" onClick={() => setCurrentStep("lost-complete-rate")}>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                <Truck className="w-5 h-5 text-white" />
+      <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <Avatar className="w-10 h-10">
+              <AvatarFallback className="bg-green-100 text-green-600">SM</AvatarFallback>
+            </Avatar>
+            <div>
+              <h4 className="font-semibold">Sarah M. (Finder)</h4>
+              <p className="text-sm text-muted-foreground">Suggested delivery method</p>
+            </div>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border-l-4 border-blue-500">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <Truck className="w-4 h-4 text-white" />
               </div>
               <div className="flex-1">
-                <h4 className="font-semibold">Uber Direct</h4>
-                <p className="text-sm text-muted-foreground">Same-day local delivery within your city</p>
+                <h4 className="font-semibold">Domestic Delivery - $12.99</h4>
+                <p className="text-sm text-muted-foreground">Standard shipping within your country</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-blue-600">$12.99</p>
-                <p className="text-xs text-muted-foreground">2-4 hours</p>
+                <p className="font-semibold text-blue-600">Recommended</p>
+                <p className="text-xs text-muted-foreground">2-3 days</p>
               </div>
             </div>
-            <p className="text-sm">Fast, tracked delivery via Uber's courier network</p>
-          </CardContent>
-        </Card>
+            <p className="text-sm text-muted-foreground">Sarah will ship your wallet once you approve payment</p>
+          </div>
+        </CardContent>
+      </Card>
 
-        <Card className="cursor-pointer hover:shadow-md transition-all" onClick={() => setCurrentStep("lost-complete-rate")}>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
-                <Plane className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-semibold">DHL Express</h4>
-                <p className="text-sm text-muted-foreground">Next-day delivery nationwide</p>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold text-orange-600">$24.99</p>
-                <p className="text-xs text-muted-foreground">1-2 days</p>
-              </div>
-            </div>
-            <p className="text-sm">Premium express shipping with signature confirmation</p>
-          </CardContent>
-        </Card>
-
-        <Card className="cursor-pointer hover:shadow-md transition-all" onClick={() => setCurrentStep("lost-complete-rate")}>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
-                <Globe className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-semibold">FedEx International</h4>
-                <p className="text-sm text-muted-foreground">Global shipping anywhere in the world</p>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold text-purple-600">$39.99</p>
-                <p className="text-xs text-muted-foreground">3-7 days</p>
-              </div>
-            </div>
-            <p className="text-sm">Worldwide coverage with customs handling included</p>
-          </CardContent>
-        </Card>
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <DollarSign className="w-5 h-5 text-blue-600" />
+          <h4 className="font-semibold text-blue-800 dark:text-blue-200">Payment Approval Required</h4>
+        </div>
+        <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+          As the item owner, you'll pay for shipping costs ($12.99). Payment will be processed securely after you approve.
+        </p>
+        
+        <div className="space-y-3">
+          <Button 
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+            onClick={() => setCurrentStep("lost-complete-rate")}
+          >
+            ✅ Approve Payment ($12.99)
+            <DollarSign className="w-4 h-4 ml-2" />
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="w-full border-amber-300 text-amber-700 hover:bg-amber-100"
+          >
+            ❌ Decline & Suggest Alternative
+          </Button>
+        </div>
       </div>
+
 
       <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
         <div className="flex items-center gap-2 mb-2">
