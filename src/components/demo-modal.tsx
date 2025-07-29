@@ -1313,10 +1313,10 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
       <Button 
         className="w-full"
-        onClick={() => setCurrentStep("found-match")}
+        onClick={() => setCurrentStep("found-delivery-options")}
       >
-        Verification Complete ✓
-        <CheckCircle className="w-4 h-4 ml-2" />
+        Choose Delivery Method
+        <Package className="w-4 h-4 ml-2" />
       </Button>
     </div>
   );
