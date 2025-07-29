@@ -14,9 +14,6 @@ export const Pricing = () => {
         "Custom branding and domain",
         "24/7 support and monitoring",
         "Advanced analytics dashboard",
-        "Multi-language support",
-        "Compliance reporting",
-        "Priority feature requests",
         "Dedicated account manager"
       ],
       popular: false,
@@ -31,12 +28,9 @@ export const Pricing = () => {
       features: [
         "Campus app integration",
         "Student ID verification system", 
-        "Academic calendar integration",
         "Campus-specific pickup locations",
-        "Semester-based reporting",
         "Student privacy protections",
-        "Emergency item protocols",
-        "Parent notification options"
+        "Emergency item protocols"
       ],
       popular: true,
       cta: "Schedule Campus Demo"
@@ -50,10 +44,7 @@ export const Pricing = () => {
       features: [
         "Custom integration architecture",
         "Multi-location support",
-        "Advanced fraud detection",
         "Real-time item tracking",
-        "Insurance integration",
-        "Custom workflow design",
         "Dedicated development team",
         "SLA guarantees"
       ],
