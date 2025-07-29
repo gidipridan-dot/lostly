@@ -113,28 +113,32 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   };
 
   const renderChooseJourney = () => (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="text-center">
-        <h3 className="text-xl sm:text-2xl font-bold mb-2">✨ Experience Lostly</h3>
-        <p className="text-muted-foreground text-sm sm:text-base">
+        <h3 className="text-2xl sm:text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+          ✨ Experience Lostly
+        </h3>
+        <p className="text-muted-foreground text-base sm:text-lg">
           Choose your journey to see how we reunite people with their belongings
         </p>
       </div>
       
-      <div className="grid gap-4 sm:gap-6">
+      <div className="grid gap-6">
         <Card 
-          className="cursor-pointer hover:shadow-lg transition-all hover:scale-105 active:scale-95" 
+          className="cursor-pointer hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group border-0 bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 hover:from-red-100 hover:to-pink-100 dark:hover:from-red-900/30 dark:hover:to-pink-900/30" 
           onClick={() => setCurrentStep("lost-report")}
         >
-          <CardContent className="p-4 sm:p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <Search className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+          <CardContent className="p-6 sm:p-8">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-elegant group-hover:shadow-strong transition-all duration-300 group-hover:scale-110">
+                <Search className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </div>
               <div className="flex-1">
-                <h4 className="text-lg sm:text-xl font-bold text-foreground mb-1">😔 I Lost Something</h4>
-                <p className="text-muted-foreground text-sm">
-                  Report & recover your lost items quickly
+                <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2 group-hover:text-red-600 transition-colors">
+                  😔 I Lost Something
+                </h4>
+                <p className="text-muted-foreground text-base">
+                  Report & recover your lost items quickly with our smart matching system
                 </p>
               </div>
             </div>
@@ -142,64 +146,79 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         </Card>
         
         <Card 
-          className="cursor-pointer hover:shadow-lg transition-all hover:scale-105 active:scale-95" 
+          className="cursor-pointer hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] group border-0 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 hover:from-green-100 hover:to-emerald-100 dark:hover:from-green-900/30 dark:hover:to-emerald-900/30" 
           onClick={() => setCurrentStep("found-report")}
         >
-          <CardContent className="p-4 sm:p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <Package className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+          <CardContent className="p-6 sm:p-8">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-elegant group-hover:shadow-strong transition-all duration-300 group-hover:scale-110">
+                <Package className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </div>
               <div className="flex-1">
-                <h4 className="text-lg sm:text-xl font-bold text-foreground mb-1">🎉 I Found Something</h4>
-                <p className="text-muted-foreground text-sm">
-                  Help someone reunite with their belongings
+                <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2 group-hover:text-green-600 transition-colors">
+                  🎉 I Found Something
+                </h4>
+                <p className="text-muted-foreground text-base">
+                  Help someone reunite with their belongings and be a community hero
                 </p>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
+      
+      <div className="text-center">
+        <p className="text-sm text-muted-foreground">
+          🔒 Your privacy is protected throughout the entire process
+        </p>
+      </div>
     </div>
   );
 
   const renderLostReport = () => (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2 sm:gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("choose-journey")} className="p-2">
-          <ArrowLeft className="w-4 h-4" />
+    <div className="space-y-8">
+      <div className="flex items-center gap-4">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          onClick={() => setCurrentStep("choose-journey")} 
+          className="p-3 hover:bg-primary/10 rounded-xl transition-all duration-200"
+        >
+          <ArrowLeft className="w-5 h-5" />
         </Button>
         <div className="flex-1">
-          <h3 className="text-lg sm:text-xl font-bold">😞 Report Lost Item</h3>
-          <p className="text-muted-foreground text-sm">Help us help you find what you've lost</p>
+          <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+            😞 Report Lost Item
+          </h3>
+          <p className="text-muted-foreground text-base">Help us help you find what you've lost</p>
         </div>
       </div>
 
-      <Card className="border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800">
-        <CardContent className="p-4">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-              <Search className="w-4 h-4 text-white" />
+      <Card className="border-red-200 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 border-red-300/50">
+        <CardContent className="p-6">
+          <div className="flex items-center gap-4 mb-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-pink-600 rounded-xl flex items-center justify-center shadow-md">
+              <Search className="w-5 h-5 text-white" />
             </div>
-            <h4 className="font-semibold text-red-800 dark:text-red-200">Quick Recovery Tips</h4>
+            <h4 className="font-bold text-red-800 dark:text-red-200">Quick Recovery Tips</h4>
           </div>
-          <p className="text-sm text-red-700 dark:text-red-300">
+          <p className="text-red-700 dark:text-red-300">
             The more details you provide, the faster we can help you recover your item. Be specific!
           </p>
         </CardContent>
       </Card>
       
-      <div className="space-y-5">
-        <Card>
-          <CardContent className="p-4">
-            <label className="text-sm font-medium flex items-center gap-2 mb-3">
-              <Package className="w-4 h-4 text-primary" />
+      <div className="space-y-6">
+        <Card className="hover:shadow-md transition-all duration-200 border-primary/20">
+          <CardContent className="p-6">
+            <label className="text-base font-semibold flex items-center gap-3 mb-4">
+              <Package className="w-5 h-5 text-primary" />
               What did you lose? *
             </label>
             <Input 
               placeholder="e.g., Wallet, Phone, Keys, Laptop..." 
               defaultValue="Brown leather wallet" 
-              className="text-base"
+              className="text-base h-12 border-primary/20 focus:border-primary"
             />
           </CardContent>
         </Card>
@@ -294,11 +313,11 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         </Card>
         
         <Button 
-          className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
+          className="w-full h-14 text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-elegant hover:shadow-strong transition-all duration-300 hover:scale-[1.02]" 
           onClick={() => setCurrentStep("lost-browse")}
         >
           🚀 Submit Report & Start Search
-          <ArrowRight className="w-4 h-4 ml-2" />
+          <ArrowRight className="w-5 h-5 ml-2" />
         </Button>
         
         <p className="text-xs text-muted-foreground text-center">
@@ -1568,11 +1587,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
-        <DialogHeader className="text-center sm:text-left">
-          <DialogTitle className="text-lg sm:text-xl">🔍 Lostly Demo</DialogTitle>
-        </DialogHeader>
-        {renderCurrentStep()}
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 border-0 bg-gradient-to-b from-background to-background/95 backdrop-blur-xl">
+        <div className="p-6 sm:p-8">
+          <DialogHeader className="text-center sm:text-left mb-6">
+            <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              🔍 Lostly Demo
+            </DialogTitle>
+          </DialogHeader>
+          {renderCurrentStep()}
+        </div>
       </DialogContent>
     </Dialog>
   );
