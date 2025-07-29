@@ -6,27 +6,31 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { 
-  Search, 
-  MapPin, 
-  Calendar, 
-  Camera, 
-  MessageCircle, 
-  CheckCircle, 
-  ArrowLeft,
-  ArrowRight,
-  Package,
-  Smartphone,
-  Wallet,
-  Key,
-  DollarSign,
-  Users,
-  Shield,
-  Clock,
-  AlertCircle,
-  Star,
-  ThumbsUp
-} from "lucide-react";
+  import { 
+    Search, 
+    MapPin, 
+    Calendar, 
+    Camera, 
+    MessageCircle, 
+    CheckCircle, 
+    ArrowLeft,
+    ArrowRight,
+    Package,
+    Smartphone,
+    Wallet,
+    Key,
+    DollarSign,
+    Users,
+    Shield,
+    Clock,
+    AlertCircle,
+    Star,
+    ThumbsUp,
+    Truck,
+    Plane,
+    Globe,
+    FileText
+  } from "lucide-react";
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -41,6 +45,8 @@ type DemoStep =
   | "lost-match"
   | "lost-next-steps"
   | "lost-verification"
+  | "lost-delivery-options"
+  | "lost-meetup-waiver"
   | "lost-success"
   | "found-report"
   | "found-browse"
@@ -48,6 +54,8 @@ type DemoStep =
   | "found-match"
   | "found-next-steps"
   | "found-verification"
+  | "found-delivery-options"
+  | "found-meetup-waiver"
   | "found-success";
 
 const mockFoundItems = [
@@ -425,20 +433,20 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       </div>
       
       <div>
-        <h3 className="text-2xl font-bold mb-4">Message Sent!</h3>
+        <h3 className="text-2xl font-bold mb-4">Delivery Scheduled! 📦</h3>
         <p className="text-muted-foreground mb-6">
-          Sarah will be notified and can respond through our secure messaging system. 
-          You'll receive updates via email and app notifications.
+          Your wallet will be delivered via domestic shipping in 2-3 business days. 
+          Sarah is so grateful to help you get your belongings back!
         </p>
       </div>
       
       <div className="bg-muted rounded-lg p-4 text-left">
-        <h4 className="font-semibold mb-2">What happens next?</h4>
+        <h4 className="font-semibold mb-2">Delivery Details</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>• Sarah receives your message and can verify item details</li>
-          <li>• If it's a match, you can arrange a safe meeting location</li>
-          <li>• Lostly provides meetup safety tips and guidelines</li>
-          <li>• Once reunited, both parties can rate the experience</li>
+          <li>• Secure packaging with tracking number provided</li>
+          <li>• Insurance coverage included for item protection</li>
+          <li>• Signature required upon delivery for security</li>
+          <li>• Both parties can rate the experience once delivered</li>
         </ul>
       </div>
       
@@ -791,15 +799,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           <CardContent className="p-4">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-white" />
+                <Package className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h4 className="font-semibold">Step 2: Safe Meetup</h4>
-                <p className="text-sm text-muted-foreground">Arrange meeting at secure location</p>
+                <h4 className="font-semibold">Step 2: Choose Delivery Method</h4>
+                <p className="text-sm text-muted-foreground">Safe, secure delivery options</p>
               </div>
             </div>
             <p className="text-sm">
-              Lostly will suggest safe, public meeting spots near both of you with good lighting and security.
+              Lostly offers multiple delivery options: domestic, express, or worldwide shipping based on your location and item value.
             </p>
           </CardContent>
         </Card>
@@ -889,11 +897,195 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
       <Button 
         className="w-full"
-        onClick={() => setCurrentStep("lost-success")}
+        onClick={() => setCurrentStep("lost-delivery-options")}
       >
         Submit Verification
         <CheckCircle className="w-4 h-4 ml-2" />
       </Button>
+    </div>
+  );
+
+  const renderLostDeliveryOptions = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-verification")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">Choose Delivery Method</h3>
+          <p className="text-muted-foreground">How would you like to receive your wallet?</p>
+        </div>
+      </div>
+
+      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <CheckCircle className="w-5 h-5 text-green-600" />
+          <h4 className="font-semibold text-green-800 dark:text-green-200">Verification Complete!</h4>
+        </div>
+        <p className="text-sm text-green-700 dark:text-green-300">
+          Sarah confirmed this is your wallet. Choose your preferred delivery method below.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        <Card className="cursor-pointer hover:shadow-md transition-all border-primary/50 bg-primary/5" onClick={() => setCurrentStep("lost-success")}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <Truck className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">Domestic Delivery</h4>
+                <p className="text-sm text-muted-foreground">Standard shipping within your country</p>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-blue-600">$8.99</p>
+                <p className="text-xs text-muted-foreground">2-3 days</p>
+              </div>
+            </div>
+            <p className="text-sm">Secure tracking, insurance included, signature required</p>
+          </CardContent>
+        </Card>
+
+        <Card className="cursor-pointer hover:shadow-md transition-all" onClick={() => setCurrentStep("lost-success")}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
+                <Plane className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">Express Delivery</h4>
+                <p className="text-sm text-muted-foreground">Expedited shipping for urgent items</p>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-orange-600">$19.99</p>
+                <p className="text-xs text-muted-foreground">1-2 days</p>
+              </div>
+            </div>
+            <p className="text-sm">Priority handling, real-time tracking, next-day delivery available</p>
+          </CardContent>
+        </Card>
+
+        <Card className="cursor-pointer hover:shadow-md transition-all" onClick={() => setCurrentStep("lost-success")}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                <Globe className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">Worldwide Delivery</h4>
+                <p className="text-sm text-muted-foreground">International shipping anywhere</p>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-purple-600">$29.99</p>
+                <p className="text-xs text-muted-foreground">5-10 days</p>
+              </div>
+            </div>
+            <p className="text-sm">Customs handling included, full international tracking</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <AlertCircle className="w-5 h-5 text-amber-600" />
+          <h4 className="font-semibold text-amber-800 dark:text-amber-200">Last Resort Option</h4>
+        </div>
+        <p className="text-sm text-amber-700 dark:text-amber-300 mb-3">
+          If delivery isn't suitable, you can arrange an in-person meetup (requires liability waiver).
+        </p>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="border-amber-300 text-amber-700 hover:bg-amber-100"
+          onClick={() => setCurrentStep("lost-meetup-waiver")}
+        >
+          <MapPin className="w-4 h-4 mr-2" />
+          Arrange Meetup Instead
+        </Button>
+      </div>
+    </div>
+  );
+
+  const renderLostMeetupWaiver = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-delivery-options")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">Meetup Liability Waiver</h3>
+          <p className="text-muted-foreground">Legal disclaimer for in-person meetings</p>
+        </div>
+      </div>
+
+      <Card className="border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <AlertCircle className="w-5 h-5 text-red-600" />
+            <h4 className="font-semibold text-red-800 dark:text-red-200">Important Legal Notice</h4>
+          </div>
+          <p className="text-sm text-red-700 dark:text-red-300">
+            By choosing to meet in person, you acknowledge and accept full responsibility for your safety.
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-4">
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-3 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-primary" />
+              Liability Waiver Agreement
+            </h4>
+            <div className="bg-muted rounded-lg p-4 max-h-64 overflow-y-auto text-sm space-y-3">
+              <p><strong>ASSUMPTION OF RISK AND RELEASE OF LIABILITY</strong></p>
+              
+              <p>By selecting the in-person meetup option, I, the undersigned, understand and acknowledge that:</p>
+              
+              <ul className="space-y-2 ml-4">
+                <li>• I am voluntarily choosing to meet another person in connection with the return of lost/found items</li>
+                <li>• Lostly Inc. ("Company") does not control, supervise, or monitor in-person meetings</li>
+                <li>• Meeting strangers involves inherent risks including but not limited to personal injury, theft, fraud, or other criminal activity</li>
+                <li>• I am solely responsible for my personal safety and security during any meetup</li>
+                <li>• I agree to meet only in safe, public locations with good lighting and visibility</li>
+              </ul>
+
+              <p><strong>RELEASE AND WAIVER:</strong> I hereby release, waive, discharge, and covenant not to sue the Company, its officers, directors, employees, and agents from any and all liability, claims, demands, actions, and causes of action arising out of or relating to any loss, damage, or injury that may be sustained by me during or as a result of any in-person meetup.</p>
+
+              <p><strong>INDEMNIFICATION:</strong> I agree to indemnify and hold harmless the Company from any claims arising from my participation in in-person meetups.</p>
+
+              <p className="text-xs text-muted-foreground">This waiver shall be binding upon my heirs, successors, and assigns.</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
+          <input type="checkbox" id="waiver-agree" className="w-4 h-4" />
+          <label htmlFor="waiver-agree" className="text-sm">
+            I have read, understood, and agree to the terms of this liability waiver
+          </label>
+        </div>
+
+        <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
+          <input type="checkbox" id="safety-acknowledge" className="w-4 h-4" />
+          <label htmlFor="safety-acknowledge" className="text-sm">
+            I acknowledge that Lostly is not responsible for my safety during in-person meetings
+          </label>
+        </div>
+      </div>
+
+      <Button 
+        className="w-full"
+        onClick={() => setCurrentStep("lost-success")}
+      >
+        Accept Waiver & Arrange Meetup
+        <FileText className="w-4 h-4 ml-2" />
+      </Button>
+
+      <p className="text-xs text-muted-foreground text-center">
+        We strongly recommend using our secure delivery options instead of in-person meetings
+      </p>
     </div>
   );
 
@@ -984,15 +1176,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           <CardContent className="p-4">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-white" />
+                <Package className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h4 className="font-semibold">Step 2: Safe Meetup</h4>
-                <p className="text-sm text-muted-foreground">Meet at a secure, public location</p>
+                <h4 className="font-semibold">Step 2: Choose Delivery Method</h4>
+                <p className="text-sm text-muted-foreground">Safe, secure delivery options</p>
               </div>
             </div>
             <p className="text-sm">
-              Lostly will suggest safe meeting spots that are convenient for both parties.
+              Lostly offers multiple delivery options: domestic, express, or worldwide shipping based on location and item value.
             </p>
           </CardContent>
         </Card>
@@ -1102,10 +1294,10 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
       <Button 
         className="w-full"
-        onClick={() => setCurrentStep("found-success")}
+        onClick={() => setCurrentStep("found-delivery-options")}
       >
-        Arrange Meetup
-        <MapPin className="w-4 h-4 ml-2" />
+        Choose Delivery Method
+        <Package className="w-4 h-4 ml-2" />
       </Button>
     </div>
   );
@@ -1119,18 +1311,18 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       <div>
         <h3 className="text-2xl font-bold mb-4">You're a Hero! 🦸‍♀️</h3>
         <p className="text-muted-foreground mb-6">
-          Meetup arranged for tomorrow at 2 PM at Central Café. 
+          Keys will be delivered to Alex via domestic shipping in 2-3 business days. 
           Alex is so grateful - you've just made their week!
         </p>
       </div>
       
       <div className="bg-muted rounded-lg p-4 text-left">
-        <h4 className="font-semibold mb-2">Meeting Details</h4>
+        <h4 className="font-semibold mb-2">Delivery Details</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>📍 Central Café, 123 Main St</li>
-          <li>⏰ Tomorrow at 2:00 PM</li>
-          <li>📱 Both parties will receive SMS reminders</li>
-          <li>🔒 Safe, public location with good lighting</li>
+          <li>📦 Secure packaging with tracking provided</li>
+          <li>🚚 Free shipping covered by Lostly</li>
+          <li>📱 Both parties will receive delivery updates</li>
+          <li>🔒 Insurance included for safe transport</li>
         </ul>
       </div>
       
@@ -1142,6 +1334,190 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           Close Demo
         </Button>
       </div>
+    </div>
+  );
+
+  const renderFoundDeliveryOptions = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-verification")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">Choose Delivery Method</h3>
+          <p className="text-muted-foreground">How should we send the keys to Alex?</p>
+        </div>
+      </div>
+
+      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <CheckCircle className="w-5 h-5 text-green-600" />
+          <h4 className="font-semibold text-green-800 dark:text-green-200">Ownership Verified!</h4>
+        </div>
+        <p className="text-sm text-green-700 dark:text-green-300">
+          Alex has proven ownership. Select the best delivery method for returning their keys.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        <Card className="cursor-pointer hover:shadow-md transition-all border-primary/50 bg-primary/5" onClick={() => setCurrentStep("found-success")}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <Truck className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">Domestic Delivery</h4>
+                <p className="text-sm text-muted-foreground">Standard shipping within your country</p>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-green-600">FREE</p>
+                <p className="text-xs text-muted-foreground">2-3 days</p>
+              </div>
+            </div>
+            <p className="text-sm">Lostly covers shipping costs for verified returns</p>
+          </CardContent>
+        </Card>
+
+        <Card className="cursor-pointer hover:shadow-md transition-all" onClick={() => setCurrentStep("found-success")}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
+                <Plane className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">Express Delivery</h4>
+                <p className="text-sm text-muted-foreground">Expedited shipping for urgent items</p>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-green-600">FREE</p>
+                <p className="text-xs text-muted-foreground">1-2 days</p>
+              </div>
+            </div>
+            <p className="text-sm">Priority handling for time-sensitive returns</p>
+          </CardContent>
+        </Card>
+
+        <Card className="cursor-pointer hover:shadow-md transition-all" onClick={() => setCurrentStep("found-success")}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                <Globe className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">Worldwide Delivery</h4>
+                <p className="text-sm text-muted-foreground">International shipping anywhere</p>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-green-600">FREE</p>
+                <p className="text-xs text-muted-foreground">5-10 days</p>
+              </div>
+            </div>
+            <p className="text-sm">Global coverage with customs handling included</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <AlertCircle className="w-5 h-5 text-amber-600" />
+          <h4 className="font-semibold text-amber-800 dark:text-amber-200">Alternative Option</h4>
+        </div>
+        <p className="text-sm text-amber-700 dark:text-amber-300 mb-3">
+          If delivery isn't suitable, you can arrange an in-person meetup (requires liability waiver).
+        </p>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="border-amber-300 text-amber-700 hover:bg-amber-100"
+          onClick={() => setCurrentStep("found-meetup-waiver")}
+        >
+          <MapPin className="w-4 h-4 mr-2" />
+          Arrange Meetup Instead
+        </Button>
+      </div>
+    </div>
+  );
+
+  const renderFoundMeetupWaiver = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-delivery-options")}>
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div>
+          <h3 className="text-xl font-bold">Meetup Liability Waiver</h3>
+          <p className="text-muted-foreground">Legal disclaimer for in-person meetings</p>
+        </div>
+      </div>
+
+      <Card className="border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <AlertCircle className="w-5 h-5 text-red-600" />
+            <h4 className="font-semibold text-red-800 dark:text-red-200">Important Legal Notice</h4>
+          </div>
+          <p className="text-sm text-red-700 dark:text-red-300">
+            By choosing to meet in person, you acknowledge and accept full responsibility for your safety.
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-4">
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-3 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-primary" />
+              Liability Waiver Agreement
+            </h4>
+            <div className="bg-muted rounded-lg p-4 max-h-64 overflow-y-auto text-sm space-y-3">
+              <p><strong>ASSUMPTION OF RISK AND RELEASE OF LIABILITY</strong></p>
+              
+              <p>By selecting the in-person meetup option, I, the undersigned, understand and acknowledge that:</p>
+              
+              <ul className="space-y-2 ml-4">
+                <li>• I am voluntarily choosing to meet another person in connection with the return of lost/found items</li>
+                <li>• Lostly Inc. ("Company") does not control, supervise, or monitor in-person meetings</li>
+                <li>• Meeting strangers involves inherent risks including but not limited to personal injury, theft, fraud, or other criminal activity</li>
+                <li>• I am solely responsible for my personal safety and security during any meetup</li>
+                <li>• I agree to meet only in safe, public locations with good lighting and visibility</li>
+              </ul>
+
+              <p><strong>RELEASE AND WAIVER:</strong> I hereby release, waive, discharge, and covenant not to sue the Company, its officers, directors, employees, and agents from any and all liability, claims, demands, actions, and causes of action arising out of or relating to any loss, damage, or injury that may be sustained by me during or as a result of any in-person meetup.</p>
+
+              <p><strong>INDEMNIFICATION:</strong> I agree to indemnify and hold harmless the Company from any claims arising from my participation in in-person meetups.</p>
+
+              <p className="text-xs text-muted-foreground">This waiver shall be binding upon my heirs, successors, and assigns.</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
+          <input type="checkbox" id="waiver-agree-found" className="w-4 h-4" />
+          <label htmlFor="waiver-agree-found" className="text-sm">
+            I have read, understood, and agree to the terms of this liability waiver
+          </label>
+        </div>
+
+        <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
+          <input type="checkbox" id="safety-acknowledge-found" className="w-4 h-4" />
+          <label htmlFor="safety-acknowledge-found" className="text-sm">
+            I acknowledge that Lostly is not responsible for my safety during in-person meetings
+          </label>
+        </div>
+      </div>
+
+      <Button 
+        className="w-full"
+        onClick={() => setCurrentStep("found-success")}
+      >
+        Accept Waiver & Arrange Meetup
+        <FileText className="w-4 h-4 ml-2" />
+      </Button>
+
+      <p className="text-xs text-muted-foreground text-center">
+        We strongly recommend using our secure delivery options instead of in-person meetings
+      </p>
     </div>
   );
 
@@ -1161,6 +1537,10 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         return renderLostNextSteps();
       case "lost-verification":
         return renderLostVerification();
+      case "lost-delivery-options":
+        return renderLostDeliveryOptions();
+      case "lost-meetup-waiver":
+        return renderLostMeetupWaiver();
       case "lost-success":
         return renderLostSuccess();
       case "found-report":
@@ -1175,6 +1555,10 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         return renderFoundNextSteps();
       case "found-verification":
         return renderFoundVerification();
+      case "found-delivery-options":
+        return renderFoundDeliveryOptions();
+      case "found-meetup-waiver":
+        return renderFoundMeetupWaiver();
       case "found-success":
         return renderFoundSuccess();
       default:
