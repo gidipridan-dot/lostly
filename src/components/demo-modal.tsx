@@ -1511,15 +1511,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 <Truck className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1">
-                <h4 className="font-semibold">Domestic Delivery</h4>
+                <h4 className="font-semibold">Domestic Delivery - $12.99</h4>
                 <p className="text-sm text-muted-foreground">Standard shipping within your country</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-green-600">FREE</p>
+                <p className="font-semibold text-blue-600">Recommended</p>
                 <p className="text-xs text-muted-foreground">2-3 days</p>
               </div>
             </div>
-            <p className="text-sm">Lostly covers shipping costs for verified returns</p>
+            <p className="text-sm">Alex will pay for shipping upon approval</p>
           </CardContent>
         </Card>
 
@@ -1530,11 +1530,11 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 <Plane className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1">
-                <h4 className="font-semibold">Express Delivery</h4>
+                <h4 className="font-semibold">Express Delivery - $24.99</h4>
                 <p className="text-sm text-muted-foreground">Expedited shipping for urgent items</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-green-600">FREE</p>
+                <p className="font-semibold text-orange-600">Fast</p>
                 <p className="text-xs text-muted-foreground">1-2 days</p>
               </div>
             </div>
@@ -1549,17 +1549,31 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 <Globe className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1">
-                <h4 className="font-semibold">Worldwide Delivery</h4>
+                <h4 className="font-semibold">Worldwide Delivery - $39.99</h4>
                 <p className="text-sm text-muted-foreground">International shipping anywhere</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-green-600">FREE</p>
+                <p className="font-semibold text-purple-600">Global</p>
                 <p className="text-xs text-muted-foreground">5-10 days</p>
               </div>
             </div>
             <p className="text-sm">Global coverage with customs handling included</p>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Clock className="w-5 h-5 text-blue-600" />
+          <h4 className="font-semibold text-blue-800 dark:text-blue-200">Waiting for Alex's Approval</h4>
+        </div>
+        <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+          Your delivery suggestion will be sent to Alex for approval and payment. Once Alex approves, Lostly will arrange pickup from your location.
+        </p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border-l-4 border-blue-500">
+          <p className="text-sm font-medium text-blue-800 dark:text-blue-200">Selected: Domestic Delivery ($12.99)</p>
+          <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">Alex will be notified to approve payment for this option</p>
+        </div>
       </div>
 
       <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
