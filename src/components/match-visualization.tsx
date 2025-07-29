@@ -46,11 +46,8 @@ export const MatchVisualization = () => {
         <div className="max-w-4xl mx-auto">
           {/* Match Process Visualization */}
           <div className="relative">
-            {/* Connection Line */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 rounded-full" />
-            
             {/* Lost Item Side */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-start">
               <div className="bg-card border rounded-xl p-6 shadow-elegant hover:shadow-strong transition-all duration-500 w-80">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center">
@@ -81,22 +78,28 @@ export const MatchVisualization = () => {
               </div>
 
               {/* Matching Animation */}
-              <div className="flex-1 flex justify-center">
+              <div className="flex-1 flex flex-col items-center py-8">
+                {/* Connection Line - positioned above the animation */}
+                <div className="w-full h-0.5 bg-gradient-to-r from-primary/20 via-primary/60 to-primary/20 rounded-full mb-4" />
+                
                 <div className={`relative transition-all duration-1000 ${isVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}>
-                  <div className={`w-20 h-20 rounded-full border-4 border-primary/20 flex items-center justify-center transition-all duration-500 ${
+                  <div className={`w-16 h-16 rounded-full border-4 border-primary/20 flex items-center justify-center transition-all duration-500 ${
                     currentStep >= 1 ? 'bg-primary/10 border-primary scale-110' : ''
                   }`}>
-                    <div className={`w-8 h-8 rounded-full transition-all duration-500 ${
+                    <div className={`w-6 h-6 rounded-full transition-all duration-500 ${
                       currentStep >= 1 ? 'bg-primary animate-pulse' : 'bg-muted-foreground/20'
                     }`} />
                   </div>
                   
-                  {/* Animated matching lines */}
+                  {/* Animated matching pulses */}
                   <div className={`absolute inset-0 transition-all duration-1000 ${currentStep >= 1 ? 'animate-pulse' : ''}`}>
-                    <div className="absolute top-1/2 left-full w-20 h-0.5 bg-gradient-to-r from-primary to-transparent transform -translate-y-1/2" />
-                    <div className="absolute top-1/2 right-full w-20 h-0.5 bg-gradient-to-l from-primary to-transparent transform -translate-y-1/2" />
+                    <div className="absolute top-1/2 left-full w-16 h-0.5 bg-gradient-to-r from-primary to-transparent transform -translate-y-1/2" />
+                    <div className="absolute top-1/2 right-full w-16 h-0.5 bg-gradient-to-l from-primary to-transparent transform -translate-y-1/2" />
                   </div>
                 </div>
+                
+                {/* Connection Line - positioned below the animation */}
+                <div className="w-full h-0.5 bg-gradient-to-r from-primary/20 via-primary/60 to-primary/20 rounded-full mt-4" />
               </div>
 
               {/* Found Item Side */}
