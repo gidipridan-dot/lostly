@@ -22,7 +22,7 @@ export const PartnershipCTA = () => {
     {
       icon: Users,
       title: "Event Organizers", 
-      description: "Conferences & large gatherings"
+      description: "Festivals"
     }
   ];
 
