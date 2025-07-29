@@ -41,19 +41,19 @@ type DemoStep =
   | "choose-journey"
   | "lost-report"
   | "lost-browse"
-  | "lost-contact"
-  | "lost-match"
-  | "lost-next-steps"
   | "lost-verification"
+  | "lost-match"
+  | "lost-contact"
+  | "lost-next-steps"
   | "lost-delivery-options"
   | "lost-meetup-waiver"
   | "lost-success"
   | "found-report"
   | "found-browse"
-  | "found-contact"
-  | "found-match"
-  | "found-next-steps"
   | "found-verification"
+  | "found-match"
+  | "found-contact"
+  | "found-next-steps"
   | "found-delivery-options"
   | "found-meetup-waiver"
   | "found-success";
@@ -358,7 +358,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             }`}
             onClick={() => {
               setSelectedItem(item);
-              setCurrentStep("lost-contact");
+              setCurrentStep("lost-verification");
             }}
           >
             <CardContent className="p-4">
@@ -396,7 +396,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderLostContact = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-browse")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-match")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
@@ -433,7 +433,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           />
         </div>
         
-        <Button className="w-full" onClick={() => setCurrentStep("lost-match")}>
+        <Button className="w-full" onClick={() => setCurrentStep("lost-next-steps")}>
           Send Secure Message
           <MessageCircle className="w-4 h-4 ml-2" />
         </Button>
@@ -643,7 +643,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             }`}
             onClick={() => {
               setSelectedItem(item);
-              setCurrentStep("found-contact");
+              setCurrentStep("found-verification");
             }}
           >
             <CardContent className="p-4">
@@ -682,7 +682,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderFoundContact = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-browse")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-match")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
@@ -719,7 +719,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           />
         </div>
         
-        <Button className="w-full" onClick={() => setCurrentStep("found-match")}>
+        <Button className="w-full" onClick={() => setCurrentStep("found-next-steps")}>
           Send Secure Message
           <MessageCircle className="w-4 h-4 ml-2" />
         </Button>
@@ -768,14 +768,14 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         <Button 
           variant="outline" 
           className="flex-1"
-          onClick={() => setCurrentStep("lost-browse")}
+          onClick={() => setCurrentStep("lost-verification")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back
         </Button>
         <Button 
           className="flex-1"
-          onClick={() => setCurrentStep("lost-next-steps")}
+          onClick={() => setCurrentStep("lost-contact")}
         >
           What's Next?
           <ArrowRight className="w-4 h-4 ml-2" />
@@ -787,7 +787,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderLostNextSteps = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-match")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-contact")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
@@ -862,7 +862,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderLostVerification = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-next-steps")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("lost-browse")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
@@ -916,7 +916,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
       <Button 
         className="w-full"
-        onClick={() => setCurrentStep("lost-delivery-options")}
+        onClick={() => setCurrentStep("lost-match")}
       >
         Submit Verification
         <CheckCircle className="w-4 h-4 ml-2" />
@@ -1145,14 +1145,14 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         <Button 
           variant="outline" 
           className="flex-1"
-          onClick={() => setCurrentStep("found-browse")}
+          onClick={() => setCurrentStep("found-verification")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back
         </Button>
         <Button 
           className="flex-1"
-          onClick={() => setCurrentStep("found-next-steps")}
+          onClick={() => setCurrentStep("found-contact")}
         >
           What's Next?
           <ArrowRight className="w-4 h-4 ml-2" />
@@ -1164,7 +1164,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderFoundNextSteps = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-match")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-contact")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
@@ -1239,7 +1239,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const renderFoundVerification = () => (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-next-steps")}>
+        <Button variant="ghost" size="sm" onClick={() => setCurrentStep("found-browse")}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
@@ -1313,7 +1313,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
       <Button 
         className="w-full"
-        onClick={() => setCurrentStep("found-delivery-options")}
+        onClick={() => setCurrentStep("found-match")}
       >
         Choose Delivery Method
         <Package className="w-4 h-4 ml-2" />
