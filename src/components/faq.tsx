@@ -45,6 +45,10 @@ export const FAQ = () => {
       answer: "Our system categorizes items automatically and applies appropriate safety protocols. High-value items require additional verification steps. Sensitive items like IDs or medical devices get priority matching with enhanced security measures."
     },
     {
+      question: "How does the match + validation process work?",
+      answer: "When someone reports a lost item (like a brown bag), our AI analyzes the description and automatically matches it with found items in the system. The finder and owner don't communicate directly at first - instead, we validate the match through detailed verification questions and photo comparisons before facilitating secure contact and pickup."
+    },
+    {
       question: "What makes this different from existing lost & found solutions?",
       answer: "Unlike traditional lost & found, we focus on behavioral incentives and embedding within existing user bases. Our anonymous safety features, smart matching algorithms, and community reward system create a sustainable ecosystem that actually gets items returned."
     }
