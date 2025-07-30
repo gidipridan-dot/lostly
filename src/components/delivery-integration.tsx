@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Truck } from "lucide-react";
+import { Truck, Package } from "lucide-react";
+import dhlLogo from "@/assets/dhl-logo.png";
+import uberLogo from "@/assets/uber-logo.png";
 
 const partners = [
-  { name: "FedEx", rate: "99.7%", type: "Platform covered", icon: "📦" },
-  { name: "DHL", rate: "99.5%", type: "Reward points", icon: "🚚" },
-  { name: "Uber", rate: "98.9%", type: "User pays", icon: "🚗" }
+  { name: "FedEx", rate: "99.7%", type: "Platform covered", icon: <Package className="w-8 h-8 text-primary" /> },
+  { name: "DHL", rate: "99.5%", type: "Reward points", logo: dhlLogo },
+  { name: "Uber", rate: "98.9%", type: "User pays", logo: uberLogo }
 ];
 
 const steps = [
@@ -24,11 +26,22 @@ export const DeliveryIntegration = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-20">
           {partners.map((partner, i) => (
-            <div key={i} className="text-center space-y-3">
-              <div className="text-3xl">{partner.icon}</div>
-              <div className="font-medium">{partner.name}</div>
-              <div className="text-2xl font-bold text-primary">{partner.rate}</div>
-              <div className="text-sm text-muted-foreground">{partner.type}</div>
+            <div key={i} className="bg-card border rounded-xl p-8 text-center space-y-4 hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-center h-16">
+                {partner.logo ? (
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`} 
+                    className="h-12 object-contain"
+                  />
+                ) : (
+                  partner.icon
+                )}
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-1">{partner.rate}</div>
+                <div className="text-sm text-muted-foreground">{partner.type}</div>
+              </div>
             </div>
           ))}
         </div>
