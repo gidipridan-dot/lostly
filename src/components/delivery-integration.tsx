@@ -5,9 +5,9 @@ import dhlLogo from "@/assets/dhl-logo.png";
 import uberLogo from "@/assets/uber-logo.png";
 
 const partners = [
-  { name: "FedEx", rate: "99.7%", logo: fedexLogo },
-  { name: "DHL", rate: "99.5%", logo: dhlLogo },
-  { name: "Uber", rate: "98.9%", logo: uberLogo }
+  { name: "FedEx", rate: "99.7", logo: fedexLogo },
+  { name: "DHL", rate: "99.5", logo: dhlLogo },
+  { name: "Uber", rate: "98.9", logo: uberLogo }
 ];
 
 const steps = [
@@ -32,7 +32,7 @@ export const DeliveryIntegration = () => {
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`} 
-                  className="h-10 w-auto object-contain"
+                  className="h-12 w-20 object-contain"
                 />
               </div>
               <div>
