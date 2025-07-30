@@ -33,7 +33,7 @@ export const DeliveryIntegration = () => {
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`} 
-                  className="h-8 w-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  className="h-12 w-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             </div>
