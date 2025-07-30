@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Truck, Package } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Truck, Package, CheckCircle } from "lucide-react";
 import fedexLogo from "@/assets/fedex-logo.png";
 import dhlLogo from "@/assets/dhl-logo.png";
 import uberLogo from "@/assets/uber-logo.png";
@@ -59,7 +60,60 @@ export const DeliveryIntegration = () => {
             <Truck className="mr-2 h-4 w-4" />
             Start Smart Delivery
           </Button>
-          <Button variant="outline">Learn More</Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">Learn More</Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="text-xl font-semibold flex items-center gap-2">
+                  <Package className="h-5 w-5" />
+                  Third-Party Shipping Instead of In-Person Exchanges
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-6">
+                <p className="text-muted-foreground">
+                  Rather than having users meet face-to-face, Lostly partners with third-party couriers like FedEx, DHL, or Israel Post.
+                </p>
+                
+                <div>
+                  <h4 className="font-semibold mb-3">Process:</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">1</div>
+                      <p className="text-sm">Once a match is verified, Lostly issues an automatic digital shipping slip.</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">2</div>
+                      <p className="text-sm">The finder drops off the item at an official location (or schedules a pickup).</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">3</div>
+                      <p className="text-sm">The item is delivered securely and tracked.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3">Benefits:</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span className="text-sm">Safer, faster, no awkward meetings</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span className="text-sm">Works across cities or countries</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span className="text-sm">Shipping cost is built into the reward or reimbursed by the owner</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </section>
