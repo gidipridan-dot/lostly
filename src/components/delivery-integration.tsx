@@ -5,9 +5,9 @@ import dhlLogo from "@/assets/dhl-logo.png";
 import uberLogo from "@/assets/uber-logo.png";
 
 const partners = [
-  { name: "FedEx", rate: "99.7%", type: "Platform covered", logo: fedexLogo },
-  { name: "DHL", rate: "99.5%", type: "Reward points", logo: dhlLogo },
-  { name: "Uber", rate: "98.9%", type: "User pays", logo: uberLogo }
+  { name: "FedEx", rate: "99.7%", logo: fedexLogo },
+  { name: "DHL", rate: "99.5%", logo: dhlLogo },
+  { name: "Uber", rate: "98.9%", logo: uberLogo }
 ];
 
 const steps = [
@@ -36,8 +36,7 @@ export const DeliveryIntegration = () => {
                 />
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-1">{partner.rate}</div>
-                <div className="text-sm text-muted-foreground">{partner.type}</div>
+                <div className="text-3xl font-bold text-primary">{partner.rate}</div>
               </div>
             </div>
           ))}
