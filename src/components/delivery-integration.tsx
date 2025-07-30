@@ -36,9 +36,6 @@ export const DeliveryIntegration = () => {
                   className="h-8 w-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
-              <div>
-                <div className="text-4xl font-bold text-primary">{partner.rate}</div>
-              </div>
             </div>
           ))}
         </div>
