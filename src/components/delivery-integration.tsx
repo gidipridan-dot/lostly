@@ -73,7 +73,7 @@ export const DeliveryIntegration = () => {
               </DialogHeader>
               <div className="space-y-6">
                 <p className="text-muted-foreground">
-                  Rather than having users meet face-to-face, Lostly partners with third-party couriers like FedEx, DHL, or Israel Post.
+                  Rather than having users meet face-to-face, Lostly partners with third-party couriers like FedEx, DHL, or local post offices.
                 </p>
                 
                 <div>
