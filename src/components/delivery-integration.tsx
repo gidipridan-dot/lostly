@@ -28,16 +28,17 @@ export const DeliveryIntegration = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-20">
           {partners.map((partner, i) => (
-            <div key={i} className="bg-card border rounded-xl p-8 text-center space-y-4 hover:shadow-lg transition-shadow">
-              <div className="flex items-center justify-center h-16">
+            <div key={i} className="group bg-gradient-to-br from-card to-card/50 border border-border/50 rounded-2xl p-8 text-center space-y-6 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center justify-center h-20 bg-background/80 rounded-xl p-4 mx-auto w-fit shadow-sm">
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`} 
-                  className="h-12 w-20 object-contain"
+                  className="h-8 w-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
-              <div>
-                <div className="text-3xl font-bold text-primary">{partner.rate}</div>
+              <div className="space-y-2">
+                <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Success Rate</div>
+                <div className="text-4xl font-bold text-primary">{partner.rate}</div>
               </div>
             </div>
           ))}
