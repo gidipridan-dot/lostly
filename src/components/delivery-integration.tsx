@@ -32,7 +32,7 @@ export const DeliveryIntegration = () => {
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`} 
-                  className="h-12 object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
               <div>
