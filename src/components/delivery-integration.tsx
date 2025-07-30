@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Truck, Package } from "lucide-react";
+import fedexLogo from "@/assets/fedex-logo.png";
 import dhlLogo from "@/assets/dhl-logo.png";
 import uberLogo from "@/assets/uber-logo.png";
 
 const partners = [
-  { name: "FedEx", rate: "99.7%", type: "Platform covered", icon: <Package className="w-8 h-8 text-primary" /> },
+  { name: "FedEx", rate: "99.7%", type: "Platform covered", logo: fedexLogo },
   { name: "DHL", rate: "99.5%", type: "Reward points", logo: dhlLogo },
   { name: "Uber", rate: "98.9%", type: "User pays", logo: uberLogo }
 ];
@@ -28,15 +29,11 @@ export const DeliveryIntegration = () => {
           {partners.map((partner, i) => (
             <div key={i} className="bg-card border rounded-xl p-8 text-center space-y-4 hover:shadow-lg transition-shadow">
               <div className="flex items-center justify-center h-16">
-                {partner.logo ? (
-                  <img 
-                    src={partner.logo} 
-                    alt={`${partner.name} logo`} 
-                    className="h-12 object-contain"
-                  />
-                ) : (
-                  partner.icon
-                )}
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`} 
+                  className="h-12 object-contain"
+                />
               </div>
               <div>
                 <div className="text-3xl font-bold text-primary mb-1">{partner.rate}</div>
