@@ -33,7 +33,7 @@ export const DeliveryIntegration = () => {
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`} 
-                  className={`${partner.name === 'FedEx' ? 'h-16 w-24' : 'h-12 w-20'} object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300`}
+                  className={`${partner.name === 'FedEx' ? 'h-20 w-32' : 'h-12 w-20'} object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300`}
                 />
               </div>
             </div>
