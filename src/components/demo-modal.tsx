@@ -1731,9 +1731,6 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 border-0 bg-gradient-to-b from-background to-background/95 backdrop-blur-xl">
         <div className="p-6 sm:p-8">
           <DialogHeader className="text-center sm:text-left mb-6">
-            <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              🔍 Lostly Demo
-            </DialogTitle>
           </DialogHeader>
           {renderCurrentStep()}
         </div>
