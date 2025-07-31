@@ -448,13 +448,22 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   const renderLostSuccess = () => (
     <div className="space-y-6 text-center">
-      <div className="mx-auto w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-        <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
+      {/* Animated success icon with sparkle effects */}
+      <div className="relative mx-auto w-20 h-20">
+        <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center animate-success-pop shadow-success">
+          <CheckCircle className="w-10 h-10 text-white animate-gentle-bounce" />
+        </div>
+        {/* Sparkle effects */}
+        <div className="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-sparkle opacity-0"></div>
+        <div className="absolute -bottom-1 -left-3 w-3 h-3 bg-pink-400 rounded-full animate-sparkle delay-300 opacity-0"></div>
+        <div className="absolute top-2 -left-4 w-2 h-2 bg-blue-400 rounded-full animate-sparkle delay-700 opacity-0"></div>
       </div>
       
-      <div>
-        <h3 className="text-2xl font-bold mb-4">Delivery Scheduled! 📦</h3>
-        <p className="text-muted-foreground mb-6">
+      <div className="animate-fade-in">
+        <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+          Delivery Scheduled!
+        </h3>
+        <p className="text-muted-foreground mb-6 leading-relaxed">
           Your wallet will be delivered via domestic shipping in 2-3 business days. 
           Sarah is so grateful to help you get your belongings back!
         </p>
@@ -599,7 +608,8 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         </Card>
         
         <Button 
-          className="w-full h-12 text-base font-semibold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700" 
+          variant="success"
+          className="w-full h-12 text-base font-semibold" 
           onClick={() => setCurrentStep("found-browse")}
         >
           Submit Found Item
@@ -625,9 +635,12 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         </div>
       </div>
       
-      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 animate-success-pop">
         <div className="flex items-center gap-2">
-          <CheckCircle className="w-5 h-5 text-green-600" />
+          <div className="relative">
+            <CheckCircle className="w-5 h-5 text-green-600 animate-gentle-bounce" />
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-sparkle opacity-0"></div>
+          </div>
           <span className="font-medium text-green-800 dark:text-green-200">Item posted successfully!</span>
         </div>
         <p className="text-green-700 dark:text-green-300 text-sm mt-1">
@@ -1448,13 +1461,23 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
   const renderFoundSuccess = () => (
     <div className="space-y-6 text-center">
-      <div className="mx-auto w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-        <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
+      {/* Hero celebration with animated elements */}
+      <div className="relative mx-auto w-24 h-24">
+        <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-success-pop shadow-glow">
+          <CheckCircle className="w-12 h-12 text-white animate-gentle-bounce" />
+        </div>
+        {/* Hero sparkles */}
+        <div className="absolute -top-3 -right-3 w-5 h-5 bg-yellow-400 rounded-full animate-sparkle opacity-0"></div>
+        <div className="absolute -bottom-2 -left-4 w-4 h-4 bg-emerald-400 rounded-full animate-sparkle delay-500 opacity-0"></div>
+        <div className="absolute top-3 -left-5 w-3 h-3 bg-blue-400 rounded-full animate-sparkle delay-1000 opacity-0"></div>
+        <div className="absolute -top-1 left-8 w-2 h-2 bg-pink-400 rounded-full animate-sparkle delay-200 opacity-0"></div>
       </div>
       
-      <div>
-        <h3 className="text-2xl font-bold mb-4">You're a Hero! 🦸‍♀️</h3>
-        <p className="text-muted-foreground mb-6">
+      <div className="animate-fade-in">
+        <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          You're a Hero!
+        </h3>
+        <p className="text-muted-foreground mb-6 leading-relaxed">
           Keys will be delivered to Alex via domestic shipping in 2-3 business days. 
           Alex is so grateful - you've just made their week!
         </p>
