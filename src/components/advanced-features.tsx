@@ -258,7 +258,17 @@ export const AdvancedFeatures = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <Button variant="hero" size="lg" className="mr-4">
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="mr-4"
+            onClick={() => {
+              const element = document.getElementById('partnership-cta');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             Explore Partnership Opportunities
           </Button>
         </div>

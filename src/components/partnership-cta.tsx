@@ -27,7 +27,7 @@ export const PartnershipCTA = () => {
   ];
 
   return (
-    <section id="partners" className="py-24 bg-background">{/* Added id for navigation */}
+    <section id="partnership-cta" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
