@@ -136,7 +136,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               </div>
               <div className="flex-1">
                 <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2 group-hover:text-red-600 transition-colors">
-                  😔 I Lost Something
+                  I Lost Something
                 </h4>
                 <p className="text-muted-foreground text-base">
                   Report & recover your lost items quickly with our smart matching system
@@ -157,7 +157,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               </div>
               <div className="flex-1">
                 <h4 className="text-xl sm:text-2xl font-bold text-foreground mb-2 group-hover:text-green-600 transition-colors">
-                  🎉 I Found Something
+                  I Found Something
                 </h4>
                 <p className="text-muted-foreground text-base">
                   Help someone reunite with their belongings and be a community hero
@@ -317,7 +317,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           className="w-full h-14 text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-elegant hover:shadow-strong transition-all duration-300 hover:scale-[1.02]" 
           onClick={() => setCurrentStep("lost-browse")}
         >
-          🚀 Submit Report & Start Search
+          Submit Report & Start Search
           <ArrowRight className="w-5 h-5 ml-2" />
         </Button>
         
