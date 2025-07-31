@@ -602,7 +602,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           className="w-full h-12 text-base font-semibold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700" 
           onClick={() => setCurrentStep("found-browse")}
         >
-          ✨ Submit Found Item
+          Submit Found Item
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
         
