@@ -61,50 +61,83 @@ export const DeliveryIntegration = () => {
             <DialogTrigger asChild>
               <Button variant="outline">Learn More</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle className="text-xl font-semibold flex items-center gap-2">
-                  <Package className="h-5 w-5" />
+            <DialogContent className="max-w-3xl">
+              <DialogHeader className="pb-6 border-b border-border/10">
+                <DialogTitle className="text-2xl font-semibold flex items-center gap-3 text-foreground">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Package className="h-4 w-4 text-primary" />
+                  </div>
                   Third-Party Shipping Instead of In-Person Exchanges
                 </DialogTitle>
               </DialogHeader>
-              <div className="space-y-6">
-                <p className="text-muted-foreground">
-                  Rather than having users meet face-to-face, Lostly partners with third-party couriers like FedEx, DHL, or local post offices.
-                </p>
+              
+              <div className="py-6 space-y-8">
+                <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
+                  <p className="text-foreground/80 leading-relaxed text-base">
+                    Rather than having users meet face-to-face, Lostly partners with third-party couriers 
+                    like FedEx, DHL, or local post offices to facilitate secure, tracked exchanges.
+                  </p>
+                </div>
                 
-                <div>
-                  <h4 className="font-semibold mb-3">Process:</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">1</div>
-                      <p className="text-sm">Once a match is verified, Lostly issues an automatic digital shipping slip.</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">2</div>
-                      <p className="text-sm">The finder drops off the item at an official location (or schedules a pickup).</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">3</div>
-                      <p className="text-sm">The item is delivered securely and tracked.</p>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-5 text-foreground flex items-center gap-2">
+                      <div className="w-5 h-5 bg-primary/10 rounded flex items-center justify-center">
+                        <span className="text-xs font-bold text-primary">1</span>
+                      </div>
+                      Process Overview
+                    </h4>
+                    <div className="grid gap-4">
+                      <div className="flex items-start gap-4 bg-card/50 rounded-lg p-4 border border-border/30">
+                        <div className="w-8 h-8 bg-primary/15 text-primary rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                        <div>
+                          <p className="font-medium text-foreground mb-1">Automatic Shipping Label</p>
+                          <p className="text-sm text-muted-foreground leading-relaxed">Once a match is verified, Lostly issues an automatic digital shipping slip with all necessary details.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4 bg-card/50 rounded-lg p-4 border border-border/30">
+                        <div className="w-8 h-8 bg-primary/15 text-primary rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                        <div>
+                          <p className="font-medium text-foreground mb-1">Drop-off or Pickup</p>
+                          <p className="text-sm text-muted-foreground leading-relaxed">The finder drops off the item at an official location or schedules a convenient pickup service.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4 bg-card/50 rounded-lg p-4 border border-border/30">
+                        <div className="w-8 h-8 bg-primary/15 text-primary rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                        <div>
+                          <p className="font-medium text-foreground mb-1">Secure Delivery</p>
+                          <p className="text-sm text-muted-foreground leading-relaxed">The item is delivered securely with full tracking capabilities and delivery confirmation.</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div>
-                  <h4 className="font-semibold mb-3">Benefits:</h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">Safer, faster, no awkward meetings</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">Works across cities or countries</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">Shipping cost is built into the reward or reimbursed by the owner</span>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-5 text-foreground flex items-center gap-2">
+                      <div className="w-5 h-5 bg-green-500/10 rounded flex items-center justify-center">
+                        <CheckCircle className="w-3 h-3 text-green-600" />
+                      </div>
+                      Key Benefits
+                    </h4>
+                    <div className="grid gap-3">
+                      <div className="flex items-center gap-3 bg-green-50/50 dark:bg-green-950/20 rounded-lg p-3 border border-green-200/30 dark:border-green-800/30">
+                        <div className="w-6 h-6 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+                        </div>
+                        <span className="text-sm font-medium text-green-800 dark:text-green-200">Enhanced Safety & Convenience</span>
+                      </div>
+                      <div className="flex items-center gap-3 bg-blue-50/50 dark:bg-blue-950/20 rounded-lg p-3 border border-blue-200/30 dark:border-blue-800/30">
+                        <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <span className="text-sm font-medium text-blue-800 dark:text-blue-200">Global Reach Across Cities & Countries</span>
+                      </div>
+                      <div className="flex items-center gap-3 bg-purple-50/50 dark:bg-purple-950/20 rounded-lg p-3 border border-purple-200/30 dark:border-purple-800/30">
+                        <div className="w-6 h-6 bg-purple-100 dark:bg-purple-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
+                        </div>
+                        <span className="text-sm font-medium text-purple-800 dark:text-purple-200">Integrated Cost Management</span>
+                      </div>
                     </div>
                   </div>
                 </div>
