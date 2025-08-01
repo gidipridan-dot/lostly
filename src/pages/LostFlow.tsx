@@ -14,6 +14,7 @@ export default function LostFlow() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [capturedPhoto, setCapturedPhoto] = useState<string>('');
   const [location, setLocation] = useState<string>('');
+  const [reward, setReward] = useState<string>('');
   const navigate = useNavigate();
 
   const handleCategorySelect = (category: string) => {
@@ -26,8 +27,11 @@ export default function LostFlow() {
     setTimeout(() => setCurrentStep('location'), 200);
   };
 
-  const handleLocationConfirm = (selectedLocation: string) => {
+  const handleLocationConfirm = (selectedLocation: string, rewardAmount?: string) => {
     setLocation(selectedLocation);
+    if (rewardAmount) {
+      setReward(rewardAmount);
+    }
     setCurrentStep('submitted');
     setTimeout(() => navigate('/'), 3000);
   };
@@ -63,7 +67,10 @@ export default function LostFlow() {
               <h1 className="text-3xl font-bold text-foreground mb-3">Where did you lose it?</h1>
               <p className="text-muted-foreground text-lg">Help others know where to look</p>
             </div>
-            <LocationSelect onConfirm={handleLocationConfirm} />
+            <LocationSelect 
+              onConfirm={handleLocationConfirm} 
+              showReward={true}
+            />
           </div>
         );
 
@@ -74,7 +81,10 @@ export default function LostFlow() {
               <Check className="w-12 h-12 text-primary-foreground" />
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-3">Submitted!</h1>
-            <p className="text-muted-foreground text-lg mb-8">We'll notify you if someone finds your {selectedCategory.toLowerCase()}</p>
+            <p className="text-muted-foreground text-lg mb-8">
+              We'll notify you if someone finds your {selectedCategory.toLowerCase()}
+              {reward && <span className="block mt-1 text-primary font-medium">💰 Reward offered: {reward}</span>}
+            </p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>✓ Photo analysis complete</p>
               <p>✓ Scanning nearby found items</p>
