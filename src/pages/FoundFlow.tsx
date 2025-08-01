@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 type Step = 'camera' | 'category' | 'location' | 'submitted';
 
 export default function FoundFlow() {
-  const [currentStep, setCurrentStep] = useState<Step>('camera');
+  const [currentStep, setCurrentStep] = useState<Step>('category');
   const [capturedPhoto, setCapturedPhoto] = useState<string>('');
   const [detectedCategory, setDetectedCategory] = useState<string>('');
   const [location, setLocation] = useState<string>('');
