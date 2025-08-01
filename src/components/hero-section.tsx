@@ -70,7 +70,7 @@ export const HeroSection = () => {
                 variant="accent" 
                 size="lg" 
                 className="w-full sm:min-w-48 text-base lg:text-lg"
-                onClick={() => setIsDemoOpen(true)}
+                onClick={() => navigate('/found')}
               >
                 Request Demo
               </Button>

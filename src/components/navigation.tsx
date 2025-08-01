@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { MapPin, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -42,7 +43,11 @@ export const Navigation = () => {
           </Button>
 
           {/* CTA Button */}
-          <Button variant="default" className="hidden sm:inline-flex">
+          <Button 
+            variant="default" 
+            className="hidden sm:inline-flex"
+            onClick={() => navigate('/found')}
+          >
             Request Demo
           </Button>
         </div>
@@ -72,7 +77,14 @@ export const Navigation = () => {
               >
                 Contact
               </a>
-              <Button variant="default" className="w-full">
+              <Button 
+                variant="default" 
+                className="w-full"
+                onClick={() => {
+                  navigate('/found');
+                  setIsOpen(false);
+                }}
+              >
                 Request Demo
               </Button>
             </div>
