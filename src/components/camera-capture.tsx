@@ -13,13 +13,76 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, itemCat
   const [isCapturing, setIsCapturing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Determine camera mode based on item category
+  // Get item-specific guidance
+  const getItemGuidance = () => {
+    switch (itemCategory) {
+      case 'Keys':
+        return {
+          icon: Camera,
+          captureText: 'Photograph Keys',
+          capturingText: 'Capturing...',
+          confirmIcon: Camera,
+          confirmText: 'Use Photo',
+          instructions: 'Place keys on a flat surface with good lighting. Include any keychains or distinctive features.',
+          tips: ['Use natural light when possible', 'Avoid shadows on keys', 'Show both sides if keys look different']
+        };
+      case 'Phone':
+        return {
+          icon: Camera,
+          captureText: 'Photograph Phone',
+          capturingText: 'Capturing...',
+          confirmIcon: Camera,
+          confirmText: 'Use Photo',
+          instructions: 'Show the back of the phone clearly. Include any case, stickers, or damage.',
+          tips: ['Capture any scratches or distinctive marks', 'Include phone case if present', 'Ensure brand/model is visible']
+        };
+      case 'Wallet':
+        return {
+          icon: Camera,
+          captureText: 'Photograph Wallet',
+          capturingText: 'Capturing...',
+          confirmIcon: Camera,
+          confirmText: 'Use Photo',
+          instructions: 'Show the wallet closed first, then open to reveal contents if comfortable.',
+          tips: ['Include any cards or cash visible', 'Show distinctive wear patterns', 'Capture brand logos or unique features']
+        };
+      case 'Headphones':
+        return {
+          icon: Camera,
+          captureText: 'Photograph Headphones',
+          capturingText: 'Capturing...',
+          confirmIcon: Camera,
+          confirmText: 'Use Photo',
+          instructions: 'Show the headphones clearly with any branding visible. Include charging case if applicable.',
+          tips: ['Capture brand name and model', 'Show any wear or damage', 'Include case/accessories if present']
+        };
+      case 'Passport':
+      case 'Other':
+        return {
+          icon: Scan,
+          captureText: 'Scan Document',
+          capturingText: 'Scanning...',
+          confirmIcon: CreditCard,
+          confirmText: 'Use Scan',
+          instructions: 'Position document flat against a dark background. Ensure all corners are visible.',
+          tips: ['Use good lighting without glare', 'Keep document flat and straight', 'Avoid shadows on the document']
+        };
+      default:
+        return {
+          icon: Camera,
+          captureText: 'Take Photo',
+          capturingText: 'Capturing...',
+          confirmIcon: Camera,
+          confirmText: 'Use Photo',
+          instructions: 'Take a clear photo of your item.',
+          tips: ['Use good lighting', 'Include distinctive features', 'Avoid blurry images']
+        };
+    }
+  };
+
+  const guidance = getItemGuidance();
+  const { icon: cameraIcon, captureText, capturingText, confirmIcon, confirmText, instructions, tips } = guidance;
   const isDocumentMode = itemCategory === 'Passport' || itemCategory === 'Other';
-  const cameraIcon = isDocumentMode ? Scan : Camera;
-  const captureText = isDocumentMode ? 'Scan Document' : 'Take Photo';
-  const capturingText = isDocumentMode ? 'Scanning...' : 'Capturing...';
-  const confirmIcon = isDocumentMode ? CreditCard : Camera;
-  const confirmText = isDocumentMode ? 'Use Scan' : 'Use Photo';
 
   const handleFileSelect = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -122,6 +185,23 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, itemCat
           </div>
         )}
       </Card>
+
+      {/* Guidance Card */}
+      {!capturedImage && (
+        <Card className="p-4 border-0 bg-card/50 backdrop-blur-sm">
+          <div className="space-y-3">
+            <h3 className="font-semibold text-foreground">{instructions}</h3>
+            <div className="space-y-2">
+              {tips.map((tip, index) => (
+                <div key={index} className="flex items-start space-x-2 text-sm text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span>{tip}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+      )}
 
       <input
         ref={fileInputRef}
