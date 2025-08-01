@@ -1,16 +1,25 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { Camera, Upload, RotateCcw } from 'lucide-react';
+import { Camera, Upload, RotateCcw, Scan, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 interface CameraCaptureProps {
   onCapture: (photoUrl: string) => void;
+  itemCategory?: string;
 }
 
-export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture }) => {
+export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, itemCategory = '' }) => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [isCapturing, setIsCapturing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Determine camera mode based on item category
+  const isDocumentMode = itemCategory === 'Passport' || itemCategory === 'Other';
+  const cameraIcon = isDocumentMode ? Scan : Camera;
+  const captureText = isDocumentMode ? 'Scan Document' : 'Take Photo';
+  const capturingText = isDocumentMode ? 'Scanning...' : 'Capturing...';
+  const confirmIcon = isDocumentMode ? CreditCard : Camera;
+  const confirmText = isDocumentMode ? 'Use Scan' : 'Use Photo';
 
   const handleFileSelect = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -75,15 +84,17 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture }) => {
                 onClick={handleConfirm}
                 className="flex-1 hover-scale bg-gradient-to-r from-primary to-primary/80"
               >
-                <Camera className="w-4 h-4 mr-2" />
-                Use Photo
+                {React.createElement(confirmIcon, { className: "w-4 h-4 mr-2" })}
+                {confirmText}
               </Button>
             </div>
           </div>
         ) : (
           <div className="text-center">
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 border-2 border-dashed border-primary/30">
-              <Camera className={`w-12 h-12 text-primary transition-all duration-200 ${isCapturing ? 'animate-bounce' : ''}`} />
+            <div className={`w-32 h-32 ${isDocumentMode ? 'rounded-2xl' : 'rounded-full'} bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 border-2 border-dashed border-primary/30 ${isDocumentMode ? 'border-4' : ''}`}>
+              {React.createElement(cameraIcon, {
+                className: `w-12 h-12 text-primary transition-all duration-200 ${isCapturing ? 'animate-bounce' : ''}`
+              })}
             </div>
             
             <Button
@@ -94,8 +105,8 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture }) => {
               }`}
               disabled={isCapturing}
             >
-              <Camera className="w-5 h-5 mr-2" />
-              {isCapturing ? 'Capturing...' : 'Take Photo'}
+              {React.createElement(cameraIcon, { className: "w-5 h-5 mr-2" })}
+              {isCapturing ? capturingText : captureText}
             </Button>
             
             <div className="mt-4">

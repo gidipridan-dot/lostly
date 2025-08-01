@@ -18,12 +18,12 @@ export default function FoundFlow() {
 
   const handlePhotoCapture = (photoUrl: string) => {
     setCapturedPhoto(photoUrl);
-    setTimeout(() => setCurrentStep('category'), 200);
+    setTimeout(() => setCurrentStep('location'), 200);
   };
 
   const handleCategorySelect = (category: string) => {
     setDetectedCategory(category);
-    setTimeout(() => setCurrentStep('location'), 200);
+    setTimeout(() => setCurrentStep('camera'), 200);
   };
 
   const handleLocationConfirm = (selectedLocation: string) => {
@@ -38,10 +38,14 @@ export default function FoundFlow() {
         return (
           <div className="animate-fade-in">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-3">Found Something?</h1>
-              <p className="text-muted-foreground text-lg">Snap a quick photo to get started</p>
+              <h1 className="text-3xl font-bold text-foreground mb-3">
+                {detectedCategory === 'Passport' || detectedCategory === 'Other' ? 'Scan Document' : `Capture ${detectedCategory}`}
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                {detectedCategory === 'Passport' || detectedCategory === 'Other' ? 'Position document flat and scan' : 'Take a clear photo of the item'}
+              </p>
             </div>
-            <CameraCapture onCapture={handlePhotoCapture} />
+            <CameraCapture onCapture={handlePhotoCapture} itemCategory={detectedCategory} />
           </div>
         );
 
