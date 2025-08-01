@@ -151,7 +151,7 @@ export const HeroSection = () => {
                     variant="outline" 
                     size="sm" 
                     className="w-full mt-3 lg:mt-4 text-xs lg:text-sm"
-                    onClick={() => setIsDemoOpen(true)}
+                    onClick={() => navigate('/demo')}
                   >
                     Try Interactive Demo
                   </Button>
