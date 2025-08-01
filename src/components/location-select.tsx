@@ -3,7 +3,7 @@ import { MapPin, Navigation, Building, Home, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
+import { Slider } from '@/components/ui/slider';
 
 interface LocationSelectProps {
   onConfirm: (location: string, reward?: string) => void;
@@ -21,8 +21,7 @@ export const LocationSelect: React.FC<LocationSelectProps> = ({ onConfirm, showR
   const [selectedLocation, setSelectedLocation] = useState<string>('');
   const [customLocation, setCustomLocation] = useState<string>('');
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
-  const [offerReward, setOfferReward] = useState<boolean>(false);
-  const [rewardAmount, setRewardAmount] = useState<string>('');
+  const [rewardAmount, setRewardAmount] = useState<number>(0);
 
   useEffect(() => {
     // Simulate getting current location
@@ -50,7 +49,7 @@ export const LocationSelect: React.FC<LocationSelectProps> = ({ onConfirm, showR
   const handleConfirm = () => {
     const finalLocation = customLocation.trim() || selectedLocation;
     if (finalLocation) {
-      const reward = showReward && offerReward && rewardAmount.trim() ? rewardAmount.trim() : undefined;
+      const reward = showReward && rewardAmount > 0 ? `$${rewardAmount}` : undefined;
       onConfirm(finalLocation, reward);
     }
   };
@@ -105,36 +104,23 @@ export const LocationSelect: React.FC<LocationSelectProps> = ({ onConfirm, showR
       {/* Reward Section - Only for Lost Items */}
       {showReward && (
         <Card className="p-4 border-0 bg-card/70 backdrop-blur-sm">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                  <DollarSign className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-foreground">Offer a Reward</label>
-                  <p className="text-xs text-muted-foreground">Increase chances of return</p>
-                </div>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+              <DollarSign className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-lg font-semibold text-foreground">${rewardAmount}</span>
+                {rewardAmount === 0 && <span className="text-sm text-muted-foreground">No reward</span>}
               </div>
-              <Switch 
-                checked={offerReward} 
-                onCheckedChange={setOfferReward}
+              <Slider
+                value={[rewardAmount]}
+                onValueChange={(value) => setRewardAmount(value[0])}
+                max={200}
+                step={5}
+                className="w-full"
               />
             </div>
-            
-            {offerReward && (
-              <div className="space-y-2">
-                <Input
-                  placeholder="e.g., $20, Coffee, Thank you note"
-                  value={rewardAmount}
-                  onChange={(e) => setRewardAmount(e.target.value)}
-                  className="border-0 bg-background/50"
-                />
-                <p className="text-xs text-muted-foreground">
-                  💡 Even small gestures like "coffee" or "thank you" help!
-                </p>
-              </div>
-            )}
           </div>
         </Card>
       )}
