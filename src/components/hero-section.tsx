@@ -3,10 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Shield, Users, Zap, Search, Package, Eye } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DemoModal } from "@/components/demo-modal";
 
 export const HeroSection = () => {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -114,19 +116,19 @@ export const HeroSection = () => {
                     <div className="grid grid-cols-2 gap-2 lg:gap-3">
                       <div 
                         className="bg-gradient-to-br from-red-500 to-pink-600 rounded-lg p-3 lg:p-4 text-white cursor-pointer hover:scale-105 transition-transform"
-                        onClick={() => setIsDemoOpen(true)}
+                        onClick={() => navigate('/lost')}
                       >
                         <Search className="w-4 h-4 lg:w-6 lg:h-6 mb-1 lg:mb-2" />
                         <div className="text-xs lg:text-sm font-medium">I Lost Something</div>
-                        <div className="text-xs opacity-80 hidden lg:block">Report & recover</div>
+                        <div className="text-xs opacity-80 hidden lg:block">3-step recovery</div>
                       </div>
                       <div 
                         className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg p-3 lg:p-4 text-white cursor-pointer hover:scale-105 transition-transform"
-                        onClick={() => setIsDemoOpen(true)}
+                        onClick={() => navigate('/found')}
                       >
                         <Package className="w-4 h-4 lg:w-6 lg:h-6 mb-1 lg:mb-2" />
                         <div className="text-xs lg:text-sm font-medium">I Found Something</div>
-                        <div className="text-xs opacity-80 hidden lg:block">Help reunite</div>
+                        <div className="text-xs opacity-80 hidden lg:block">Snap & help</div>
                       </div>
                     </div>
                     
