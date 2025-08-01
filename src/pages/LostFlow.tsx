@@ -53,10 +53,14 @@ export default function LostFlow() {
         return (
           <div className="animate-fade-in">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-3">Snap It</h1>
-              <p className="text-muted-foreground text-lg">Take a clear photo of your {selectedCategory.toLowerCase()}</p>
+              <h1 className="text-3xl font-bold text-foreground mb-3">
+                {selectedCategory === 'Passport' || selectedCategory === 'Other' ? 'Scan Document' : `Capture ${selectedCategory}`}
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                {selectedCategory === 'Passport' || selectedCategory === 'Other' ? 'Position document flat and scan' : `Take a clear photo of your ${selectedCategory.toLowerCase()}`}
+              </p>
             </div>
-            <CameraCapture onCapture={handlePhotoCapture} />
+            <CameraCapture onCapture={handlePhotoCapture} itemCategory={selectedCategory} />
           </div>
         );
 
