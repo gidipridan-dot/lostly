@@ -116,7 +116,7 @@ export const LocationSelect: React.FC<LocationSelectProps> = ({ onConfirm, showR
               <Slider
                 value={[rewardAmount]}
                 onValueChange={(value) => setRewardAmount(value[0])}
-                max={200}
+                max={1000}
                 step={5}
                 className="w-full"
               />
