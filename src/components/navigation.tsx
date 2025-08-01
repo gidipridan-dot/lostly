@@ -46,7 +46,7 @@ export const Navigation = () => {
           <Button 
             variant="default" 
             className="hidden sm:inline-flex"
-            onClick={() => navigate('/found')}
+            onClick={() => navigate('/demo')}
           >
             Request Demo
           </Button>
@@ -81,7 +81,7 @@ export const Navigation = () => {
                 variant="default" 
                 className="w-full"
                 onClick={() => {
-                  navigate('/found');
+                  navigate('/demo');
                   setIsOpen(false);
                 }}
               >
