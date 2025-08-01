@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { ArrowLeft, Check, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { CategorySelect } from '@/components/category-select';
 import { CameraCapture } from '@/components/camera-capture';
 import { LocationSelect } from '@/components/location-select';
 import { useNavigate } from 'react-router-dom';
 
-type Step = 'camera' | 'category' | 'location' | 'submitted';
+type Step = 'camera' | 'category' | 'manual-category' | 'location' | 'submitted';
 
 export default function FoundFlow() {
   const [currentStep, setCurrentStep] = useState<Step>('camera');
@@ -28,6 +29,11 @@ export default function FoundFlow() {
   };
 
   const handleCategoryConfirm = () => {
+    setTimeout(() => setCurrentStep('location'), 200);
+  };
+
+  const handleManualCategorySelect = (category: string) => {
+    setDetectedCategory(category);
     setTimeout(() => setCurrentStep('location'), 200);
   };
 
@@ -85,14 +91,25 @@ export default function FoundFlow() {
                   
                   <Button
                     variant="outline"
-                    onClick={() => setCurrentStep('camera')}
+                    onClick={() => setCurrentStep('manual-category')}
                     className="w-full"
                   >
-                    Retake Photo
+                    Pick Different Category
                   </Button>
                 </div>
               </div>
             </Card>
+          </div>
+        );
+
+      case 'manual-category':
+        return (
+          <div className="animate-fade-in">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-3">Pick Category</h1>
+              <p className="text-muted-foreground text-lg">What type of item did you find?</p>
+            </div>
+            <CategorySelect onSelect={handleManualCategorySelect} />
           </div>
         );
 
@@ -147,7 +164,7 @@ export default function FoundFlow() {
               <div
                 key={step}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  ['camera', 'category', 'location'].indexOf(currentStep) >= index
+                  ['camera', 'category', 'manual-category', 'location'].indexOf(currentStep) >= index
                     ? 'bg-green-500'
                     : 'bg-green-500/20'
                 }`}
