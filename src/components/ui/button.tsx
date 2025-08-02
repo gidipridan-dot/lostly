@@ -9,18 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 shadow-soft hover:shadow-strong transform-gpu",
+        default: "bg-gradient-sleek text-primary-foreground hover:scale-105 shadow-soft hover:shadow-strong transform-gpu",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:scale-105 transform-gpu",
         outline:
-          "border border-border bg-background hover:bg-secondary text-foreground hover:scale-105 hover:shadow-soft transform-gpu",
+          "border border-border bg-background hover:bg-gradient-subtle text-foreground hover:scale-105 hover:shadow-soft transform-gpu",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105 hover:shadow-soft transform-gpu",
         ghost: "hover:bg-accent hover:text-accent-foreground hover:scale-105 transform-gpu",
         link: "text-primary underline-offset-4 hover:underline hover:scale-105 transform-gpu",
-        hero: "bg-gradient-primary text-primary-foreground hover:scale-110 shadow-strong hover:shadow-glow font-semibold transform-gpu",
-        accent: "bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 shadow-soft hover:shadow-strong transform-gpu",
-        success: "bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 hover:scale-105 shadow-soft hover:shadow-strong transform-gpu",
+        hero: "bg-gradient-sleek text-primary-foreground hover:scale-110 shadow-strong hover:shadow-glow font-semibold transform-gpu",
+        accent: "bg-gradient-sleek text-primary-foreground hover:scale-105 shadow-soft hover:shadow-strong transform-gpu",
+        success: "bg-gradient-success text-white hover:scale-105 shadow-soft hover:shadow-strong transform-gpu",
         magic: "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 hover:scale-105 shadow-soft hover:shadow-glow transform-gpu animate-pulse",
       },
       size: {

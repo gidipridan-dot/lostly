@@ -34,11 +34,16 @@ export const HeroSection = () => {
             </div>
             
             {/* Main headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground mb-4 lg:mb-6 leading-tight">
-              Find What's Lost,
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
+              Find What's{" "}
+              <span className="bg-gradient-sleek bg-clip-text text-transparent">
+                Lost
+              </span>
+              ,
               <br />
-              <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                Return What's Found
+              Return What's{" "}
+              <span className="bg-gradient-sleek bg-clip-text text-transparent">
+                Found
               </span>
             </h1>
             
@@ -67,15 +72,15 @@ export const HeroSection = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start items-center mb-8 lg:mb-12 px-4 lg:px-0">
               <Button 
-                variant="accent" 
+                variant="hero" 
                 size="lg" 
                 className="w-full sm:min-w-48 text-base lg:text-lg"
                 onClick={() => navigate('/demo')}
               >
-                Request Demo
+                Get Started
               </Button>
               <Button 
-                variant="secondary" 
+                variant="outline" 
                 size="lg" 
                 className="w-full sm:min-w-48 text-base lg:text-lg"
                 onClick={() => document.getElementById('learn-more')?.scrollIntoView({ behavior: 'smooth' })}
