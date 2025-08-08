@@ -30,9 +30,9 @@ All colors MUST be HSL.
     --accent: 25 85% 60%;
     --accent-foreground: 0 0% 100%;
     
-    /* Sleek gradient colors from the reference */
-    --gradient-start: 180 65% 50%;  /* Teal */
-    --gradient-end: 25 85% 60%;     /* Orange */
+    /* Sleek gradient colors - improved contrast */
+    --gradient-start: 220 85% 45%;  /* Deep Blue */
+    --gradient-end: 280 85% 55%;    /* Purple */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
