@@ -69,9 +69,7 @@ export default {
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-card': 'var(--gradient-card)',
 				'gradient-sleek': 'var(--gradient-sleek)',
-				'gradient-title': 'var(--gradient-title)',
-				'gradient-subtle': 'var(--gradient-subtle)',
-				'gradient-title-text': 'var(--gradient-title-text)'
+				'gradient-subtle': 'var(--gradient-subtle)'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',

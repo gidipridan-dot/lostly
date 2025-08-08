@@ -36,13 +36,13 @@ export const HeroSection = () => {
             {/* Main headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
               Find What's{" "}
-              <span className="bg-gradient-title-text bg-clip-text text-transparent">
+              <span className="bg-gradient-sleek bg-clip-text text-transparent">
                 Lost
               </span>
               ,
               <br />
               Return What's{" "}
-              <span className="bg-gradient-title-text bg-clip-text text-transparent">
+              <span className="bg-gradient-sleek bg-clip-text text-transparent">
                 Found
               </span>
             </h1>
