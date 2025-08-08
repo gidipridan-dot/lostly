@@ -70,7 +70,8 @@ export default {
 				'gradient-card': 'var(--gradient-card)',
 				'gradient-sleek': 'var(--gradient-sleek)',
 				'gradient-title': 'var(--gradient-title)',
-				'gradient-subtle': 'var(--gradient-subtle)'
+				'gradient-subtle': 'var(--gradient-subtle)',
+				'gradient-title-text': 'var(--gradient-title-text)'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
