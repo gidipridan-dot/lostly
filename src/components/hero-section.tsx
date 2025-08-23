@@ -29,43 +29,39 @@ export const HeroSection = () => {
             <div className="inline-flex items-center gap-2 bg-background/20 backdrop-blur-sm border border-background/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 mb-6 lg:mb-8">
               <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
               <span className="text-primary-foreground text-xs lg:text-sm font-medium">
-                Trusted by Institutions & Municipalities
+                White-Label Solution for Venues
               </span>
             </div>
             
             {/* Main headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-              Find What's{" "}
+              Enhance Your{" "}
               <span className="bg-gradient-sleek bg-clip-text text-transparent">
-                Lost
+                Venue
               </span>
-              ,
               <br />
-              Return What's{" "}
-              <span className="bg-gradient-sleek bg-clip-text text-transparent">
-                Found
-              </span>
+              Experience
             </h1>
             
             {/* Subheadline */}
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-6 lg:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed px-4 lg:px-0">
-              The first location-based platform that makes losing something less painful 
-              and finding something more rewarding. Built for safety, powered by community.
+              Provide exceptional lost & found service to your visitors with our white-label platform. 
+              Perfect for festivals, airports, universities, and municipalities.
             </p>
             
             {/* Key features */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 lg:gap-4 mb-8 lg:mb-12 px-4 lg:px-0">
               <div className="flex items-center gap-1.5 lg:gap-2 bg-background/20 backdrop-blur-sm rounded-full px-3 py-1.5 lg:px-4 lg:py-2">
                 <MapPin className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
-                <span className="text-primary-foreground text-xs lg:text-sm font-medium">Location-Based</span>
+                <span className="text-primary-foreground text-xs lg:text-sm font-medium">No Development</span>
               </div>
               <div className="flex items-center gap-1.5 lg:gap-2 bg-background/20 backdrop-blur-sm rounded-full px-3 py-1.5 lg:px-4 lg:py-2">
                 <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
-                <span className="text-primary-foreground text-xs lg:text-sm font-medium">Anonymous & Safe</span>
+                <span className="text-primary-foreground text-xs lg:text-sm font-medium">White-Label Ready</span>
               </div>
               <div className="flex items-center gap-1.5 lg:gap-2 bg-background/20 backdrop-blur-sm rounded-full px-3 py-1.5 lg:px-4 lg:py-2">
                 <Zap className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
-                <span className="text-primary-foreground text-xs lg:text-sm font-medium">Real-Time Alerts</span>
+                <span className="text-primary-foreground text-xs lg:text-sm font-medium">Instant Value</span>
               </div>
             </div>
             
@@ -75,9 +71,9 @@ export const HeroSection = () => {
                 variant="hero" 
                 size="lg" 
                 className="w-full sm:min-w-48 text-base lg:text-lg"
-                onClick={() => navigate('/demo')}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Get Started
+                Request Demo
               </Button>
               <Button 
                 variant="outline" 
@@ -93,12 +89,12 @@ export const HeroSection = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 lg:gap-8 opacity-80 px-4 lg:px-0">
               <div className="flex items-center gap-2">
                 <Users className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
-                <span className="text-primary-foreground text-xs lg:text-sm">Institutional-First Approach</span>
+                <span className="text-primary-foreground text-xs lg:text-sm">Venue-First Design</span>
               </div>
               <div className="hidden sm:block w-px h-6 bg-primary-foreground/30" />
               <div className="flex items-center gap-2">
                 <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
-                <span className="text-primary-foreground text-xs lg:text-sm">Privacy-Focused Design</span>
+                <span className="text-primary-foreground text-xs lg:text-sm">Enterprise-Grade Security</span>
               </div>
             </div>
           </div>

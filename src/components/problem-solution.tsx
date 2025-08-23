@@ -7,29 +7,29 @@ export const ProblemSolution = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const topProblems = [
-    "Most lost items are never reunited with owners",
-    "No incentive for finders to report what they've found"
+    "Visitors frustrated by lost items hurt venue reputation",
+    "Staff overwhelmed managing lost & found operations"
   ];
 
   const allProblems = [
-    "Most lost items are never reunited with owners",
-    "No incentive for finders to report what they've found", 
-    "Safety concerns prevent direct owner-finder contact",
-    "Existing solutions lack critical mass to be effective",
-    "People don't download apps they'll rarely use"
+    "Visitors frustrated by lost items hurt venue reputation",
+    "Staff overwhelmed managing lost & found operations", 
+    "Manual processes are inefficient and error-prone",
+    "No system to track or analytics on lost items",
+    "Liability concerns with current lost & found handling"
   ];
 
   const topSolutions = [
-    "Smart location-based matching increases reunion success",
-    "Reward system motivates good Samaritan behavior"
+    "Automated digital system reduces staff workload",
+    "Happy visitors become repeat customers and advocates"
   ];
 
   const allSolutions = [
-    "Smart location-based matching increases reunion success",
-    "Reward system motivates good Samaritan behavior",
-    "Anonymous, moderated system ensures safety for all",
-    "Embedded in existing platforms with built-in user bases",
-    "No downloads needed—works within current apps"
+    "Automated digital system reduces staff workload",
+    "Happy visitors become repeat customers and advocates",
+    "White-label integration maintains your brand identity",
+    "Analytics dashboard provides operational insights",
+    "Professional liability coverage and secure processes"
   ];
 
   return (
@@ -37,10 +37,10 @@ export const ProblemSolution = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            The Real Challenge
+            Why Venues Need Lostly
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lost & Found isn't a technology problem—it's a behavioral one.
+            Visitor satisfaction and operational efficiency challenges solved.
           </p>
         </div>
         
@@ -49,7 +49,7 @@ export const ProblemSolution = () => {
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
               <AlertTriangle className="w-8 h-8 text-destructive" />
-              Current Reality
+              Venue Challenges
             </h3>
             
             {(isExpanded ? allProblems : topProblems).map((problem, index) => (
@@ -91,10 +91,10 @@ export const ProblemSolution = () => {
         {/* Key insight callout */}
         <div className="mt-16 bg-gradient-primary rounded-2xl p-8 text-center shadow-strong">
           <h3 className="text-2xl font-bold text-primary-foreground mb-4">
-            The Breakthrough Insight
+            The Venue Advantage
           </h3>
           <p className="text-primary-foreground/90 text-lg max-w-3xl mx-auto">
-            "What if finding something could be rewarding—ethically and safely—instead of just a good deed that goes unrecognized?"
+            "Turn lost & found from an operational burden into a competitive advantage that enhances visitor experience."
           </p>
         </div>
       </div>
