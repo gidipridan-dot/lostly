@@ -73,15 +73,15 @@ export const HeroSection = () => {
                 className="w-full sm:min-w-48 text-base lg:text-lg"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Request Demo
+                Schedule Demo
               </Button>
               <Button 
                 variant="outline" 
                 size="lg" 
                 className="w-full sm:min-w-48 text-base lg:text-lg"
-                onClick={() => document.getElementById('learn-more')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Learn More
+                View ROI Calculator
               </Button>
             </div>
             

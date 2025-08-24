@@ -4,23 +4,23 @@ export const HowItWorks = () => {
   const steps = [
     {
       icon: Building,
-      title: "Partner Integration",
-      description: "We embed Lostly into existing municipal apps, university systems, or event platforms—no new downloads needed."
+      title: "White-Label Integration",
+      description: "Seamlessly embed into your existing platform or app. Custom branding, no additional downloads for visitors."
     },
     {
       icon: MapPin,
-      title: "Smart Location Matching",
-      description: "When someone reports a lost item, our system instantly alerts nearby users who've found similar items."
+      title: "Smart Venue Matching",
+      description: "AI-powered matching connects lost and found items within your venue boundaries with location-specific protocols."
     },
     {
       icon: Shield,
-      title: "Safe, Anonymous Connection",
-      description: "No personal information shared. All interactions are moderated with secure pickup points for safe returns."
+      title: "Admin Dashboard & Controls",
+      description: "Full venue management interface with analytics, moderation tools, and compliance reporting for your staff."
     },
     {
       icon: Users,
-      title: "Rewarded Community",
-      description: "Finders earn recognition, rewards, or tips for their good deeds, creating positive incentives for participation."
+      title: "Enhanced Visitor Experience",
+      description: "Automated notifications, secure meetup coordination, and optional delivery integrations—all under your brand."
     }
   ];
 

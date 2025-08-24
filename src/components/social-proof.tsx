@@ -35,10 +35,10 @@ export const SocialProof = () => {
   ];
 
   const stats = [
-    { number: "50K+", label: "Items Successfully Returned" },
-    { number: "12", label: "Municipal Partners" },
-    { number: "98%", label: "User Safety Rating" },
-    { number: "24h", label: "Average Return Time" }
+    { number: "75%", label: "Reduction in Staff Time" },
+    { number: "$180K", label: "Average Annual ROI" },
+    { number: "12", label: "Enterprise Partners" },
+    { number: "3x", label: "Return Rate Improvement" }
   ];
 
   return (
@@ -113,18 +113,18 @@ export const SocialProof = () => {
         <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
           <div className="flex flex-col items-center">
             <Users className="w-12 h-12 text-primary mb-4" />
-            <h4 className="font-semibold text-foreground mb-2">Community Driven</h4>
-            <p className="text-muted-foreground text-sm">Built with real user feedback from 6 months of beta testing</p>
+            <h4 className="font-semibold text-foreground mb-2">Operational Excellence</h4>
+            <p className="text-muted-foreground text-sm">75% reduction in lost item management overhead for venue staff</p>
           </div>
           <div className="flex flex-col items-center">
             <TrendingUp className="w-12 h-12 text-primary mb-4" />
-            <h4 className="font-semibold text-foreground mb-2">Proven Results</h4>
-            <p className="text-muted-foreground text-sm">300% improvement in lost item return rates across all partners</p>
+            <h4 className="font-semibold text-foreground mb-2">Measurable ROI</h4>
+            <p className="text-muted-foreground text-sm">Average $180K annual savings from improved visitor satisfaction</p>
           </div>
           <div className="flex flex-col items-center">
             <Star className="w-12 h-12 text-primary mb-4" />
-            <h4 className="font-semibold text-foreground mb-2">Award Winning</h4>
-            <p className="text-muted-foreground text-sm">2024 Innovation Award for Digital Government Solutions</p>
+            <h4 className="font-semibold text-foreground mb-2">Enterprise Security</h4>
+            <p className="text-muted-foreground text-sm">SOC2 compliant with enterprise-grade data protection</p>
           </div>
         </div>
       </div>
