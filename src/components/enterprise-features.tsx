@@ -77,9 +77,9 @@ export const EnterpriseFeatures = () => {
         </div>
 
         {/* Core Features Preview */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
           {coreFeatures.map((feature, index) => (
-            <div key={index} className="bg-gradient-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-300">
+            <div key={index} className="bg-gradient-card border border-border rounded-2xl p-4 md:p-8 shadow-soft hover:shadow-strong transition-all duration-300">
               <div className="bg-gradient-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6">
                 <feature.icon className="w-8 h-8 text-primary-foreground" />
               </div>
@@ -97,18 +97,18 @@ export const EnterpriseFeatures = () => {
 
         {/* Expandable Detailed Features */}
         <Collapsible open={expandedFeatures} onOpenChange={setExpandedFeatures}>
-          <div className="text-center mb-8">
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" className="flex items-center gap-2">
-                {expandedFeatures ? 'Hide Detailed Features' : 'View All Enterprise Features'}
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedFeatures ? 'rotate-180' : ''}`} />
-              </Button>
-            </CollapsibleTrigger>
-          </div>
+            <div className="text-center mb-6 md:mb-8">
+              <CollapsibleTrigger asChild>
+                <Button variant="outline" className="flex items-center gap-2 text-sm md:text-base">
+                  {expandedFeatures ? 'Hide Details' : 'View All Features'}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${expandedFeatures ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
+            </div>
           <CollapsibleContent>
-            <div className="grid lg:grid-cols-3 gap-8 mb-8">
+            <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
               {features.map((feature, index) => (
-                <div key={index} className="bg-gradient-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-300">
+                <div key={index} className="bg-gradient-card border border-border rounded-2xl p-4 md:p-8 shadow-soft hover:shadow-strong transition-all duration-300">
                   <div className="bg-gradient-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6">
                     <feature.icon className="w-8 h-8 text-primary-foreground" />
                   </div>

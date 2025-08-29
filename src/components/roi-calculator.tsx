@@ -69,23 +69,23 @@ export const ROICalculator = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             See the measurable impact Lostly can have on your venue
           </p>
-          
           <Collapsible open={expandedCalculator} onOpenChange={setExpandedCalculator}>
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" className="flex items-center gap-2">
-                {expandedCalculator ? 'Hide Calculator' : 'Calculate Your ROI'}
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedCalculator ? 'rotate-180' : ''}`} />
-              </Button>
-            </CollapsibleTrigger>
-            
+            <div className="text-center mb-6 md:mb-8">
+              <CollapsibleTrigger asChild>
+                <Button variant="outline" className="flex items-center gap-2 text-sm md:text-base">
+                  {expandedCalculator ? 'Hide Calculator' : 'Calculate Your ROI'}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${expandedCalculator ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
+            </div>
             <CollapsibleContent>
-              <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8">
+              <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto mt-6 md:mt-8">
                 {/* Input Form */}
                 <Card className="bg-gradient-card border border-border shadow-soft">
-                  <CardHeader>
-                    <CardTitle className="text-xl font-semibold">Your Venue Details</CardTitle>
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-lg md:text-xl font-semibold">Your Venue Details</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className="space-y-4 md:space-y-6">
                     <div>
                       <Label htmlFor="visitors" className="text-sm font-medium">Monthly Visitors</Label>
                       <Input
@@ -148,16 +148,16 @@ export const ROICalculator = () => {
                 </Card>
 
                 {/* Results */}
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   <Card className="bg-gradient-card border border-border shadow-soft">
-                    <CardHeader>
-                      <CardTitle className="text-xl font-semibold flex items-center gap-2">
-                        <DollarSign className="w-5 h-5 text-primary" />
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg md:text-xl font-semibold flex items-center gap-2">
+                        <DollarSign className="w-4 md:w-5 h-4 md:h-5 text-primary" />
                         Annual Staff Savings
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold text-primary">
+                      <div className="text-2xl md:text-3xl font-bold text-primary">
                         ${results.staffSavings.toLocaleString()}
                       </div>
                       <p className="text-muted-foreground text-sm mt-1">
@@ -167,14 +167,14 @@ export const ROICalculator = () => {
                   </Card>
 
                   <Card className="bg-gradient-card border border-border shadow-soft">
-                    <CardHeader>
-                      <CardTitle className="text-xl font-semibold flex items-center gap-2">
-                        <TrendingUp className="w-5 h-5 text-primary" />
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg md:text-xl font-semibold flex items-center gap-2">
+                        <TrendingUp className="w-4 md:w-5 h-4 md:h-5 text-primary" />
                         Returned Item Value
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold text-primary">
+                      <div className="text-2xl md:text-3xl font-bold text-primary">
                         ${results.returnedItemValue.toLocaleString()}
                       </div>
                       <p className="text-muted-foreground text-sm mt-1">
@@ -184,12 +184,12 @@ export const ROICalculator = () => {
                   </Card>
 
                   <Card className="bg-gradient-primary border-primary shadow-strong">
-                    <CardContent className="p-6">
+                    <CardContent className="p-4 md:p-6">
                       <div className="text-center">
-                        <div className="text-4xl font-bold text-primary-foreground mb-2">
+                        <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">
                           {results.roi > 0 ? `${Math.round(results.roi)}%` : '--'}
                         </div>
-                        <div className="text-primary-foreground/90 text-lg font-medium">
+                        <div className="text-primary-foreground/90 text-base md:text-lg font-medium">
                           Annual ROI
                         </div>
                         <div className="text-primary-foreground/80 text-sm mt-2">
@@ -201,8 +201,8 @@ export const ROICalculator = () => {
                 </div>
               </div>
 
-              <div className="mt-16 text-center">
-                <p className="text-muted-foreground max-w-2xl mx-auto">
+              <div className="mt-12 md:mt-16 text-center">
+                <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
                   These calculations are based on industry averages and actual partner data. 
                   Schedule a demo to get a customized ROI analysis for your specific venue.
                 </p>
@@ -212,21 +212,21 @@ export const ROICalculator = () => {
         </div>
 
         {/* Quick Stats Preview */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="text-center bg-background rounded-xl p-6 shadow-soft">
-            <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-            <div className="text-2xl font-bold text-primary mb-2">75%</div>
-            <div className="text-muted-foreground">Less Staff Time</div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+          <div className="text-center bg-background rounded-xl p-4 md:p-6 shadow-soft">
+            <Clock className="w-6 md:w-8 h-6 md:h-8 text-primary mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-primary mb-2">75%</div>
+            <div className="text-muted-foreground text-sm md:text-base">Less Staff Time</div>
           </div>
-          <div className="text-center bg-background rounded-xl p-6 shadow-soft">
-            <TrendingUp className="w-8 h-8 text-primary mx-auto mb-3" />
-            <div className="text-2xl font-bold text-primary mb-2">3x</div>
-            <div className="text-muted-foreground">Higher Return Rate</div>
+          <div className="text-center bg-background rounded-xl p-4 md:p-6 shadow-soft">
+            <TrendingUp className="w-6 md:w-8 h-6 md:h-8 text-primary mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-primary mb-2">3x</div>
+            <div className="text-muted-foreground text-sm md:text-base">Higher Return Rate</div>
           </div>
-          <div className="text-center bg-background rounded-xl p-6 shadow-soft">
-            <DollarSign className="w-8 h-8 text-primary mx-auto mb-3" />
-            <div className="text-2xl font-bold text-primary mb-2">$180K+</div>
-            <div className="text-muted-foreground">Average Annual ROI</div>
+          <div className="text-center bg-background rounded-xl p-4 md:p-6 shadow-soft">
+            <DollarSign className="w-6 md:w-8 h-6 md:h-8 text-primary mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-primary mb-2">$180K+</div>
+            <div className="text-muted-foreground text-sm md:text-base">Average Annual ROI</div>
           </div>
         </div>
       </div>

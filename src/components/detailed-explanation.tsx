@@ -80,11 +80,11 @@ export const DetailedExplanation = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="grid md:grid-cols-4 gap-8 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-20">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center bg-background rounded-xl p-6 shadow-soft">
-              <div className="text-3xl font-bold text-primary mb-2">{stat.number}</div>
-              <div className="text-muted-foreground">{stat.label}</div>
+            <div key={index} className="text-center bg-background rounded-xl p-3 md:p-6 shadow-soft">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">{stat.number}</div>
+              <div className="text-muted-foreground text-sm md:text-base">{stat.label}</div>
             </div>
           ))}
         </div>

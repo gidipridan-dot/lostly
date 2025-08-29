@@ -89,12 +89,12 @@ export const Pricing = () => {
         </div>
 
         {/* Pricing Tiers */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
           {pricingTiers.map((tier, index) => (
             <div 
               key={index} 
-              className={`bg-gradient-card border rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-300 relative ${
-                tier.popular ? 'border-primary shadow-strong scale-105' : 'border-border'
+              className={`bg-gradient-card border rounded-2xl p-4 md:p-8 shadow-soft hover:shadow-strong transition-all duration-300 relative ${
+                tier.popular ? 'border-primary shadow-strong lg:scale-105' : 'border-border'
               }`}
             >
               {tier.popular && (
@@ -177,16 +177,16 @@ export const Pricing = () => {
         </div>
 
         {/* Add-Ons */}
-        <div className="bg-background rounded-2xl border border-border p-8 shadow-soft">
-          <h3 className="text-2xl font-bold text-foreground text-center mb-8">
+        <div className="bg-background rounded-2xl border border-border p-4 md:p-8 shadow-soft">
+          <h3 className="text-xl md:text-2xl font-bold text-foreground text-center mb-6">
             Optional Add-Ons
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          <div className="space-y-3 max-w-4xl mx-auto">
             {addOns.map((addon, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-secondary/30 rounded-lg">
-                <span className="text-foreground font-medium">{addon.name}</span>
-                <span className="text-primary font-semibold">{addon.price}</span>
+              <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 md:p-4 bg-secondary/30 rounded-lg gap-2">
+                <span className="text-foreground font-medium text-sm md:text-base">{addon.name}</span>
+                <span className="text-primary font-semibold text-sm md:text-base">{addon.price}</span>
               </div>
             ))}
           </div>
