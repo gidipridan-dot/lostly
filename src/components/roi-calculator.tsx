@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, DollarSign, Clock, Users } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { TrendingUp, DollarSign, Clock, Users, ChevronDown } from "lucide-react";
 
 export const ROICalculator = () => {
+  const [expandedCalculator, setExpandedCalculator] = useState(false);
   const [inputs, setInputs] = useState({
     monthlyVisitors: 50000,
     staffHoursPerWeek: 20,
@@ -62,157 +64,170 @@ export const ROICalculator = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Calculate Your ROI
+            ROI Calculator
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            See the measurable impact Lostly can have on your venue's operations and visitor satisfaction
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            See the measurable impact Lostly can have on your venue
           </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Input Form */}
-          <Card className="bg-gradient-card border border-border shadow-soft">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold">Your Venue Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <Label htmlFor="visitors" className="text-sm font-medium">Monthly Visitors</Label>
-                <Input
-                  id="visitors"
-                  type="number"
-                  value={inputs.monthlyVisitors}
-                  onChange={(e) => handleInputChange('monthlyVisitors', e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="staff-hours" className="text-sm font-medium">Staff Hours on Lost & Found (per week)</Label>
-                <Input
-                  id="staff-hours"
-                  type="number"
-                  value={inputs.staffHoursPerWeek}
-                  onChange={(e) => handleInputChange('staffHoursPerWeek', e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="hourly-rate" className="text-sm font-medium">Staff Hourly Rate ($)</Label>
-                <Input
-                  id="hourly-rate"
-                  type="number"
-                  value={inputs.staffHourlyRate}
-                  onChange={(e) => handleInputChange('staffHourlyRate', e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="return-rate" className="text-sm font-medium">Current Return Rate (%)</Label>
-                <Input
-                  id="return-rate"
-                  type="number"
-                  value={inputs.currentReturnRate}
-                  onChange={(e) => handleInputChange('currentReturnRate', e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="item-value" className="text-sm font-medium">Average Lost Item Value ($)</Label>
-                <Input
-                  id="item-value"
-                  type="number"
-                  value={inputs.avgItemValue}
-                  onChange={(e) => handleInputChange('avgItemValue', e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              
-              <Button onClick={calculateROI} className="w-full" size="lg">
-                Calculate ROI
+          
+          <Collapsible open={expandedCalculator} onOpenChange={setExpandedCalculator}>
+            <CollapsibleTrigger asChild>
+              <Button variant="outline" className="flex items-center gap-2">
+                {expandedCalculator ? 'Hide Calculator' : 'Calculate Your ROI'}
+                <ChevronDown className={`w-4 h-4 transition-transform ${expandedCalculator ? 'rotate-180' : ''}`} />
               </Button>
-            </CardContent>
-          </Card>
+            </CollapsibleTrigger>
+            
+            <CollapsibleContent>
+              <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8">
+                {/* Input Form */}
+                <Card className="bg-gradient-card border border-border shadow-soft">
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold">Your Venue Details</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <Label htmlFor="visitors" className="text-sm font-medium">Monthly Visitors</Label>
+                      <Input
+                        id="visitors"
+                        type="number"
+                        value={inputs.monthlyVisitors}
+                        onChange={(e) => handleInputChange('monthlyVisitors', e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="staff-hours" className="text-sm font-medium">Staff Hours on Lost & Found (per week)</Label>
+                      <Input
+                        id="staff-hours"
+                        type="number"
+                        value={inputs.staffHoursPerWeek}
+                        onChange={(e) => handleInputChange('staffHoursPerWeek', e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="hourly-rate" className="text-sm font-medium">Staff Hourly Rate ($)</Label>
+                      <Input
+                        id="hourly-rate"
+                        type="number"
+                        value={inputs.staffHourlyRate}
+                        onChange={(e) => handleInputChange('staffHourlyRate', e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="return-rate" className="text-sm font-medium">Current Return Rate (%)</Label>
+                      <Input
+                        id="return-rate"
+                        type="number"
+                        value={inputs.currentReturnRate}
+                        onChange={(e) => handleInputChange('currentReturnRate', e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="item-value" className="text-sm font-medium">Average Lost Item Value ($)</Label>
+                      <Input
+                        id="item-value"
+                        type="number"
+                        value={inputs.avgItemValue}
+                        onChange={(e) => handleInputChange('avgItemValue', e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <Button onClick={calculateROI} className="w-full" size="lg">
+                      Calculate ROI
+                    </Button>
+                  </CardContent>
+                </Card>
 
-          {/* Results */}
-          <div className="space-y-6">
-            <Card className="bg-gradient-card border border-border shadow-soft">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-primary" />
-                  Annual Staff Savings
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">
-                  ${results.staffSavings.toLocaleString()}
+                {/* Results */}
+                <div className="space-y-6">
+                  <Card className="bg-gradient-card border border-border shadow-soft">
+                    <CardHeader>
+                      <CardTitle className="text-xl font-semibold flex items-center gap-2">
+                        <DollarSign className="w-5 h-5 text-primary" />
+                        Annual Staff Savings
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold text-primary">
+                        ${results.staffSavings.toLocaleString()}
+                      </div>
+                      <p className="text-muted-foreground text-sm mt-1">
+                        75% reduction in lost & found management time
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-card border border-border shadow-soft">
+                    <CardHeader>
+                      <CardTitle className="text-xl font-semibold flex items-center gap-2">
+                        <TrendingUp className="w-5 h-5 text-primary" />
+                        Returned Item Value
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold text-primary">
+                        ${results.returnedItemValue.toLocaleString()}
+                      </div>
+                      <p className="text-muted-foreground text-sm mt-1">
+                        Additional value returned to visitors annually
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-primary border-primary shadow-strong">
+                    <CardContent className="p-6">
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-primary-foreground mb-2">
+                          {results.roi > 0 ? `${Math.round(results.roi)}%` : '--'}
+                        </div>
+                        <div className="text-primary-foreground/90 text-lg font-medium">
+                          Annual ROI
+                        </div>
+                        <div className="text-primary-foreground/80 text-sm mt-2">
+                          Total Annual Benefit: ${results.totalAnnualBenefit.toLocaleString()}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-                <p className="text-muted-foreground text-sm mt-1">
-                  75% reduction in lost & found management time
+              </div>
+
+              <div className="mt-16 text-center">
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  These calculations are based on industry averages and actual partner data. 
+                  Schedule a demo to get a customized ROI analysis for your specific venue.
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-card border border-border shadow-soft">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-primary" />
-                  Returned Item Value
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">
-                  ${results.returnedItemValue.toLocaleString()}
-                </div>
-                <p className="text-muted-foreground text-sm mt-1">
-                  Additional value returned to visitors annually
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-card border border-border shadow-soft">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold flex items-center gap-2">
-                  <Users className="w-5 h-5 text-primary" />
-                  Visitor Satisfaction
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">
-                  ${results.improvedSatisfaction.toLocaleString()}
-                </div>
-                <p className="text-muted-foreground text-sm mt-1">
-                  Estimated value from improved experience
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-primary border-primary shadow-strong">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary-foreground mb-2">
-                    {results.roi > 0 ? `${Math.round(results.roi)}%` : '--'}
-                  </div>
-                  <div className="text-primary-foreground/90 text-lg font-medium">
-                    Annual ROI
-                  </div>
-                  <div className="text-primary-foreground/80 text-sm mt-2">
-                    Total Annual Benefit: ${results.totalAnnualBenefit.toLocaleString()}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            These calculations are based on industry averages and actual partner data. 
-            Schedule a demo to get a customized ROI analysis for your specific venue.
-          </p>
+        {/* Quick Stats Preview */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="text-center bg-background rounded-xl p-6 shadow-soft">
+            <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
+            <div className="text-2xl font-bold text-primary mb-2">75%</div>
+            <div className="text-muted-foreground">Less Staff Time</div>
+          </div>
+          <div className="text-center bg-background rounded-xl p-6 shadow-soft">
+            <TrendingUp className="w-8 h-8 text-primary mx-auto mb-3" />
+            <div className="text-2xl font-bold text-primary mb-2">3x</div>
+            <div className="text-muted-foreground">Higher Return Rate</div>
+          </div>
+          <div className="text-center bg-background rounded-xl p-6 shadow-soft">
+            <DollarSign className="w-8 h-8 text-primary mx-auto mb-3" />
+            <div className="text-2xl font-bold text-primary mb-2">$180K+</div>
+            <div className="text-muted-foreground">Average Annual ROI</div>
+          </div>
         </div>
       </div>
     </section>

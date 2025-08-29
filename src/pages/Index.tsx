@@ -1,12 +1,8 @@
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { ProblemSolution } from "@/components/problem-solution";
-import { SocialProof } from "@/components/social-proof";
 import { DetailedExplanation } from "@/components/detailed-explanation";
 import { AdvancedFeatures } from "@/components/advanced-features";
-import { MatchVisualization } from "@/components/match-visualization";
-import { DeliveryIntegration } from "@/components/delivery-integration";
-import { DeliveryCostStructure } from "@/components/delivery-cost-structure";
 import { HowItWorks } from "@/components/how-it-works";
 import { EnterpriseFeatures } from "@/components/enterprise-features";
 import { ROICalculator } from "@/components/roi-calculator";
@@ -21,15 +17,11 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <ProblemSolution />
-      <SocialProof />
       <DetailedExplanation />
       <HowItWorks />
       <EnterpriseFeatures />
       <ROICalculator />
       <AdvancedFeatures />
-      <MatchVisualization />
-      <DeliveryIntegration />
-      <DeliveryCostStructure />
       <Pricing />
       <FAQ />
       <LeadQualificationForm />
