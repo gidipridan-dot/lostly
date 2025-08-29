@@ -28,12 +28,12 @@ All colors MUST be HSL.
     --muted: 220 8% 96%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 45 100% 51%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 42 85% 45%;
+    --accent-foreground: 0 0% 98%;
     
     /* Premium gradient system */
     --gradient-start: 220 15% 8%;
-    --gradient-mid: 45 100% 51%;
+    --gradient-mid: 42 85% 45%;
     --gradient-end: 220 15% 12%;
 
     --destructive: 0 75% 55%;
@@ -47,7 +47,7 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-mid)), hsl(var(--gradient-end)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-mid)) 50%, hsl(var(--gradient-end)) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95), hsl(0 0% 100% / 0.8));
-    --gradient-premium: linear-gradient(135deg, hsl(220 15% 8%), hsl(45 100% 51%));
+    --gradient-premium: linear-gradient(135deg, hsl(220 15% 8%), hsl(42 85% 45%));
     --gradient-subtle: linear-gradient(135deg, hsl(220 8% 96%), hsl(220 8% 98%));
     --gradient-glass: linear-gradient(145deg, hsl(0 0% 100% / 0.2), hsl(0 0% 100% / 0.1));
     
@@ -56,7 +56,7 @@ All colors MUST be HSL.
     --shadow-strong: 0 4px 6px -1px hsl(220 15% 8% / 0.1), 0 2px 4px -1px hsl(220 15% 8% / 0.06);
     --shadow-elegant: 0 10px 25px -3px hsl(220 15% 8% / 0.1), 0 4px 6px -2px hsl(220 15% 8% / 0.05);
     --shadow-premium: 0 20px 25px -5px hsl(220 15% 8% / 0.1), 0 10px 10px -5px hsl(220 15% 8% / 0.04);
-    --shadow-glow: 0 0 0 1px hsl(45 100% 51% / 0.1), 0 4px 16px hsl(45 100% 51% / 0.12);
+    --shadow-glow: 0 0 0 1px hsl(42 85% 45% / 0.15), 0 4px 16px hsl(42 85% 45% / 0.2);
     
     /* Refined transitions */
     --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -102,8 +102,8 @@ All colors MUST be HSL.
     --muted: 220 15% 8%;
     --muted-foreground: 220 8% 65%;
 
-    --accent: 45 100% 51%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 42 85% 45%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 98%;
