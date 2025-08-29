@@ -61,13 +61,13 @@ export const HeroSection = () => {
             {/* Premium feature badges */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
               {[
-                { icon: MapPin, text: "Zero Development", color: "bg-green-500/10 text-green-700 border-green-500/20" },
-                { icon: Shield, text: "Enterprise Security", color: "bg-blue-500/10 text-blue-700 border-blue-500/20" },
-                { icon: Zap, text: "Instant ROI", color: "bg-amber-500/10 text-amber-700 border-amber-500/20" }
+                { icon: MapPin, text: "Zero Development", color: "glass border-accent/30 text-accent" },
+                { icon: Shield, text: "Enterprise Security", color: "glass border-primary/30 text-primary" },
+                { icon: Zap, text: "Instant ROI", color: "glass border-accent/30 text-accent" }
               ].map((feature, index) => (
                 <div 
                   key={index}
-                  className={`flex items-center gap-2 ${feature.color} border rounded-full px-4 py-2 hover-lift micro-bounce`}
+                  className={`flex items-center gap-2 ${feature.color} rounded-full px-4 py-2 hover-lift micro-bounce backdrop-blur-lg`}
                 >
                   <feature.icon className="w-4 h-4" />
                   <span className="font-medium text-sm tracking-tight">{feature.text}</span>
