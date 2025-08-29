@@ -45,15 +45,15 @@ export const HeroSection = () => {
             {/* Premium headline */}
             <h1 className="text-display font-bold text-foreground mb-6 leading-none tracking-tighter text-balance">
               Transform Your{" "}
-              <span className="text-premium bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-foreground bg-gradient-to-r from-accent to-accent-foreground bg-clip-text text-transparent font-extrabold">
                 Venue's
               </span>
               <br />
-              Lost & Found
+              <span className="text-foreground">Lost & Found</span>
             </h1>
             
             {/* Enhanced subheadline */}
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light text-balance">
+            <p className="text-xl text-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium text-balance">
               Provide exceptional lost & found service with our white-label platform. 
               Perfect for airports, universities, festivals, and municipalities.
             </p>
