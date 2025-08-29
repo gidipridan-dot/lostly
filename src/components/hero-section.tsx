@@ -1,149 +1,163 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Shield, Users, Zap, Search, Package, Eye } from "lucide-react";
-import { useState } from "react";
+import { MapPin, Shield, Users, Zap, Search, Package, Eye, Sparkles, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DemoModal } from "@/components/demo-modal";
 
 export const HeroSection = () => {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-subtle">
+      {/* Premium background with animated gradients */}
+      <div className="absolute inset-0 bg-gradient-hero" />
       
-      {/* Animated background elements */}
+      {/* Sophisticated animated elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-glow/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent/30 rounded-full blur-2xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-glow-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-glow-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-accent/5 rounded-full blur-xl animate-glow-pulse delay-500" />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-20 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
           {/* Main content */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-background/20 backdrop-blur-sm border border-background/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 mb-6 lg:mb-8">
-              <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
-              <span className="text-primary-foreground text-xs lg:text-sm font-medium">
-                White-Label Solution for Venues
+          <div className={`text-center lg:text-left order-2 lg:order-1 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            {/* Premium badge */}
+            <div className="inline-flex items-center gap-3 glass rounded-full px-6 py-3 mb-8 hover-lift micro-glow">
+              <Sparkles className="w-4 h-4 text-accent animate-shimmer" />
+              <span className="text-foreground font-medium tracking-tight">
+                White-Label Solution for Premium Venues
               </span>
+              <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             </div>
             
-            {/* Main headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-              Enhance Your{" "}
-              <span className="bg-gradient-sleek bg-clip-text text-transparent">
-                Venue
+            {/* Premium headline */}
+            <h1 className="text-display font-bold text-foreground mb-6 leading-none tracking-tighter text-balance">
+              Transform Your{" "}
+              <span className="text-premium bg-gradient-primary bg-clip-text text-transparent">
+                Venue's
               </span>
               <br />
-              Experience
+              Lost & Found
             </h1>
             
-            {/* Subheadline */}
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-6 lg:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed px-4 lg:px-0">
-              Provide exceptional lost & found service to your visitors with our white-label platform. 
-              Perfect for festivals, airports, universities, and municipalities.
+            {/* Enhanced subheadline */}
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light text-balance">
+              Provide exceptional lost & found service with our white-label platform. 
+              Perfect for airports, universities, festivals, and municipalities.
             </p>
             
-            {/* Key features */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-2 lg:gap-4 mb-8 lg:mb-12 px-4 lg:px-0">
-              <div className="flex items-center gap-1.5 lg:gap-2 bg-background/20 backdrop-blur-sm rounded-full px-3 py-1.5 lg:px-4 lg:py-2">
-                <MapPin className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
-                <span className="text-primary-foreground text-xs lg:text-sm font-medium">No Development</span>
-              </div>
-              <div className="flex items-center gap-1.5 lg:gap-2 bg-background/20 backdrop-blur-sm rounded-full px-3 py-1.5 lg:px-4 lg:py-2">
-                <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
-                <span className="text-primary-foreground text-xs lg:text-sm font-medium">White-Label Ready</span>
-              </div>
-              <div className="flex items-center gap-1.5 lg:gap-2 bg-background/20 backdrop-blur-sm rounded-full px-3 py-1.5 lg:px-4 lg:py-2">
-                <Zap className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
-                <span className="text-primary-foreground text-xs lg:text-sm font-medium">Instant Value</span>
-              </div>
+            {/* Premium feature badges */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
+              {[
+                { icon: MapPin, text: "Zero Development", color: "bg-green-500/10 text-green-700 border-green-500/20" },
+                { icon: Shield, text: "Enterprise Security", color: "bg-blue-500/10 text-blue-700 border-blue-500/20" },
+                { icon: Zap, text: "Instant ROI", color: "bg-amber-500/10 text-amber-700 border-amber-500/20" }
+              ].map((feature, index) => (
+                <div 
+                  key={index}
+                  className={`flex items-center gap-2 ${feature.color} border rounded-full px-4 py-2 hover-lift micro-bounce`}
+                >
+                  <feature.icon className="w-4 h-4" />
+                  <span className="font-medium text-sm tracking-tight">{feature.text}</span>
+                </div>
+              ))}
             </div>
             
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start items-center mb-8 lg:mb-12 px-4 lg:px-0">
+            {/* Premium CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
               <Button 
                 variant="hero" 
                 size="lg" 
-                className="w-full sm:min-w-48 text-base lg:text-lg"
+                className="w-full sm:w-auto min-w-48 text-lg font-semibold px-8 py-4 h-auto micro-glow"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
+                <Sparkles className="w-5 h-5" />
                 Schedule Demo
+                <ArrowRight className="w-5 h-5" />
               </Button>
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="w-full sm:min-w-48 text-base lg:text-lg"
-                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full sm:w-auto min-w-48 text-lg font-medium px-8 py-4 h-auto glass border-border/50 hover:border-border"
+                onClick={() => document.getElementById('roi-calculator')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                View ROI Calculator
+                Calculate ROI
               </Button>
             </div>
             
-            {/* Trust indicators */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 lg:gap-8 opacity-80 px-4 lg:px-0">
-              <div className="flex items-center gap-2">
-                <Users className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
-                <span className="text-primary-foreground text-xs lg:text-sm">Venue-First Design</span>
+            {/* Premium trust indicators */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 opacity-70">
+              <div className="flex items-center gap-3">
+                <Users className="w-4 h-4 text-muted-foreground" />
+                <span className="text-muted-foreground font-medium text-sm tracking-tight">Venue-First Design</span>
               </div>
-              <div className="hidden sm:block w-px h-6 bg-primary-foreground/30" />
-              <div className="flex items-center gap-2">
-                <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
-                <span className="text-primary-foreground text-xs lg:text-sm">Enterprise-Grade Security</span>
+              <div className="hidden sm:block w-px h-6 bg-border" />
+              <div className="flex items-center gap-3">
+                <Shield className="w-4 h-4 text-muted-foreground" />
+                <span className="text-muted-foreground font-medium text-sm tracking-tight">Enterprise Security</span>
               </div>
             </div>
           </div>
 
-          {/* Demo Preview - Mobile & Desktop */}
-          <div className="relative order-1 lg:order-2 mb-8 lg:mb-0 px-4 lg:px-0">
+          {/* Premium demo preview */}
+          <div className={`relative order-1 lg:order-2 mb-8 lg:mb-0 transition-all duration-1000 delay-300 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             <div className="relative max-w-sm lg:max-w-md mx-auto">
-              {/* Preview card with demo glimpse */}
-              <Card className="bg-background/95 backdrop-blur-md border-primary/20 shadow-elegant hover:shadow-strong transition-all duration-500 transform hover:scale-105">
-                <CardContent className="p-4 lg:p-6">
-                  <div className="flex items-center gap-2 lg:gap-3 mb-3 lg:mb-4">
-                    <div className="w-6 h-6 lg:w-8 lg:h-8 bg-primary rounded-lg flex items-center justify-center">
-                      <Eye className="w-3 h-3 lg:w-4 lg:h-4 text-primary-foreground" />
+              {/* Enhanced preview card */}
+              <Card className="glass backdrop-blur-xl border-border/50 shadow-premium hover:shadow-elegant transition-all duration-500 hover-lift micro-glow group">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Eye className="w-4 h-4 text-primary-foreground" />
                     </div>
-                    <h3 className="font-semibold text-base lg:text-lg">Experience Lostly</h3>
+                    <h3 className="font-semibold text-lg heading-premium">Experience Lostly</h3>
                   </div>
                   
-                  {/* Mock interface preview */}
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2 lg:gap-3">
+                  {/* Enhanced interface preview */}
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-3">
                       <div 
-                        className="bg-gradient-to-br from-red-500 to-pink-600 rounded-lg p-3 lg:p-4 text-white cursor-pointer hover:scale-105 transition-transform"
+                        className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-4 text-white cursor-pointer hover-lift micro-bounce shadow-soft hover:shadow-strong"
                         onClick={() => navigate('/lost')}
                       >
-                        <Search className="w-4 h-4 lg:w-6 lg:h-6 mb-1 lg:mb-2" />
-                        <div className="text-xs lg:text-sm font-medium">I Lost Something</div>
-                        <div className="text-xs opacity-80 hidden lg:block">3-step recovery</div>
+                        <Search className="w-6 h-6 mb-2" />
+                        <div className="font-semibold text-sm">Lost Item</div>
+                        <div className="text-xs opacity-80">3-step recovery</div>
                       </div>
                       <div 
-                        className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg p-3 lg:p-4 text-white cursor-pointer hover:scale-105 transition-transform"
+                        className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-4 text-white cursor-pointer hover-lift micro-bounce shadow-soft hover:shadow-strong"
                         onClick={() => navigate('/found')}
                       >
-                        <Package className="w-4 h-4 lg:w-6 lg:h-6 mb-1 lg:mb-2" />
-                        <div className="text-xs lg:text-sm font-medium">I Found Something</div>
-                        <div className="text-xs opacity-80 hidden lg:block">Snap & help</div>
+                        <Package className="w-6 h-6 mb-2" />
+                        <div className="font-semibold text-sm">Found Item</div>
+                        <div className="text-xs opacity-80">Snap & help</div>
                       </div>
                     </div>
                     
-                    <div className="bg-muted/50 rounded-lg p-2 lg:p-3">
+                    <div className="glass rounded-xl p-4 border border-border/30">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-2 h-2 lg:w-3 lg:h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-xs font-medium">Recent Match</span>
+                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                        <span className="font-semibold text-sm">Recent Match</span>
                       </div>
-                      <div className="text-xs lg:text-sm text-muted-foreground">
-                        "Brown leather wallet found near Central Park..."
+                      <div className="text-sm text-muted-foreground mb-3">
+                        "Brown leather wallet found near Gate 12..."
                       </div>
-                      <div className="flex items-center gap-1 lg:gap-2 mt-2">
-                        <Badge variant="secondary" className="text-xs">Verified</Badge>
-                        <Badge variant="secondary" className="text-xs hidden sm:inline-flex">Delivery Arranged</Badge>
+                      <div className="flex gap-2">
+                        <Badge variant="secondary" className="text-xs font-medium">Verified</Badge>
+                        <Badge variant="secondary" className="text-xs font-medium">In Transit</Badge>
                       </div>
                     </div>
                   </div>
@@ -151,17 +165,19 @@ export const HeroSection = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="w-full mt-3 lg:mt-4 text-xs lg:text-sm"
+                    className="w-full mt-4 micro-bounce font-medium"
                     onClick={() => navigate('/demo')}
                   >
                     Try Interactive Demo
+                    <ArrowRight className="w-4 h-4" />
                   </Button>
                 </CardContent>
               </Card>
               
-              {/* Floating elements */}
-              <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 w-6 h-6 lg:w-8 lg:h-8 bg-accent rounded-full animate-pulse opacity-60"></div>
-              <div className="absolute -bottom-4 -left-4 lg:-bottom-6 lg:-left-6 w-4 h-4 lg:w-6 lg:h-6 bg-primary rounded-full animate-pulse opacity-40 delay-500"></div>
+              {/* Premium floating elements */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent/20 rounded-full animate-glow-pulse backdrop-blur-sm" />
+              <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-primary/20 rounded-full animate-glow-pulse backdrop-blur-sm delay-700" />
+              <div className="absolute top-1/2 -right-8 w-4 h-4 bg-accent/30 rounded-full animate-glow-pulse delay-1000" />
             </div>
           </div>
         </div>
