@@ -32,9 +32,9 @@ All colors MUST be HSL.
     --accent-foreground: 0 0% 98%;
     
     /* Premium gradient system */
-    --gradient-start: 220 15% 25%;
+    --gradient-start: 220 15% 45%;
     --gradient-mid: 42 85% 45%;
-    --gradient-end: 220 15% 30%;
+    --gradient-end: 220 15% 50%;
 
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 98%;
