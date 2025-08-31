@@ -8,33 +8,33 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Premium Color Palette - Inspired by luxury brands */
+    /* Multi-Teal-Orange Color Palette */
     --background: 0 0% 99%;
-    --foreground: 220 15% 8%;
+    --foreground: 193 95% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 8%;
+    --card-foreground: 193 95% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 8%;
+    --popover-foreground: 193 95% 8%;
 
-    --primary: 220 15% 8%;
+    --primary: 193 95% 8%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 220 15% 20%;
+    --primary-glow: 193 95% 20%;
 
-    --secondary: 220 8% 96%;
-    --secondary-foreground: 220 15% 8%;
+    --secondary: 180 8% 96%;
+    --secondary-foreground: 193 95% 8%;
 
-    --muted: 220 8% 96%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 180 8% 96%;
+    --muted-foreground: 180 10% 45%;
 
-    --accent: 42 85% 45%;
+    --accent: 25 95% 55%;
     --accent-foreground: 0 0% 98%;
     
-    /* Premium gradient system */
-    --gradient-start: 220 15% 45%;
-    --gradient-mid: 42 85% 45%;
-    --gradient-end: 220 15% 50%;
+    /* Multi-Teal-Orange gradient system */
+    --gradient-start: 180 84% 60%;
+    --gradient-mid: 25 95% 55%;
+    --gradient-end: 193 100% 45%;
 
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 98%;
