@@ -90,7 +90,7 @@ export const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="w-full sm:w-auto min-w-48 text-lg font-medium px-8 py-4 h-auto glass border-border/50 hover:border-border"
+                className="w-full sm:w-auto min-w-48 text-lg font-medium px-8 py-4 h-auto border-2 border-foreground/20 hover:border-foreground text-foreground hover:bg-foreground hover:text-background"
                 onClick={() => document.getElementById('roi-calculator')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Calculate ROI

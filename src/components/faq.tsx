@@ -99,13 +99,13 @@ export const FAQ = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="#contact" 
-              className="inline-flex items-center justify-center px-8 py-3 bg-primary-foreground text-primary font-semibold rounded-lg hover:bg-primary-foreground/90 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-3 bg-background text-foreground font-semibold rounded-lg hover:bg-background/90 transition-colors shadow-soft"
             >
               Schedule a Demo
             </a>
             <a 
               href="mailto:hello@lostly.io" 
-              className="inline-flex items-center justify-center px-8 py-3 border border-primary-foreground text-primary-foreground font-semibold rounded-lg hover:bg-primary-foreground/10 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-3 border border-background text-background font-semibold rounded-lg hover:bg-background/10 transition-colors"
             >
               Email Us Directly
             </a>

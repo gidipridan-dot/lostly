@@ -168,7 +168,7 @@ export const Pricing = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 border-primary-foreground"
+                className="bg-background text-foreground hover:bg-background/90 border-background shadow-soft"
               >
                 Explore Revenue Share
               </Button>
