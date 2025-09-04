@@ -99,7 +99,7 @@ export const EnterpriseFeatures = () => {
         <Collapsible open={expandedFeatures} onOpenChange={setExpandedFeatures}>
             <div className="text-center mb-6 md:mb-8">
               <CollapsibleTrigger asChild>
-                <Button variant="outline" className="flex items-center gap-2 text-sm md:text-base">
+                <Button variant="outline" className="flex items-center gap-2 text-sm md:text-base bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
                   {expandedFeatures ? 'Hide Details' : 'View All Features'}
                   <ChevronDown className={`w-4 h-4 transition-transform ${expandedFeatures ? 'rotate-180' : ''}`} />
                 </Button>
@@ -144,12 +144,12 @@ export const EnterpriseFeatures = () => {
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
               Connect with your existing tools and platforms
             </p>
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" className="flex items-center gap-2">
-                {expandedIntegrations ? 'Hide Integrations' : 'View Available Integrations'}
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedIntegrations ? 'rotate-180' : ''}`} />
-              </Button>
-            </CollapsibleTrigger>
+             <CollapsibleTrigger asChild>
+               <Button variant="outline" className="flex items-center gap-2 bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
+                 {expandedIntegrations ? 'Hide Integrations' : 'View Available Integrations'}
+                 <ChevronDown className={`w-4 h-4 transition-transform ${expandedIntegrations ? 'rotate-180' : ''}`} />
+               </Button>
+             </CollapsibleTrigger>
           </div>
           
           <CollapsibleContent>

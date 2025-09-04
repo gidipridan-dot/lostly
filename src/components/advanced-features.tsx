@@ -76,7 +76,7 @@ export const AdvancedFeatures = () => {
           <Collapsible open={expandedCredits} onOpenChange={setExpandedCredits}>
             <div className="text-center mb-8">
               <CollapsibleTrigger asChild>
-                <Button variant="outline" className="flex items-center gap-2">
+                <Button variant="outline" className="bg-background text-foreground hover:bg-foreground hover:text-background border-2 border-foreground/20">
                   {expandedCredits ? 'Hide Credit Details' : 'Learn Credit System'}
                   <ChevronDown className={`w-4 h-4 transition-transform ${expandedCredits ? 'rotate-180' : ''}`} />
                 </Button>
@@ -150,7 +150,7 @@ export const AdvancedFeatures = () => {
           <Collapsible open={expandedPartners} onOpenChange={setExpandedPartners}>
             <div className="text-center mb-8">
               <CollapsibleTrigger asChild>
-                <Button variant="outline" className="flex items-center gap-2">
+                <Button variant="outline" className="flex items-center gap-2 bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
                   {expandedPartners ? 'Hide Partner Details' : 'Explore Marketplace'}
                   <ChevronDown className={`w-4 h-4 transition-transform ${expandedPartners ? 'rotate-180' : ''}`} />
                 </Button>

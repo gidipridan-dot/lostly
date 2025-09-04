@@ -71,12 +71,12 @@ export const ROICalculator = () => {
           </p>
           <Collapsible open={expandedCalculator} onOpenChange={setExpandedCalculator}>
             <div className="text-center mb-6 md:mb-8">
-              <CollapsibleTrigger asChild>
-                <Button variant="outline" className="flex items-center gap-2 text-sm md:text-base">
-                  {expandedCalculator ? 'Hide Calculator' : 'Calculate Your ROI'}
-                  <ChevronDown className={`w-4 h-4 transition-transform ${expandedCalculator ? 'rotate-180' : ''}`} />
-                </Button>
-              </CollapsibleTrigger>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" className="flex items-center gap-2 text-sm md:text-base bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
+                    {expandedCalculator ? 'Hide Calculator' : 'Calculate Your ROI'}
+                    <ChevronDown className={`w-4 h-4 transition-transform ${expandedCalculator ? 'rotate-180' : ''}`} />
+                  </Button>
+                </CollapsibleTrigger>
             </div>
             <CollapsibleContent>
               <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto mt-6 md:mt-8">

@@ -126,7 +126,7 @@ export const DetailedExplanation = () => {
           <Button 
             variant="outline" 
             onClick={() => setExpandedFeatures(!expandedFeatures)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"
           >
             {expandedFeatures ? 'Show Core Features' : 'See All Features'}
             <ChevronDown className={`w-4 h-4 transition-transform ${expandedFeatures ? 'rotate-180' : ''}`} />
@@ -144,12 +144,12 @@ export const DetailedExplanation = () => {
           </p>
           
           <Collapsible open={expandedSafety} onOpenChange={setExpandedSafety}>
-            <CollapsibleTrigger asChild>
-              <Button variant="secondary" className="mb-6 flex items-center gap-2">
-                {expandedSafety ? 'Hide Details' : 'Safety Details'}
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSafety ? 'rotate-180' : ''}`} />
-              </Button>
-            </CollapsibleTrigger>
+              <CollapsibleTrigger asChild>
+                <Button variant="outline" className="mb-6 flex items-center gap-2 bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
+                  {expandedSafety ? 'Hide Details' : 'Safety Details'}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${expandedSafety ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                 {safetyMeasures.map((measure, index) => (
@@ -177,12 +177,12 @@ export const DetailedExplanation = () => {
 
           <Collapsible open={expandedBusiness} onOpenChange={setExpandedBusiness}>
             <div className="text-center mb-6">
-              <CollapsibleTrigger asChild>
-                <Button variant="outline" className="flex items-center gap-2">
-                  {expandedBusiness ? 'Hide Business Details' : 'Learn Business Model'}
-                  <ChevronDown className={`w-4 h-4 transition-transform ${expandedBusiness ? 'rotate-180' : ''}`} />
-                </Button>
-              </CollapsibleTrigger>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" className="flex items-center gap-2 bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
+                    {expandedBusiness ? 'Hide Business Details' : 'Learn Business Model'}
+                    <ChevronDown className={`w-4 h-4 transition-transform ${expandedBusiness ? 'rotate-180' : ''}`} />
+                  </Button>
+                </CollapsibleTrigger>
             </div>
             <CollapsibleContent>
               <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -239,7 +239,7 @@ export const DetailedExplanation = () => {
           <Button variant="hero" size="lg" className="mr-4">
             Become a Launch Partner
           </Button>
-          <Button variant="outline" size="lg">
+          <Button variant="outline" size="lg" className="bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">
             Technical Documentation
           </Button>
         </div>

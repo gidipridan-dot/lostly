@@ -81,7 +81,7 @@ export const ProblemSolution = () => {
           <Button 
             variant="outline" 
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background"
           >
             {isExpanded ? 'Show Less' : 'More Details'}
             <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
