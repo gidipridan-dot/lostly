@@ -94,7 +94,7 @@ export const DetailedExplanation = () => {
           {(expandedFeatures ? allFeatures : coreFeatures).map((feature, index) => (
             <div key={index} className="bg-gradient-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-300">
               <div className="flex items-start gap-4 mb-6">
-                <div className="bg-gradient-primary rounded-xl p-3 flex-shrink-0">
+                <div className="bg-primary rounded-xl p-3 flex-shrink-0">
                   <feature.icon className="w-8 h-8 text-primary-foreground" />
                 </div>
                 <div>
@@ -134,7 +134,7 @@ export const DetailedExplanation = () => {
         </div>
 
         {/* Safety Deep Dive */}
-        <div className="bg-gradient-primary rounded-2xl p-8 md:p-12 text-center shadow-strong mb-12">
+        <div className="bg-primary rounded-2xl p-8 md:p-12 text-center shadow-strong mb-12">
           <Lock className="w-16 h-16 text-primary-foreground mx-auto mb-6" />
           <h3 className="text-3xl font-bold text-primary-foreground mb-6">
             Safety-First Foundation

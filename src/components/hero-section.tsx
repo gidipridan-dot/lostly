@@ -120,7 +120,7 @@ export const HeroSection = () => {
               <Card className="bg-card/95 backdrop-blur-xl border border-border shadow-premium hover:shadow-elegant transition-all duration-500 hover-lift micro-glow group">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Eye className="w-4 h-4 text-primary-foreground" />
                     </div>
                     <h3 className="font-semibold text-lg heading-premium">Experience Lostly</h3>

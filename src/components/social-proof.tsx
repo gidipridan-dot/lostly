@@ -99,7 +99,7 @@ export const SocialProof = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {partners.map((partner, index) => (
               <div key={index} className="text-center group">
-                <div className="bg-gradient-primary rounded-xl p-4 mb-3 group-hover:scale-105 transition-transform duration-300">
+                <div className="bg-primary rounded-xl p-4 mb-3 group-hover:scale-105 transition-transform duration-300">
                   <Building className="w-8 h-8 text-primary-foreground mx-auto" />
                 </div>
                 <div className="font-medium text-foreground text-sm">{partner.name}</div>

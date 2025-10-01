@@ -99,7 +99,7 @@ export const Pricing = () => {
             >
               {tier.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-primary px-6 py-2 rounded-full flex items-center gap-2">
+                  <div className="bg-primary px-6 py-2 rounded-full flex items-center gap-2">
                     <Star className="w-4 h-4 text-primary-foreground" />
                     <span className="text-primary-foreground font-semibold text-sm">Most Popular</span>
                   </div>
@@ -107,7 +107,7 @@ export const Pricing = () => {
               )}
 
               <div className="text-center mb-8">
-                <div className="bg-gradient-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <tier.icon className="w-8 h-8 text-primary-foreground" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-2">{tier.name}</h3>
@@ -137,7 +137,7 @@ export const Pricing = () => {
         </div>
 
         {/* Revenue Share Option */}
-        <div className="bg-gradient-primary rounded-2xl p-8 md:p-12 mb-16 shadow-strong">
+        <div className="bg-primary rounded-2xl p-8 md:p-12 mb-16 shadow-strong">
           <div className="text-center mb-8">
             <Zap className="w-16 h-16 text-primary-foreground mx-auto mb-6" />
             <h3 className="text-3xl font-bold text-primary-foreground mb-4">

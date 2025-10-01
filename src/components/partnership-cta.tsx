@@ -43,7 +43,7 @@ export const PartnershipCTA = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {partnerTypes.map((partner, index) => (
             <div key={index} className="bg-gradient-card border border-border rounded-xl p-6 text-center shadow-soft hover:shadow-strong transition-all duration-300">
-              <div className="bg-gradient-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <partner.icon className="w-8 h-8 text-primary-foreground" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">

@@ -89,7 +89,7 @@ export const ProblemSolution = () => {
         </div>
         
         {/* Key insight callout */}
-        <div className="mt-16 bg-gradient-primary rounded-2xl p-8 text-center shadow-strong">
+        <div className="mt-16 bg-primary rounded-2xl p-8 text-center shadow-strong">
           <h3 className="text-2xl font-bold text-primary-foreground mb-4">
             The Venue Advantage
           </h3>

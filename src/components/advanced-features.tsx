@@ -63,7 +63,7 @@ export const AdvancedFeatures = () => {
 
         {/* Credit System */}
         <div className="mb-20">
-          <div className="bg-gradient-primary rounded-2xl p-8 md:p-12 mb-12 text-center shadow-strong">
+          <div className="bg-primary rounded-2xl p-8 md:p-12 mb-12 text-center shadow-strong">
             <Coins className="w-16 h-16 text-primary-foreground mx-auto mb-6" />
             <h3 className="text-3xl font-bold text-primary-foreground mb-4">
               Lostly Credit System
@@ -86,7 +86,7 @@ export const AdvancedFeatures = () => {
               <div className="grid lg:grid-cols-3 gap-8 mb-12">
                 {creditFeatures.map((feature, index) => (
                   <div key={index} className="bg-gradient-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-300">
-                    <div className="bg-gradient-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6">
+                    <div className="bg-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6">
                       <feature.icon className="w-8 h-8 text-primary-foreground" />
                     </div>
                     
@@ -160,7 +160,7 @@ export const AdvancedFeatures = () => {
               <div className="grid lg:grid-cols-3 gap-8 mb-12">
                 {partnerFeatures.map((feature, index) => (
                   <div key={index} className="bg-gradient-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-strong transition-all duration-300">
-                    <div className="bg-gradient-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6">
+                    <div className="bg-primary rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6">
                       <feature.icon className="w-8 h-8 text-primary-foreground" />
                     </div>
                     
@@ -232,7 +232,7 @@ export const AdvancedFeatures = () => {
         </div>
 
         {/* Economic Impact */}
-        <div className="mt-16 bg-gradient-primary rounded-2xl p-8 text-center shadow-strong">
+        <div className="mt-16 bg-primary rounded-2xl p-8 text-center shadow-strong">
           <h3 className="text-2xl font-bold text-primary-foreground mb-4">
             Sustainable Revenue Ecosystem
           </h3>

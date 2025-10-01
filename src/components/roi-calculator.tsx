@@ -183,7 +183,7 @@ export const ROICalculator = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-gradient-primary border-primary shadow-strong">
+                  <Card className="bg-primary border-primary shadow-strong">
                     <CardContent className="p-4 md:p-6">
                       <div className="text-center">
                         <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">

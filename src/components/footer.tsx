@@ -10,7 +10,7 @@ export const Footer = () => {
           {/* Logo & Description */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="bg-gradient-primary rounded-lg p-2">
+              <div className="bg-primary rounded-lg p-2">
                 <MapPin className="w-6 h-6 text-primary-foreground" />
               </div>
               <span className="text-2xl font-bold text-foreground">Lostly</span>
