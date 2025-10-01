@@ -34,7 +34,7 @@ export const HeroSection = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             {/* Premium badge */}
-            <div className="inline-flex items-center gap-3 glass rounded-full px-6 py-3 mb-8 hover-lift micro-glow">
+            <div className="inline-flex items-center gap-3 bg-card/90 backdrop-blur-lg border border-border rounded-full px-6 py-3 mb-8 hover-lift micro-glow shadow-soft">
               <Sparkles className="w-4 h-4 text-accent animate-shimmer" />
               <span className="text-foreground font-medium tracking-tight">
                 White-Label Solution for Premium Venues
@@ -61,13 +61,13 @@ export const HeroSection = () => {
             {/* Premium feature badges */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
               {[
-                { icon: MapPin, text: "Zero Development", color: "glass border-accent/30 text-accent" },
-                { icon: Shield, text: "Enterprise Security", color: "glass border-primary/30 text-primary" },
-                { icon: Zap, text: "Instant ROI", color: "glass border-accent/30 text-accent" }
+                { icon: MapPin, text: "Zero Development", color: "bg-card/90 backdrop-blur-lg border border-accent/30 text-accent shadow-soft" },
+                { icon: Shield, text: "Enterprise Security", color: "bg-card/90 backdrop-blur-lg border border-primary/30 text-foreground shadow-soft" },
+                { icon: Zap, text: "Instant ROI", color: "bg-card/90 backdrop-blur-lg border border-accent/30 text-accent shadow-soft" }
               ].map((feature, index) => (
                 <div 
                   key={index}
-                  className={`flex items-center gap-2 ${feature.color} rounded-full px-4 py-2 hover-lift micro-bounce backdrop-blur-lg`}
+                  className={`flex items-center gap-2 ${feature.color} rounded-full px-4 py-2 hover-lift micro-bounce`}
                 >
                   <feature.icon className="w-4 h-4" />
                   <span className="font-medium text-sm tracking-tight">{feature.text}</span>
@@ -117,7 +117,7 @@ export const HeroSection = () => {
           }`}>
             <div className="relative max-w-sm lg:max-w-md mx-auto">
               {/* Enhanced preview card */}
-              <Card className="glass backdrop-blur-xl border-border/50 shadow-premium hover:shadow-elegant transition-all duration-500 hover-lift micro-glow group">
+              <Card className="bg-card/95 backdrop-blur-xl border border-border shadow-premium hover:shadow-elegant transition-all duration-500 hover-lift micro-glow group">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-8 h-8 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -147,10 +147,10 @@ export const HeroSection = () => {
                       </div>
                     </div>
                     
-                    <div className="glass rounded-xl p-4 border border-border/30">
+                    <div className="bg-muted/50 rounded-xl p-4 border border-border">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                        <span className="font-semibold text-sm">Recent Match</span>
+                        <span className="font-semibold text-sm text-foreground">Recent Match</span>
                       </div>
                       <div className="text-sm text-muted-foreground mb-3">
                         "Brown leather wallet found near Gate 12..."
@@ -165,7 +165,7 @@ export const HeroSection = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="w-full mt-4 micro-bounce font-medium"
+                    className="w-full mt-4 micro-bounce font-medium bg-background text-foreground border-2 border-foreground/20 hover:bg-foreground hover:text-background"
                     onClick={() => navigate('/demo')}
                   >
                     Try Interactive Demo

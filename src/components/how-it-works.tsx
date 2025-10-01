@@ -60,7 +60,7 @@ export const HowItWorks = () => {
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="glass backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-soft hover:shadow-premium transition-all duration-500 relative z-10 hover-lift micro-glow group">
+              <div className="glass rounded-2xl p-8 shadow-soft hover:shadow-premium transition-all duration-500 relative z-10 hover-lift micro-glow group">
                 <div className={`bg-gradient-to-br ${step.color} rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-soft`}>
                   <step.icon className="w-8 h-8 text-white" />
                 </div>

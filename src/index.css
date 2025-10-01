@@ -157,7 +157,7 @@ All colors MUST be HSL.
 
   /* Glass morphism effects */
   .glass {
-    @apply backdrop-blur-lg bg-white/10 border border-white/20;
+    @apply backdrop-blur-lg bg-background/80 border border-border;
   }
 
   /* Smooth hover lift */

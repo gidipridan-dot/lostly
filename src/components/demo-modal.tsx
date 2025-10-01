@@ -480,7 +480,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       </div>
       
       <div className="flex gap-4">
-        <Button variant="outline" onClick={resetDemo}>
+        <Button variant="outline" onClick={resetDemo} className="bg-background text-foreground border-2 border-foreground/20 hover:bg-foreground hover:text-background">
           Try Other Journey
         </Button>
         <Button onClick={handleClose}>
@@ -1494,7 +1494,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
       </div>
       
       <div className="flex gap-4">
-        <Button variant="outline" onClick={resetDemo}>
+        <Button variant="outline" onClick={resetDemo} className="bg-background text-foreground border-2 border-foreground/20 hover:bg-foreground hover:text-background">
           Try Other Journey
         </Button>
         <Button onClick={handleClose}>
