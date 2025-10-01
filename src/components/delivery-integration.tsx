@@ -59,7 +59,7 @@ export const DeliveryIntegration = () => {
           </Button>
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline">Learn More</Button>
+              <Button variant="outline" className="bg-background text-foreground border-2 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background">Learn More</Button>
             </DialogTrigger>
             <DialogContent className="max-w-3xl">
               <DialogHeader className="pb-6 border-b border-border/10">

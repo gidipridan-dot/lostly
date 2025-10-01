@@ -307,7 +307,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <p className="text-sm text-muted-foreground mb-3">
               Photos help others identify your item quickly
             </p>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" className="bg-background text-foreground border-2 border-foreground/20 hover:bg-foreground hover:text-background">
               Choose Files
             </Button>
           </CardContent>
@@ -587,7 +587,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <p className="text-sm text-muted-foreground mb-3">
               Photos help us match with the right owner quickly
             </p>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" className="bg-background text-foreground border-2 border-foreground/20 hover:bg-foreground hover:text-background">
               Choose Files
             </Button>
           </CardContent>
@@ -903,10 +903,10 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <h4 className="font-semibold mb-2">Question 1 of 3</h4>
             <p className="text-sm mb-3">What color is your driver's license photo background?</p>
             <div className="grid grid-cols-2 gap-2">
-              <Button variant="outline" size="sm">Blue</Button>
-              <Button variant="outline" size="sm" className="bg-primary text-primary-foreground">Red</Button>
-              <Button variant="outline" size="sm">Gray</Button>
-              <Button variant="outline" size="sm">White</Button>
+              <Button variant="outline" size="sm" className="bg-background text-foreground border-foreground/20 hover:bg-foreground hover:text-background">Blue</Button>
+              <Button variant="outline" size="sm" className="bg-primary text-primary-foreground border-primary hover:bg-primary/90">Red</Button>
+              <Button variant="outline" size="sm" className="bg-background text-foreground border-foreground/20 hover:bg-foreground hover:text-background">Gray</Button>
+              <Button variant="outline" size="sm" className="bg-background text-foreground border-foreground/20 hover:bg-foreground hover:text-background">White</Button>
             </div>
           </CardContent>
         </Card>
@@ -1120,13 +1120,13 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           
           <div className="space-y-3">
             <div className="grid grid-cols-3 gap-2">
-              <Button variant="outline" size="sm" className="border-amber-300 text-amber-700 hover:bg-amber-100">
+              <Button variant="outline" size="sm" className="bg-background border-amber-300 text-amber-700 hover:bg-amber-100 hover:text-amber-800">
                 $5
               </Button>
-              <Button variant="outline" size="sm" className="border-amber-300 text-amber-700 hover:bg-amber-100">
+              <Button variant="outline" size="sm" className="bg-background border-amber-300 text-amber-700 hover:bg-amber-100 hover:text-amber-800">
                 $10
               </Button>
-              <Button variant="outline" size="sm" className="border-amber-300 text-amber-700 hover:bg-amber-100">
+              <Button variant="outline" size="sm" className="bg-background border-amber-300 text-amber-700 hover:bg-amber-100 hover:text-amber-800">
                 $25
               </Button>
             </div>
