@@ -238,19 +238,19 @@ export const AdvancedFeatures = () => {
           </h3>
           <div className="grid md:grid-cols-4 gap-6 mt-8">
             <div className="bg-primary-foreground/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-accent mb-2">15%</div>
+              <div className="text-2xl font-bold text-primary-foreground mb-2">15%</div>
               <div className="text-primary-foreground text-sm">Platform fee on services</div>
             </div>
             <div className="bg-primary-foreground/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-accent mb-2">€2-5</div>
+              <div className="text-2xl font-bold text-primary-foreground mb-2">€2-5</div>
               <div className="text-primary-foreground text-sm">Premium feature pricing</div>
             </div>
             <div className="bg-primary-foreground/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-accent mb-2">€500+</div>
+              <div className="text-2xl font-bold text-primary-foreground mb-2">€500+</div>
               <div className="text-primary-foreground text-sm">Average partner revenue</div>
             </div>
             <div className="bg-primary-foreground/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-accent mb-2">3x</div>
+              <div className="text-2xl font-bold text-primary-foreground mb-2">3x</div>
               <div className="text-primary-foreground text-sm">Partner business growth</div>
             </div>
           </div>
