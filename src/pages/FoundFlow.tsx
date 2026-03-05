@@ -5,25 +5,34 @@ import { Card } from '@/components/ui/card';
 import { CategorySelect } from '@/components/category-select';
 import { CameraCapture } from '@/components/camera-capture';
 import { LocationSelect } from '@/components/location-select';
+import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-form';
 import { useNavigate } from 'react-router-dom';
 
-type Step = 'camera' | 'category' | 'location' | 'submitted';
+type Step = 'category' | 'details' | 'camera' | 'location' | 'submitted';
 
 export default function FoundFlow() {
   const [currentStep, setCurrentStep] = useState<Step>('category');
   const [capturedPhoto, setCapturedPhoto] = useState<string>('');
   const [detectedCategory, setDetectedCategory] = useState<string>('');
+  const [itemDetails, setItemDetails] = useState<ItemDetails | null>(null);
   const [location, setLocation] = useState<string>('');
   const navigate = useNavigate();
+
+  const steps: Step[] = ['category', 'details', 'camera', 'location'];
+
+  const handleCategorySelect = (category: string) => {
+    setDetectedCategory(category);
+    setTimeout(() => setCurrentStep('details'), 200);
+  };
+
+  const handleDetailsSubmit = (details: ItemDetails) => {
+    setItemDetails(details);
+    setTimeout(() => setCurrentStep('camera'), 200);
+  };
 
   const handlePhotoCapture = (photoUrl: string) => {
     setCapturedPhoto(photoUrl);
     setTimeout(() => setCurrentStep('location'), 200);
-  };
-
-  const handleCategorySelect = (category: string) => {
-    setDetectedCategory(category);
-    setTimeout(() => setCurrentStep('camera'), 200);
   };
 
   const handleLocationConfirm = (selectedLocation: string) => {
@@ -32,8 +41,38 @@ export default function FoundFlow() {
     setTimeout(() => navigate('/'), 3000);
   };
 
+  const goBack = () => {
+    const idx = steps.indexOf(currentStep);
+    if (idx <= 0) navigate('/');
+    else setCurrentStep(steps[idx - 1]);
+  };
+
   const renderStep = () => {
     switch (currentStep) {
+      case 'category':
+        return (
+          <div className="animate-fade-in">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-3">What did you find?</h1>
+              <p className="text-muted-foreground text-lg">Pick the category that matches</p>
+            </div>
+            <CategorySelect onSelect={handleCategorySelect} />
+          </div>
+        );
+
+      case 'details':
+        return (
+          <div className="animate-fade-in">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-3">Describe the {detectedCategory}</h1>
+              <p className="text-muted-foreground text-lg">
+                These details help verify ownership without a photo
+              </p>
+            </div>
+            <ItemDetailsForm category={detectedCategory} onSubmit={handleDetailsSubmit} />
+          </div>
+        );
+
       case 'camera':
         return (
           <div className="animate-fade-in">
@@ -46,17 +85,6 @@ export default function FoundFlow() {
               </p>
             </div>
             <CameraCapture onCapture={handlePhotoCapture} itemCategory={detectedCategory} />
-          </div>
-        );
-
-      case 'category':
-        return (
-          <div className="animate-fade-in">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-3">What did you find?</h1>
-              <p className="text-muted-foreground text-lg">Pick the category that matches</p>
-            </div>
-            <CategorySelect onSelect={handleCategorySelect} />
           </div>
         );
 
@@ -81,6 +109,7 @@ export default function FoundFlow() {
             <p className="text-muted-foreground text-lg mb-8">Your good deed is recorded. We'll match this with someone looking for their {detectedCategory.toLowerCase()}</p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>✓ Photo uploaded securely</p>
+              <p>✓ Verification questions generated</p>
               <p>✓ Matching with lost reports</p>
               <p>✓ Owner will be notified</p>
             </div>
@@ -100,18 +129,18 @@ export default function FoundFlow() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => currentStep === 'camera' ? navigate('/') : setCurrentStep('camera')}
+            onClick={goBack}
             className="hover-scale"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
           
           <div className="flex space-x-2">
-            {['camera', 'category', 'location'].map((step, index) => (
+            {steps.map((step, index) => (
               <div
                 key={step}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  ['camera', 'category', 'location'].indexOf(currentStep) >= index
+                  steps.indexOf(currentStep) >= index
                     ? 'bg-green-500'
                     : 'bg-green-500/20'
                 }`}
@@ -130,3 +159,4 @@ export default function FoundFlow() {
     </div>
   );
 }
+
