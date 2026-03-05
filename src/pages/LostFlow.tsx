@@ -1,29 +1,39 @@
-import React, { useState, useRef } from 'react';
-import { ArrowLeft, Camera, MapPin, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, Camera, Check, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { CategorySelect } from '@/components/category-select';
 import { CameraCapture } from '@/components/camera-capture';
 import { LocationSelect } from '@/components/location-select';
+import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-form';
 import { useNavigate } from 'react-router-dom';
 
-type Step = 'category' | 'photo' | 'location' | 'submitted';
+type Step = 'category' | 'method' | 'photo' | 'details' | 'location' | 'submitted';
 
 export default function LostFlow() {
   const [currentStep, setCurrentStep] = useState<Step>('category');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [capturedPhoto, setCapturedPhoto] = useState<string>('');
+  const [itemDetails, setItemDetails] = useState<ItemDetails | null>(null);
   const [location, setLocation] = useState<string>('');
   const [reward, setReward] = useState<string>('');
   const navigate = useNavigate();
 
+  // Steps for progress indicator (excluding 'method' choice screen)
+  const progressSteps = ['category', 'method', 'location'];
+
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
-    setTimeout(() => setCurrentStep('photo'), 200);
+    setTimeout(() => setCurrentStep('method'), 200);
   };
 
   const handlePhotoCapture = (photoUrl: string) => {
     setCapturedPhoto(photoUrl);
+    setTimeout(() => setCurrentStep('location'), 200);
+  };
+
+  const handleDetailsSubmit = (details: ItemDetails) => {
+    setItemDetails(details);
     setTimeout(() => setCurrentStep('location'), 200);
   };
 
@@ -34,6 +44,24 @@ export default function LostFlow() {
     }
     setCurrentStep('submitted');
     setTimeout(() => navigate('/'), 3000);
+  };
+
+  const goBack = () => {
+    switch (currentStep) {
+      case 'category': navigate('/'); break;
+      case 'method': setCurrentStep('category'); break;
+      case 'photo':
+      case 'details': setCurrentStep('method'); break;
+      case 'location': setCurrentStep(capturedPhoto ? 'photo' : itemDetails ? 'details' : 'method'); break;
+      default: navigate('/');
+    }
+  };
+
+  const getProgressIndex = () => {
+    if (currentStep === 'category') return 0;
+    if (currentStep === 'method' || currentStep === 'photo' || currentStep === 'details') return 1;
+    if (currentStep === 'location') return 2;
+    return 3;
   };
 
   const renderStep = () => {
@@ -49,6 +77,46 @@ export default function LostFlow() {
           </div>
         );
 
+      case 'method':
+        return (
+          <div className="animate-fade-in">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-3">How would you like to identify it?</h1>
+              <p className="text-muted-foreground text-lg">Choose the method that works best for you</p>
+            </div>
+            <div className="space-y-4">
+              <Card
+                className="p-6 cursor-pointer border-border hover:border-primary/40 hover:bg-primary/5 transition-all duration-200"
+                onClick={() => setCurrentStep('photo')}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Camera className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Upload a Photo</h3>
+                    <p className="text-sm text-muted-foreground">Take or upload a photo of your item</p>
+                  </div>
+                </div>
+              </Card>
+              <Card
+                className="p-6 cursor-pointer border-border hover:border-primary/40 hover:bg-primary/5 transition-all duration-200"
+                onClick={() => setCurrentStep('details')}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Describe the Item</h3>
+                    <p className="text-sm text-muted-foreground">No photo? Provide details for smart verification</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        );
+
       case 'photo':
         return (
           <div className="animate-fade-in">
@@ -61,6 +129,19 @@ export default function LostFlow() {
               </p>
             </div>
             <CameraCapture onCapture={handlePhotoCapture} itemCategory={selectedCategory} />
+          </div>
+        );
+
+      case 'details':
+        return (
+          <div className="animate-fade-in">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-3">Describe your {selectedCategory}</h1>
+              <p className="text-muted-foreground text-lg">
+                These details will be used to verify your ownership when the item is found
+              </p>
+            </div>
+            <ItemDetailsForm category={selectedCategory} onSubmit={handleDetailsSubmit} />
           </div>
         );
 
@@ -90,7 +171,8 @@ export default function LostFlow() {
               {reward && <span className="block mt-1 text-primary font-medium">💰 Reward offered: {reward}</span>}
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>✓ Photo analysis complete</p>
+              {capturedPhoto && <p>✓ Photo analysis complete</p>}
+              {itemDetails && <p>✓ Verification questions ready</p>}
               <p>✓ Scanning nearby found items</p>
               <p>✓ Alerts activated</p>
             </div>
@@ -107,18 +189,18 @@ export default function LostFlow() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => currentStep === 'category' ? navigate('/') : setCurrentStep('category')}
+            onClick={goBack}
             className="hover-scale"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
           
           <div className="flex space-x-2">
-            {['category', 'photo', 'location'].map((step, index) => (
+            {progressSteps.map((_, index) => (
               <div
-                key={step}
+                key={index}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  ['category', 'photo', 'location'].indexOf(currentStep) >= index
+                  getProgressIndex() >= index
                     ? 'bg-primary'
                     : 'bg-primary/20'
                 }`}
