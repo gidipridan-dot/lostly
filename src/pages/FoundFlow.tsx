@@ -102,10 +102,11 @@ export default function FoundFlow() {
       case 'submitted':
         return (
           <div className="animate-scale-in text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-              <Check className="w-12 h-12 text-white" />
+            <div className="w-24 h-24 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+              <Check className="w-12 h-12 text-primary-foreground" />
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-3">Amazing!</h1>
+
             <p className="text-muted-foreground text-lg mb-8">Your good deed is recorded. We'll match this with someone looking for their {detectedCategory.toLowerCase()}</p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>✓ Photo uploaded securely</p>
@@ -123,9 +124,9 @@ export default function FoundFlow() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-green-500/5">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 md:py-12">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 max-w-lg mx-auto">
           <Button
             variant="ghost"
             size="icon"
@@ -150,11 +151,12 @@ export default function FoundFlow() {
         </div>
 
         {/* Content */}
-        <div className="max-w-md mx-auto">
-          <Card className="p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
+        <div className="max-w-lg mx-auto">
+          <Card className="p-6 sm:p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
             {renderStep()}
           </Card>
         </div>
+
       </div>
     </div>
   );

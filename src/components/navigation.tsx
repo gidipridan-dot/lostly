@@ -73,13 +73,14 @@ export const Navigation = () => {
           <Button 
             variant="hero" 
             size="lg"
-            className="hidden sm:inline-flex micro-bounce font-semibold px-6"
+            className="hidden md:inline-flex micro-bounce font-semibold px-6"
             onClick={() => navigate('/demo')}
           >
             <Building className="w-4 h-4" />
             Request Demo
           </Button>
         </div>
+
         
         {/* Mobile Menu */}
         {isOpen && (
