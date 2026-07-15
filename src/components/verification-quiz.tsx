@@ -136,11 +136,6 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
       setConfirmed(false);
     } else {
       setShowResult(true);
-      const correctCount = answers.reduce<number>(
-        (acc, ans, i) => acc + (ans === questions[i].correctIndex ? 1 : 0),
-        0
-      ) + (selectedOption === questions[currentQ].correctIndex ? 1 : 0);
-      // Recalculate with final answer
       const finalAnswers = [...answers];
       finalAnswers[currentQ] = selectedOption;
       const finalCorrect = finalAnswers.reduce<number>(
@@ -150,6 +145,15 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
       onResult(finalCorrect >= minRequired, finalCorrect, totalQuestions);
     }
   };
+
+  const handleRetry = () => {
+    setCurrentQ(0);
+    setAnswers(new Array(questions.length).fill(null));
+    setShowResult(false);
+    setSelectedOption(null);
+    setConfirmed(false);
+  };
+
 
   if (questions.length === 0) {
     return (
@@ -191,9 +195,15 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
         <Badge variant={passed ? 'default' : 'destructive'} className="text-sm">
           {passed ? 'Match Confirmed' : 'No Match'}
         </Badge>
+        {!passed && (
+          <Button onClick={handleRetry} variant="outline" className="w-full mt-2">
+            Try again
+          </Button>
+        )}
       </div>
     );
   }
+
 
   const q = questions[currentQ];
   const isCorrect = confirmed && selectedOption === q.correctIndex;

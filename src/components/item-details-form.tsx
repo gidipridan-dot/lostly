@@ -81,8 +81,9 @@ export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSu
           placeholder="Or type a specific color..."
           value={color}
           onChange={(e) => setColor(e.target.value)}
-          className="bg-background border-border"
+          className="bg-background border-border mt-1"
         />
+
       </div>
 
       {/* Brand */}
