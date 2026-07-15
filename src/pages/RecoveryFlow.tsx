@@ -81,26 +81,28 @@ export default function RecoveryFlow() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <div className="container mx-auto px-4 py-6 max-w-md">
+      <div className="container mx-auto px-4 py-6 md:py-10 max-w-lg">
+
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <Button variant="ghost" size="icon" onClick={goBack}>
+        <div className="flex items-center justify-between gap-3 mb-6">
+          <Button variant="ghost" size="icon" onClick={goBack} className="shrink-0">
             <ArrowLeft className="w-5 h-5" />
           </Button>
           {currentStep !== 'tracking' && (
-            <div className="flex gap-1.5">
+            <div className="flex gap-1.5 shrink-0">
               {STEPS.slice(0, -1).map((_, i) => (
                 <div
                   key={i}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i <= stepIndex ? 'w-8 bg-primary' : 'w-4 bg-primary/20'
+                    i <= stepIndex ? 'w-6 sm:w-8 bg-primary' : 'w-3 sm:w-4 bg-primary/20'
                   }`}
                 />
               ))}
             </div>
           )}
-          <div className="w-10" />
+          <div className="w-10 shrink-0" />
         </div>
+
 
         {/* Step 1: Verification */}
         {currentStep === 'verify' && (
@@ -332,15 +334,23 @@ export default function RecoveryFlow() {
               </>
             )}
 
-            <div className="flex gap-3">
-              <Button variant="outline" onClick={() => { setRewardAmount(0); setCustomReward(''); goNext(); }} className="flex-1">
-                Skip reward
-              </Button>
-              <Button onClick={goNext} className="flex-1" disabled={demoItem.finderRewardPref === 'decline' && false}>
+            {demoItem.finderRewardPref === 'accept' ? (
+              <div className="flex gap-3">
+                <Button variant="outline" onClick={() => { setRewardAmount(0); setCustomReward(''); goNext(); }} className="flex-1">
+                  Skip reward
+                </Button>
+                <Button onClick={goNext} className="flex-1">
+                  Continue
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+            ) : (
+              <Button onClick={() => { setRewardAmount(0); goNext(); }} className="w-full" size="lg">
                 Continue
                 <ChevronRight className="w-4 h-4" />
               </Button>
-            </div>
+            )}
+
           </div>
         )}
 
