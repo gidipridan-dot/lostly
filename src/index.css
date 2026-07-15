@@ -165,6 +165,12 @@ All colors MUST be HSL.
     @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-elegant;
   }
 
+  /* Subtle hover scale */
+  .hover-scale {
+    @apply transition-transform duration-200 ease-out hover:scale-105 active:scale-95;
+  }
+
+
   /* Premium text gradient */
   .text-premium {
     @apply bg-gradient-primary bg-clip-text text-transparent;

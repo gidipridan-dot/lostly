@@ -26,7 +26,8 @@ export default function ClaimVerification() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 md:py-12">
+
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="hover-scale">
@@ -39,8 +40,9 @@ export default function ClaimVerification() {
         </div>
 
         {/* Content */}
-        <div className="max-w-md mx-auto">
-          <Card className="p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
+        <div className="max-w-lg mx-auto">
+          <Card className="p-6 sm:p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
+
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-foreground mb-3">
                 {result ? (result.passed ? 'Verified!' : 'Not a Match') : 'Verify Ownership'}

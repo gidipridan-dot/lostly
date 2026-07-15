@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Camera, Check, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -18,6 +18,14 @@ export default function LostFlow() {
   const [location, setLocation] = useState<string>('');
   const [reward, setReward] = useState<string>('');
   const navigate = useNavigate();
+  const redirectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (redirectTimeoutRef.current) clearTimeout(redirectTimeoutRef.current);
+    };
+  }, []);
+
 
   // Steps for progress indicator (excluding 'method' choice screen)
   const progressSteps = ['category', 'method', 'location'];
@@ -43,8 +51,10 @@ export default function LostFlow() {
       setReward(rewardAmount);
     }
     setCurrentStep('submitted');
-    setTimeout(() => navigate('/'), 3000);
+    if (redirectTimeoutRef.current) clearTimeout(redirectTimeoutRef.current);
+    redirectTimeoutRef.current = setTimeout(() => navigate('/'), 3000);
   };
+
 
   const goBack = () => {
     switch (currentStep) {
@@ -183,9 +193,9 @@ export default function LostFlow() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 md:py-12">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 max-w-lg mx-auto">
           <Button
             variant="ghost"
             size="icon"
@@ -210,11 +220,12 @@ export default function LostFlow() {
         </div>
 
         {/* Content */}
-        <div className="max-w-md mx-auto">
-          <Card className="p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
+        <div className="max-w-lg mx-auto">
+          <Card className="p-6 sm:p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
             {renderStep()}
           </Card>
         </div>
+
       </div>
     </div>
   );
