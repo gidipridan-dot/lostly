@@ -5,6 +5,7 @@ import { VerificationQuiz } from '@/components/verification-quiz';
 import type { ItemDetails } from '@/components/item-details-form';
 import { nextReunionStage, sampleFinderDetails, type ReunionStage } from '@/lib/festival-recovery';
 import { FestivalLightPath } from '@/components/festival-light-path';
+import { FoundPathRecap } from '@/components/festival-finder-journey';
 import campImage from '@/assets/desert-camp.asset.json';
 
 interface Props {
@@ -92,7 +93,8 @@ export function FestivalReunion({ category, details, place, photo, sampleMatch =
         <Button className="w-full" onClick={() => setStage('pickup')}>Back to the camp pickup plan</Button><Button variant="ghost" className="w-full" onClick={onHome}>Back to the festival</Button>
       </div>}
 
-      {stage === 'collected' && <div className="space-y-5 py-8 text-center animate-fade-in"><div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary"><Check className="h-10 w-10 animate-pop" /></div><h1 className="festival-heading text-4xl">Side quest complete.<br />Back to the magic.</h1><p className="text-muted-foreground">Your sample {category.toLowerCase()} has made it home. A finder, a crew, and a few familiar details brought you back together.</p><div className="quest-stamp mx-auto flex h-28 w-28 rotate-[-8deg] flex-col items-center justify-center rounded-full border-2 border-dashed border-foreground text-xs font-semibold"><Tent className="mb-2 h-7 w-7" />REUNITED<br />LOSTLY CAMP</div><p className="text-sm text-muted-foreground">Sample handover complete · No real item was collected.</p><Button className="w-full" onClick={onHome}>Back to the festival <ArrowRight /></Button></div>}
+      {stage === 'collected' && <div className="space-y-5 py-8 text-center animate-fade-in"><div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-secondary"><Check className="h-10 w-10 animate-pop" /></div><h1 className="festival-heading text-4xl">Side quest complete.<br />Back to the magic.</h1><p className="text-muted-foreground">Your sample {category.toLowerCase()} has made it home. A finder, a crew, and a few familiar details brought you back together.</p><div className="quest-stamp mx-auto flex h-28 w-28 rotate-[-8deg] flex-col items-center justify-center rounded-full border-2 border-dashed border-foreground text-xs font-semibold"><Tent className="mb-2 h-7 w-7" />REUNITED<br />LOSTLY CAMP</div><FoundPathRecap category={category} />
+<p className="text-sm text-muted-foreground">Sample handover complete · No real item was collected.</p><Button className="w-full" onClick={onHome}>Back to the festival <ArrowRight /></Button></div>}
       </div>
     </div>
   );

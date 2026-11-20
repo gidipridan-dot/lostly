@@ -8,6 +8,7 @@ import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-for
 import { CameraCapture } from '@/components/camera-capture';
 import { FestivalReunion } from '@/components/festival-reunion';
 import { FestivalQuestTrail } from '@/components/festival-quest-trail';
+import { FestivalFinderJourney } from '@/components/festival-finder-journey';
 import { FestivalLightPath } from '@/components/festival-light-path';
 import campImage from '@/assets/desert-camp.asset.json';
 
@@ -98,12 +99,13 @@ export default function FestivalDemo() {
             <FestivalReunion category="Bag" details={sampleDetails} sampleMatch onHome={home} />
           ) : isLost && step === 'submitted' ? (
             <FestivalReunion category={category} details={details} place={place} photo={photo} onHome={home} />
+          ) : step === 'submitted' ? (
+            <FestivalFinderJourney category={category} place={place} reward={reward} onHome={home} />
           ) : (
             <>
               <div className="mb-7 border-b border-border pb-5">
                 <p className="flex items-center gap-2 text-xs font-semibold uppercase"><Compass className="h-4 w-4" /> {isLost ? 'The lost-item side quest' : 'The good-karma side quest'}</p>
-                {isLost && <div className="mt-4"><FestivalLightPath current={0} /></div>}
-                {!isLost && <FestivalQuestTrail current={0} />}
+                <div className="mt-4"><FestivalLightPath role={isLost ? 'lost' : 'found'} current={0} /></div>
                 <p className="mt-3 text-sm text-muted-foreground">Chapter 01 · Gathering your clues · {progress + 1} of 4</p>
               </div>
               <div key={step} className="quest-chapter">

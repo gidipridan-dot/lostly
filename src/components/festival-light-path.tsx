@@ -2,15 +2,23 @@ import type { CSSProperties } from 'react';
 import { Footprints } from 'lucide-react';
 import pathImage from '@/assets/festival-light-path.asset.json';
 
-const moments = [
+const lostMoments = [
   { chapter: 'Lost in the dust', line: 'The light is far, but it is there.' },
   { chapter: 'A spark appears', line: 'Someone may have found your way back.' },
   { chapter: 'Following your clues', line: 'Only you know the little things.' },
   { chapter: 'Almost at camp', line: 'The crew has a light on for you.' },
-  { chapter: 'In the light', line: 'Reunited at Lostly camp.' },
+  { chapter: 'The Found Path', line: 'Reunited at Lostly camp.' },
+];
+const foundMoments = [
+  { chapter: 'Something in the dust', line: 'You picked up someone’s story.' },
+  { chapter: 'Safe at camp', line: 'The crew lights a beacon for its owner.' },
+  { chapter: 'A spark reaches them', line: 'Someone out there just got hope.' },
+  { chapter: 'The owner is on the way', line: 'They proved the little things.' },
+  { chapter: 'The Found Path', line: 'You were someone’s light.' },
 ];
 
-export function FestivalLightPath({ current = 0 }: { current?: number }) {
+export function FestivalLightPath({ current = 0, role = 'lost' }: { current?: number; role?: 'lost' | 'found' }) {
+  const moments = role === 'found' ? foundMoments : lostMoments;
   const step = Math.max(0, Math.min(current, moments.length - 1));
   const ratio = step / (moments.length - 1);
   const style = {
