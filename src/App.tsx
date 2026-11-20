@@ -10,6 +10,7 @@ import FoundFlow from "./pages/FoundFlow";
 import ClaimVerification from "./pages/ClaimVerification";
 import RecoveryFlow from "./pages/RecoveryFlow";
 import NotFound from "./pages/NotFound";
+import FestivalDemo from "./pages/FestivalDemo";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/demo" element={<DemoStart />} />
+          <Route path="/festival" element={<FestivalDemo key="festival-home" />} />
+          <Route path="/festival/lost" element={<FestivalDemo key="festival-lost" />} />
+          <Route path="/festival/found" element={<FestivalDemo key="festival-found" />} />
+          <Route path="/festival/claim" element={<FestivalDemo key="festival-claim" />} />
           <Route path="/lost" element={<LostFlow />} />
           <Route path="/found" element={<FoundFlow />} />
           <Route path="/claim" element={<ClaimVerification />} />

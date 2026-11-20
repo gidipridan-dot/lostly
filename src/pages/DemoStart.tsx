@@ -80,6 +80,9 @@ export default function DemoStart() {
           </div>
 
           {/* Footer Note */}
+          <Button asChild variant="outline" className="mt-6 w-full">
+            <a href="/festival">Explore the desert festival edition</a>
+          </Button>
           <div className="mt-8 p-4 bg-primary/10 rounded-lg">
             <p className="text-sm text-muted-foreground">
               💡 This is an interactive demo. No real items will be reported.

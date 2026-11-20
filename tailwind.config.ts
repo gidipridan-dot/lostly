@@ -31,6 +31,11 @@ export default {
 				'tighter': '-0.02em',
 			},
 			colors: {
+				festival: {
+					ink: 'hsl(var(--festival-ink))',
+					light: 'hsl(var(--festival-light))',
+					'light-foreground': 'hsl(var(--festival-light-foreground))',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

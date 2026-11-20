@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Venue demo values are scoped: the main Lostly theme remains unchanged. */
+.festival-theme {
+  --background: 0 0% 98%;
+  --foreground: 0 0% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 12%;
+  --primary: 0 0% 15%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 92%;
+  --secondary-foreground: 0 0% 12%;
+  --muted: 0 0% 90%;
+  --muted-foreground: 0 0% 38%;
+  --border: 0 0% 83%;
+  --input: 0 0% 83%;
+  --ring: 0 0% 20%;
+  --festival-ink: 0 0% 100%;
+  --festival-light: 51 90% 72%;
+  --festival-light-foreground: 0 0% 12%;
+  --festival-overlay: 0 0% 0%;
+  font-family: 'Trebuchet MS', sans-serif;
+  letter-spacing: 0;
+}
+.festival-theme .festival-heading { font-family: Georgia, serif; letter-spacing: 0; }
+.festival-theme button { letter-spacing: 0; border-radius: 8px; }
+.festival-scene { min-height: 490px; }
+.festival-scrim { background: linear-gradient(90deg, hsl(var(--festival-overlay) / .78), hsl(var(--festival-overlay) / .36) 55%, hsl(var(--festival-overlay) / .05)); }
+@media (max-width: 639px) {
+  .festival-scene { min-height: 550px; }
+  .festival-scene img { object-position: 62% center; }
+  .festival-scrim { background: hsl(var(--festival-overlay) / .6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .festival-theme *, .festival-theme *::before, .festival-theme *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
