@@ -75,7 +75,7 @@ export function DropPinMap({ onPin, showCamp = false }: Props) {
         {zones.map((z) => renderZone(z))}
         {renderZone(camp, showCamp)}
         {pin && (
-          <MapPin className="pointer-events-none absolute h-9 w-9 -translate-x-1/2 -translate-y-full fill-destructive text-destructive-foreground drop-shadow quest-arrive" style={{ left: `${pin.x}%`, top: `${pin.y}%` }} />
+          <MapPin strokeWidth={1.25} className="pointer-events-none absolute h-10 w-10 -translate-x-1/2 -translate-y-full fill-primary text-background drop-shadow quest-arrive" style={{ left: `${pin.x}%`, top: `${pin.y}%` }} />
         )}
       </div>
       {onPin && (
