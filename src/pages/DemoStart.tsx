@@ -21,6 +21,7 @@ export default function DemoStart() {
             <Link to="/festival">Enter the festival <ArrowRight /></Link>
           </Button>
           <p className="mt-3 text-xs text-festival-ink">Illustrative festival demo · No real reports</p>
+          <Button asChild variant="link" className="mt-3 h-auto whitespace-normal p-0 text-festival-ink hover:scale-100"><Link to="/festival/claim">See a match notification & camp pickup <ArrowRight /></Link></Button>
         </div>
       </section>
       <div className="container mx-auto px-4 py-8 sm:py-10">

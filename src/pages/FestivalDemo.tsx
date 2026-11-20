@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-form';
 import { CameraCapture } from '@/components/camera-capture';
-import { VerificationQuiz } from '@/components/verification-quiz';
+import { FestivalReunion } from '@/components/festival-reunion';
 import campImage from '@/assets/desert-camp.asset.json';
 
 const categories = [
@@ -30,8 +30,6 @@ export default function FestivalDemo() {
   const [photo, setPhoto] = useState('');
   const [place, setPlace] = useState('');
   const [reward, setReward] = useState('');
-  const [result, setResult] = useState<boolean | null>(null);
-  const [pickup, setPickup] = useState(false);
   const isLost = mode === 'lost';
   const home = () => navigate('/festival');
   const back = () => {
@@ -82,7 +80,7 @@ export default function FestivalDemo() {
             <div className="border-t border-border pt-5 md:border-t-0 md:pt-0">
               <p className="mb-2 flex items-center gap-2 font-medium"><Sparkles className="h-5 w-5 text-primary" /> A familiar detail can be the spark.</p>
               <p className="text-sm leading-relaxed text-muted-foreground">Think you’ve spotted your item? Let’s check the little things only you would know.</p>
-              <Button asChild variant="link" className="mt-3 h-auto justify-start p-0 hover:scale-100"><Link to="/festival/claim">Try a sample ownership check <ArrowRight /></Link></Button>
+              <Button asChild variant="link" className="mt-3 h-auto justify-start p-0 hover:scale-100"><Link to="/festival/claim">See a match & plan your pickup <ArrowRight /></Link></Button>
               <p className="mt-4 text-xs text-muted-foreground">Sample item: blue Nike bag · small tear · red water bottle · sticker on the back.</p>
             </div>
           </section>
@@ -94,14 +92,9 @@ export default function FestivalDemo() {
             <span className="flex items-center gap-2 text-sm text-muted-foreground"><Tent className="h-4 w-4" /> We’re in this together.</span>
           </div>
           {mode === 'claim' ? (
-            <div className="space-y-7">
-              <div className="text-center"><p className="mb-2 text-xs text-muted-foreground">SAMPLE OWNERSHIP CHECK</p><h1 className="festival-heading text-4xl">A little closer to home.</h1></div>
-              {pickup ? (
-                <div className="space-y-5 py-8 text-center"><Tent className="mx-auto h-12 w-12 text-primary" /><h2 className="text-2xl font-semibold">The crew takes it from here.</h2><p className="text-muted-foreground">In the live festival experience, confirmed owners would receive pickup instructions from the lost & found team.</p><p className="text-sm text-muted-foreground">This sample check hasn’t reserved a real item.</p><Button onClick={home}>Back to the festival <ArrowRight /></Button></div>
-              ) : (
-                <><VerificationQuiz category="Bag" itemDetails={sampleDetails} requiredCorrect={2} onResult={(passed) => setResult(passed)} />{result === true && <Button className="w-full" onClick={() => setPickup(true)}>Meet the camp crew <ArrowRight /></Button>}</>
-              )}
-            </div>
+            <FestivalReunion category="Bag" details={sampleDetails} sampleMatch onHome={home} />
+          ) : isLost && step === 'submitted' ? (
+            <FestivalReunion category={category} details={details} place={place} photo={photo} onHome={home} />
           ) : (
             <>
               <div className="mb-8 flex items-center gap-2" aria-label={`Step ${progress + 1} of 4`}>
