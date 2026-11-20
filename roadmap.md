@@ -25,3 +25,8 @@
 - [x] Send all public demo entrances and old demo links to the festival journey.
 - [x] Replace the homepage mini-demo and mixed demo chooser with one festival preview.
 - [x] Verify homepage, old links, and mobile navigation.
+
+
+# Homepage atmosphere
+- [x] Replace the oversized corporate opening with a calm camp-led introduction.
+- [x] Check legibility, navigation, and the festival entrance on phone and desktop.

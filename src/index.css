@@ -40,6 +40,19 @@
 .festival-theme button { letter-spacing: 0; border-radius: 8px; }
 .festival-scene { min-height: 490px; }
 .festival-scrim { background: linear-gradient(90deg, hsl(var(--festival-overlay) / .78), hsl(var(--festival-overlay) / .36) 55%, hsl(var(--festival-overlay) / .05)); }
+.lostly-opening { display: flex; align-items: center; min-height: min(620px, calc(100svh - 144px)); }
+@media (max-width: 639px) {
+  .lostly-opening { min-height: 0; }
+  .lostly-opening img { object-position: 62% center; }
+  .lostly-opening .festival-scrim { background: hsl(var(--festival-overlay) / .62); }
+}
+@media (max-height: 500px) {
+  .lostly-opening-content { padding-top: 20px; padding-bottom: 20px; }
+  .lostly-opening-content h1 { margin-top: 12px; font-size: 36px; }
+  .lostly-opening-content h1 + p { margin-top: 12px; font-size: 24px; }
+  .lostly-opening-copy, .lostly-opening-note { display: none; }
+  .lostly-opening-content a { margin-top: 16px; }
+}
 @media (max-width: 639px) {
   .festival-scene { min-height: 550px; }
   .festival-scene img { object-position: 62% center; }

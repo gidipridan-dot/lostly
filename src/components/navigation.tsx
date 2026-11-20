@@ -1,40 +1,23 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Menu, X, Zap, Building } from "lucide-react";
-import { useState, useEffect } from "react";
+import { MapPin, Menu, X, ArrowRight } from "lucide-react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-elegant' 
-        : 'bg-transparent'
-    }`}>
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover-lift group"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
           >
-            <div className={`bg-primary rounded-xl p-2.5 transition-all duration-300 group-hover:scale-110 ${
-              isScrolled ? 'shadow-soft' : 'shadow-glow'
-            }`}>
-              <MapPin className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="text-2xl font-bold text-foreground heading-premium">Lostly</span>
+            <MapPin className="h-5 w-5 text-foreground" />
+            <span className="text-xl font-semibold text-foreground">Lostly</span>
           </Link>
           
           {/* Navigation Links */}
@@ -63,7 +46,9 @@ export const Navigation = () => {
           <Button 
             variant="ghost" 
             size="icon"
-            className="md:hidden micro-bounce"
+            className="md:hidden hover:scale-100"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -71,13 +56,12 @@ export const Navigation = () => {
 
           {/* CTA Button */}
           <Button 
-            variant="hero" 
+            variant="outline" 
             size="lg"
-            className="hidden md:inline-flex micro-bounce font-semibold px-6"
+            className="hidden rounded-lg px-5 hover:scale-100 md:inline-flex"
             onClick={() => navigate('/festival')}
           >
-            <Building className="w-4 h-4" />
-            View Festival Demo
+            Enter the festival <ArrowRight className="w-4 h-4" />
           </Button>
         </div>
 
@@ -108,16 +92,15 @@ export const Navigation = () => {
                 Partner With Us
               </a>
               <Button 
-                variant="hero" 
+                variant="outline" 
                 size="lg"
-                className="w-full mt-4 micro-bounce"
+                className="mt-4 w-full rounded-lg hover:scale-100"
                 onClick={() => {
                   navigate('/festival');
                   setIsOpen(false);
                 }}
               >
-                <Building className="w-4 h-4" />
-                View Festival Demo
+                Enter the festival <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
