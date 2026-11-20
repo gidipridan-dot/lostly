@@ -1,5 +1,5 @@
 import { DropPinMap } from '@/components/drop-pin-map';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Camera, Check, Compass, FileText, HeartHandshake, MapPin, Search, Package, Tent, Sparkles, Smartphone, Key, Glasses, Backpack, Shirt, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,7 +24,11 @@ const sampleDetails: ItemDetails = {
   color: 'Blue', brand: 'Nike', condition: 'Small tear',
   contents: ['Red water bottle'], uniqueMarks: ['Sticker on the back'], additionalNotes: '',
 };
-type Step = 'category' | 'method' | 'details' | 'photo' | 'location' | 'reward' | 'submitted';
+type Step = 'category' | 'details' | 'photo' | 'location' | 'reward' | 'submitted';
+
+function Hint({ children }: { children: ReactNode }) {
+  return <p className="mb-7 mt-3 flex items-start gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground"><ArrowRight className="mt-0.5 h-4 w-4 shrink-0" />{children}</p>;
+}
 
 export default function FestivalDemo() {
   const navigate = useNavigate();
@@ -40,12 +44,14 @@ export default function FestivalDemo() {
   const home = () => navigate('/festival');
   const back = () => {
     if (mode === 'claim' || step === 'category' || step === 'submitted') return home();
-    if (step === 'method') setStep('category');
-    else if (step === 'details' || step === 'photo') setStep(isOtherCategory(category) ? 'category' : 'method');
-    else if (step === 'location') setStep(photo ? 'photo' : details ? 'details' : 'method');
+    if (step === 'details') setStep('category');
+    else if (step === 'photo') setStep('details');
+    else if (step === 'location') setStep(photo ? 'photo' : 'details');
     else setStep('location');
   };
-  const progress = step === 'category' ? 0 : ['method', 'details', 'photo'].includes(step) ? 1 : step === 'location' ? 2 : 3;
+  const total = isLost ? 3 : 4;
+  const progress = step === 'category' ? 0 : step === 'details' || step === 'photo' ? 1 : step === 'location' ? 2 : 3;
+  const name = itemDisplayName(category, details?.itemName).toLowerCase();
   return (
     <div className="festival-theme min-h-screen bg-background text-foreground">
       <header className="border-b border-border bg-background">
@@ -109,15 +115,14 @@ export default function FestivalDemo() {
               <div className="mb-7 border-b border-border pb-5">
                 <p className="flex items-center gap-2 text-xs font-semibold uppercase"><Compass className="h-4 w-4" /> {isLost ? 'The lost-item side quest' : 'The good-karma side quest'}</p>
                 <div className="mt-4"><FestivalLightPath role={isLost ? 'lost' : 'found'} current={0} /></div>
-                <p className="mt-3 text-sm text-muted-foreground">Chapter 01 · Gathering your clues · {progress + 1} of 4</p>
+                <p className="mt-3 text-sm text-muted-foreground">Chapter 01 · Gathering your clues · {progress + 1} of {total}</p>
               </div>
               <div key={step} className="quest-chapter">
-              {step === 'category' && <><h1 className="festival-heading text-4xl">{isLost ? 'What’s missing?' : 'What did you find?'}</h1><p className="mb-7 mt-3 text-muted-foreground">{isLost ? 'Every good quest starts with something worth finding. What are we bringing home?' : 'A tiny act of kindness. A whole new ending to someone’s day.'}</p><div className="grid grid-cols-2 gap-3 sm:grid-cols-3">{categories.map(({name, icon: Icon}) => <Button key={name} variant="secondary" className="h-28 flex-col rounded-lg border border-border bg-card hover:scale-100 hover:border-primary" onClick={() => {setCategory(name); setStep(isOtherCategory(name) ? 'details' : 'method');}}><Icon className="!h-7 !w-7" />{name}</Button>)}</div></>}
-              {step === 'method' && <><h1 className="festival-heading text-4xl">A photo or a few clues?</h1><p className="mb-7 mt-3 text-muted-foreground">{isLost ? 'No perfect picture needed. Your memory is a good place to start.' : 'The little details help us find the right person.'}</p><div className="space-y-3"><Button variant="secondary" className="h-auto w-full justify-start whitespace-normal rounded-lg p-5 text-left hover:scale-100" onClick={() => setStep('details')}><FileText /><span><span className="block font-semibold">Describe the {category.toLowerCase()}</span><span className="block text-sm font-normal text-muted-foreground">Color, a sticker, that little scratch…</span></span><ArrowRight className="ml-auto" /></Button><Button variant="secondary" className="h-auto w-full justify-start rounded-lg p-5 hover:scale-100" onClick={() => setStep('photo')}><Camera />{isLost ? 'I have a photo' : 'Take a photo'}<ArrowRight className="ml-auto" /></Button></div></>}
-              {step === 'details' && <><h1 className="festival-heading text-4xl">Every belonging has a story.</h1><p className="mb-7 mt-3 text-muted-foreground">Tell us what makes this {itemDisplayName(category, details?.itemName).toLowerCase()} unmistakable.</p><ItemDetailsForm category={category} onSubmit={(value) => {setDetails(value); setPhoto(''); setStep('location');}} /></>}
-              {step === 'photo' && <><h1 className="festival-heading text-4xl">A picture is a good start.</h1><p className="mb-7 mt-3 text-muted-foreground">A clear photo of the {category.toLowerCase()} helps connect the dots.</p><CameraCapture itemCategory={category} onCapture={(value) => {setPhoto(value); setStep('location');}} /></>}
-              {step === 'location' && <><h1 className="festival-heading text-4xl">Retrace a little of the magic.</h1><p className="mb-7 mt-3 text-muted-foreground">{isLost ? 'Where do you remember having it last?' : 'Where did your paths cross?'}</p><div className="mb-6"><DropPinMap onPin={setPlace} /></div><Label htmlFor="festival-place">Or type a camp name or landmark</Label><Input id="festival-place" value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Whatever you remember" className="mb-6 mt-2" /><Button disabled={!place.trim()} className="w-full" onClick={() => setStep('reward')}>Clues gathered — onward <ArrowRight /></Button></>}
-              {step === 'reward' && <><HeartHandshake className="mb-4 h-10 w-10 text-primary" /><h1 className="festival-heading text-4xl">{isLost ? 'A thank-you, only if you want.' : 'Your good deed. Your choice.'}</h1><p className="mb-7 mt-3 text-muted-foreground">Rewards are always optional — and never part of shipping or delivery costs.</p>{isLost ? <><Label htmlFor="festival-reward">Optional reward amount (₪)</Label><Input id="festival-reward" type="number" min="0" value={reward} onChange={(e) => setReward(e.target.value)} placeholder="0 — a thank-you is enough" className="mt-2" /></> : <div className="space-y-3">{['Decline rewards', 'Accept rewards', 'Donate to charity'].map((name) => <Button key={name} variant={reward === name ? 'default' : 'secondary'} className="w-full rounded-lg hover:scale-100" aria-pressed={reward === name} onClick={() => setReward(name)}>{name}</Button>)}</div>}<Button className="mt-7 w-full" onClick={() => setStep('submitted')}>{isLost ? 'Send my clues to the crew' : 'Send a little good karma'} <ArrowRight /></Button></>}
+              {step === 'category' && <><h1 className="festival-heading text-4xl">{isLost ? 'What’s missing?' : 'What did you find?'}</h1><p className="mt-3 text-muted-foreground">{isLost ? 'Every good quest starts with something worth finding.' : 'A tiny act of kindness. A whole new ending to someone’s day.'}</p><Hint>Tap the type of item. Not listed? Tap Other.</Hint><div className="grid grid-cols-2 gap-3 sm:grid-cols-3">{categories.map(({name, icon: Icon}) => <Button key={name} variant="secondary" className="h-28 flex-col rounded-lg border border-border bg-card hover:scale-100 hover:border-primary" onClick={() => {setCategory(name); setStep('details');}}><Icon className="!h-7 !w-7" />{name}</Button>)}</div></>}
+              {step === 'details' && <><h1 className="festival-heading text-4xl">Every belonging has a story.</h1><p className="mt-3 text-muted-foreground">No perfect picture needed. Your memory is a good place to start.</p><Hint>{isOtherCategory(category) ? 'Type what it is, pick a color, then tap Continue.' : `Pick a color or add one detail about the ${name}, then tap Continue.`}</Hint><Button variant="secondary" className="mb-6 w-full rounded-lg hover:scale-100" onClick={() => setStep('photo')}><Camera /> {isLost ? 'I have a photo instead' : 'Take a photo instead'}</Button><ItemDetailsForm category={category} onSubmit={(value) => {setDetails(value); setPhoto(''); setStep('location');}} /></>}
+              {step === 'photo' && <><h1 className="festival-heading text-4xl">A picture is a good start.</h1><p className="mt-3 text-muted-foreground">A clear photo helps connect the dots.</p><Hint>Take or upload one clear photo of the {name}.</Hint><CameraCapture itemCategory={category} onCapture={(value) => {setPhoto(value); setStep('location');}} /></>}
+              {step === 'location' && <><h1 className="festival-heading text-4xl">Retrace a little of the magic.</h1><p className="mt-3 text-muted-foreground">{isLost ? 'Where do you remember having it last?' : 'Where did your paths cross?'}</p><Hint>Tap the spot on the map, or type a camp name below.</Hint><div className="mb-6"><DropPinMap onPin={setPlace} /></div><Label htmlFor="festival-place">Or type a camp name or landmark</Label><Input id="festival-place" value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Whatever you remember" className="mb-6 mt-2" /><Button disabled={!place.trim()} className="w-full" onClick={() => setStep(isLost ? 'submitted' : 'reward')}>{isLost ? 'Send my clues to the crew' : 'Clues gathered — onward'} <ArrowRight /></Button></>}
+              {step === 'reward' && <><HeartHandshake className="mb-4 h-10 w-10 text-primary" /><h1 className="festival-heading text-4xl">Your good deed. Your choice.</h1><p className="mt-3 text-muted-foreground">Rewards are always optional — and never part of shipping or delivery costs.</p><Hint>Pick one option, then send.</Hint><div className="space-y-3">{['Decline rewards', 'Accept rewards', 'Donate to charity'].map((name) => <Button key={name} variant={reward === name ? 'default' : 'secondary'} className="w-full rounded-lg hover:scale-100" aria-pressed={reward === name} onClick={() => setReward(name)}>{name}</Button>)}</div><Button className="mt-7 w-full" onClick={() => setStep('submitted')}>Send a little good karma <ArrowRight /></Button></>}
               </div>
             </>
           )}

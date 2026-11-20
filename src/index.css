@@ -4,18 +4,18 @@
 
 /* Venue demo values are scoped: the main Lostly theme remains unchanged. */
 .festival-theme {
-  --background: 0 0% 98%;
-  --foreground: 0 0% 12%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 12%;
-  --primary: 0 0% 15%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 92%;
-  --secondary-foreground: 0 0% 12%;
-  --muted: 0 0% 90%;
-  --muted-foreground: 0 0% 38%;
-  --border: 0 0% 83%;
-  --input: 0 0% 83%;
+  --background: 36 33% 95%;
+  --foreground: 228 28% 14%;
+  --card: 38 40% 98%;
+  --card-foreground: 228 28% 14%;
+  --primary: 228 30% 16%;
+  --primary-foreground: 40 45% 96%;
+  --secondary: 34 25% 89%;
+  --secondary-foreground: 228 28% 14%;
+  --muted: 33 24% 86%;
+  --muted-foreground: 225 10% 38%;
+  --border: 32 18% 78%;
+  --input: 32 18% 78%;
   --ring: 0 0% 20%;
   --festival-ink: 0 0% 100%;
   --festival-light: 51 90% 72%;
@@ -37,6 +37,7 @@
 .festival-theme .light-path-traveler { top: var(--traveler-top); width: 28px; height: 28px; margin-left: -14px; transform: scale(var(--traveler-scale)); transition: top .9s ease, transform .9s ease; }
 .festival-theme .light-path-caption { background: hsl(var(--festival-overlay) / .55); }
 @media (max-width: 639px) { .festival-theme .light-path { aspect-ratio: 2 / 1; } .festival-theme .light-path-caption { padding: 12px; } .festival-theme .light-path-caption .festival-heading { font-size: 18px; } }
+.festival-theme .film-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .festival-theme button { letter-spacing: 0; border-radius: 8px; }
 .festival-scene { min-height: 490px; }
 .festival-scrim { background: linear-gradient(90deg, hsl(var(--festival-overlay) / .78), hsl(var(--festival-overlay) / .36) 55%, hsl(var(--festival-overlay) / .05)); }

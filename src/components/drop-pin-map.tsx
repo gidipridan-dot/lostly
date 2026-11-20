@@ -60,7 +60,7 @@ export function DropPinMap({ onPin, showCamp = false }: Props) {
       <div
         role={onPin ? 'button' : 'img'}
         aria-label={onPin ? 'Festival map — tap to drop a pin' : 'Festival map with Lostly camp'}
-        className={`relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-muted sm:aspect-[4/3] ${onPin ? 'cursor-crosshair' : ''}`}
+        className={`relative aspect-square w-full overflow-hidden film-grain rounded-xl border border-border bg-muted sm:aspect-[4/3] ${onPin ? 'cursor-crosshair' : ''}`}
         onClick={onPin ? (e) => {
           const r = e.currentTarget.getBoundingClientRect();
           drop({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
