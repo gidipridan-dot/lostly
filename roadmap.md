@@ -7,3 +7,8 @@
 - [x] Connect the lost report to a sample notification, match, and ownership check.
 - [x] Add camp meetup details, a pickup pass, and a sample handover (exact landmark awaits confirmation; clearly labeled provisional).
 - [x] Verify the full journey on mobile and desktop.
+
+# Festival side quest
+- [x] Replace checklist presentation with a quest trail, chapter moments, and reunion stamps.
+- [x] Give the festival ownership quiz a clue-hunting presentation without changing classic Lostly.
+- [x] Verify the side quest from clues to camp reunion on mobile and desktop.

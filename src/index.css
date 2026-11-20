@@ -25,6 +25,13 @@
   letter-spacing: 0;
 }
 .festival-theme .festival-heading { font-family: Georgia, serif; letter-spacing: 0; }
+.festival-theme .quest-chapter { animation: quest-arrive .4s ease-out; }
+.festival-theme .quest-beacon { animation: quest-beacon 2.4s ease-in-out infinite; }
+.festival-theme .quest-pass { position: relative; }
+.festival-theme .quest-stamp { animation: quest-stamp .45s ease-out; }
+@keyframes quest-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes quest-beacon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes quest-stamp { from { opacity: 0; transform: scale(1.3) rotate(-16deg); } to { opacity: 1; transform: scale(1) rotate(-8deg); } }
 .festival-theme button { letter-spacing: 0; border-radius: 8px; }
 .festival-scene { min-height: 490px; }
 .festival-scrim { background: linear-gradient(90deg, hsl(var(--festival-overlay) / .78), hsl(var(--festival-overlay) / .36) 55%, hsl(var(--festival-overlay) / .05)); }

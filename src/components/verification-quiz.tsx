@@ -15,6 +15,7 @@ interface VerificationQuizProps {
   category: string;
   itemDetails: ItemDetails;
   requiredCorrect?: number;
+  festival?: boolean;
   onResult: (passed: boolean, score: number, total: number) => void;
 }
 
@@ -104,6 +105,7 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
   category,
   itemDetails,
   requiredCorrect = 2,
+  festival = false,
   onResult,
 }) => {
   const questions = useMemo(() => generateQuestions(category, itemDetails), [category, itemDetails]);
@@ -161,11 +163,11 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
         <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
           <PackageCheck className="w-10 h-10 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold text-foreground">Lost in the dust? We're with you.</h2>
+        <h2 className={`text-2xl font-bold text-foreground ${festival ? "festival-heading" : ""}`}>{festival ? "The little things only you know." : "Lost in the dust? We’re with you."}</h2>
         <p className="text-muted-foreground">
-          {totalQuestions} quick questions — and there's a light at the end of the tunnel: your item, on its way home.
+          {festival ? `Your ${category.toLowerCase()} has a story. Follow ${totalQuestions} familiar clues and see if this is your way back.` : `${totalQuestions} quick questions — and there's a light at the end of the tunnel: your item, on its way home.`}
         </p>
-        <Button onClick={() => setStage('quiz')} className="w-full">Let's go</Button>
+        <Button onClick={() => setStage('quiz')} className="w-full">{festival ? "Follow my clues" : "Let’s go"}</Button>
       </div>
     );
   }
@@ -189,7 +191,7 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
           {passed ? <ShieldCheck className="w-10 h-10 text-primary" /> : <RotateCcw className="w-10 h-10 text-muted-foreground" />}
         </div>
         <h2 className="text-2xl font-bold text-foreground">
-          {passed ? 'You made it through the dust' : "Almost there — don't give up"}
+          {passed ? (festival ? 'The clues found their person.' : 'You made it through the dust') : "Almost there — don't give up"}
         </h2>
         <p className="text-muted-foreground">
           {passed
@@ -240,8 +242,8 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
         </div>
       </div>
       <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span>Question {currentQ + 1} of {totalQuestions}</span>
-        <span className="font-medium text-foreground">{correctSoFar}/{minRequired} steps to the light</span>
+        <span>{festival ? "Clue" : "Question"} {currentQ + 1} of {totalQuestions}</span>
+        <span className="font-medium text-foreground">{festival ? `${correctSoFar} familiar ${correctSoFar === 1 ? "clue" : "clues"}` : `${correctSoFar}/${minRequired} steps to the light`}</span>
       </div>
 
       <h3 key={currentQ} className="text-lg font-semibold text-foreground animate-fade-in">{q.question}</h3>
@@ -255,7 +257,7 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
             else cls = 'border-border bg-background opacity-40';
           }
           return (
-            <Card key={`${currentQ}-${i}`} className={`p-4 transition-all duration-200 ${cls}`} onClick={() => handleSelect(i)}>
+            festival ? <Button key={`${currentQ}-${i}`} variant="outline" disabled={confirmed} onClick={() => handleSelect(i)} className={`h-auto min-h-16 w-full justify-between whitespace-normal p-4 text-left transition-all ${cls}`}><span className="flex items-center gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current text-xs">{String.fromCharCode(65 + i)}</span>{option}</span>{confirmed && i === q.correctIndex && <CheckCircle className="h-5 w-5 shrink-0" />}</Button> : <Card key={`${currentQ}-${i}`} className={`p-4 transition-all duration-200 ${cls}`} onClick={() => handleSelect(i)}>
               <div className="flex items-center justify-between">
                 <span className="text-foreground">{option}</span>
                 {confirmed && i === q.correctIndex && <CheckCircle className="w-5 h-5 text-primary" />}
