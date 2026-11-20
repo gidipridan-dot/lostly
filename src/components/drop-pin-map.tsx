@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { LocateFixed, MapPin, Tent } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import festivalMap from '@/assets/festival-map.jpg';
 
 export interface Pin { x: number; y: number }
 
 const landmarks = [
-  { name: 'The dance floor', x: 25, y: 30 },
-  { name: 'Art installation', x: 72, y: 25 },
-  { name: 'Camps area', x: 22, y: 75 },
-  { name: 'Open playa', x: 55, y: 55 },
+  { name: 'Camps area', x: 18, y: 20 },
+  { name: 'The dance floor', x: 38, y: 42 },
+  { name: 'Art installation', x: 80, y: 36 },
+  { name: 'Open playa', x: 55, y: 62 },
+  { name: 'Open bar', x: 17, y: 74 },
 ];
-export const lostlyCamp: Pin = { x: 80, y: 78 };
+export const lostlyCamp: Pin = { x: 84, y: 82 };
 
 function nearest(p: Pin) {
   return landmarks.reduce((a, b) => (Math.hypot(b.x - p.x, b.y - p.y) < Math.hypot(a.x - p.x, a.y - p.y) ? b : a)).name;
@@ -40,14 +42,14 @@ export function DropPinMap({ onPin, showCamp = false }: Props) {
         role={onPin ? 'button' : 'img'}
         aria-label={onPin ? 'Festival map — tap to drop a pin' : 'Festival map with Lostly camp'}
         className={`relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border bg-muted ${onPin ? 'cursor-crosshair' : ''}`}
-        style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)', backgroundSize: '18px 18px' }}
         onClick={onPin ? (e) => {
           const r = e.currentTarget.getBoundingClientRect();
           drop({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
         } : undefined}
       >
+        <img src={festivalMap} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover" />
         {landmarks.map((l) => (
-          <span key={l.name} className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-card/80 px-2 py-0.5 text-[11px] text-muted-foreground" style={{ left: `${l.x}%`, top: `${l.y}%` }}>{l.name}</span>
+          <span key={l.name} className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/85 px-2 py-0.5 text-[11px] font-medium text-foreground shadow-sm" style={{ left: `${l.x}%`, top: `${l.y}%` }}>{l.name}</span>
         ))}
         {showCamp && (
           <span className="pointer-events-none absolute flex -translate-x-1/2 -translate-y-full flex-col items-center text-primary" style={{ left: `${lostlyCamp.x}%`, top: `${lostlyCamp.y}%` }}>
