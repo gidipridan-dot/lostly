@@ -74,7 +74,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, itemCat
           capturingText: 'Capturing...',
           confirmIcon: Camera,
           confirmText: 'Use Photo',
-          instructions: 'Take a clear photo of your item.',
+          instructions: `Take a clear photo of your ${itemCategory.trim() ? itemCategory.trim().toLowerCase() : 'item'}.`,
           tips: ['Use good lighting', 'Include distinctive features', 'Avoid blurry images']
         };
     }

@@ -14,5 +14,5 @@ export function nextReunionStage(stage: ReunionStage, event: 'found' | 'open' | 
 }
 
 export function sampleFinderDetails(details: ItemDetails | null): ItemDetails {
-  return details ?? { color: 'Blue', brand: '', condition: 'Good', contents: [], uniqueMarks: [], additionalNotes: '' };
+  return details ?? { itemName: '', color: 'Blue', brand: '', condition: 'Good', contents: [], uniqueMarks: [], additionalNotes: '' };
 }

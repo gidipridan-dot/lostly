@@ -4,9 +4,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Plus, X, Palette, Tag, AlertCircle, Package } from 'lucide-react';
+import { Plus, X, Palette, Tag, AlertCircle, Package, Type } from 'lucide-react';
+import { canSubmitItemDetails, isOtherCategory } from '@/lib/item-naming';
 
 export interface ItemDetails {
+  itemName: string;
   color: string;
   brand: string;
   condition: string;
@@ -24,6 +26,8 @@ const conditionOptions = ['Like new', 'Good', 'Scratched', 'Cracked screen', 'Sm
 const commonColors = ['Black', 'White', 'Blue', 'Red', 'Green', 'Brown', 'Gray', 'Pink', 'Yellow', 'Orange'];
 
 export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSubmit }) => {
+  const needsName = isOtherCategory(category);
+  const [itemName, setItemName] = useState('');
   const [color, setColor] = useState('');
   const [brand, setBrand] = useState('');
   const [condition, setCondition] = useState('');
@@ -47,14 +51,33 @@ export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSu
     }
   };
 
-  const canSubmit = color.trim() !== '' || brand.trim() !== '' || condition !== '' || contents.length > 0 || uniqueMarks.length > 0;
+  const canSubmit = canSubmitItemDetails(category, { itemName, color, brand, condition, contents, uniqueMarks });
 
   const handleSubmit = () => {
-    onSubmit({ color, brand, condition, contents, uniqueMarks, additionalNotes });
+    onSubmit({ itemName: itemName.trim(), color, brand, condition, contents, uniqueMarks, additionalNotes });
   };
 
   return (
     <div className="space-y-5">
+      {/* Item name — the first thing to fill when the category is "Other" */}
+      {needsName && (
+        <div className="space-y-2">
+          <Label className="flex items-center gap-2 text-foreground font-medium">
+            <Type className="w-4 h-4 text-primary" />
+            What is it?
+          </Label>
+          <p className="text-sm text-muted-foreground">Say it the way you’d say it out loud.</p>
+          <Input
+            autoFocus
+            placeholder="e.g. bandana, water bottle, sunglasses..."
+            value={itemName}
+            onChange={(e) => setItemName(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter' && canSubmit) { e.preventDefault(); handleSubmit(); } }}
+            className="bg-background border-border"
+          />
+        </div>
+      )}
+
       {/* Color */}
       <div className="space-y-2">
         <Label className="flex items-center gap-2 text-foreground font-medium">

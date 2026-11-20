@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Demo data simulating a found item report
 const demoItemDetails: ItemDetails = {
+  itemName: '',
   color: 'Blue',
   brand: 'Nike',
   condition: 'Small tear',

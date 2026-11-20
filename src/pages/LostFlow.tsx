@@ -6,6 +6,7 @@ import { CategorySelect } from '@/components/category-select';
 import { CameraCapture } from '@/components/camera-capture';
 import { LocationSelect } from '@/components/location-select';
 import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-form';
+import { isOtherCategory, itemDisplayName } from '@/lib/item-naming';
 import { useNavigate } from 'react-router-dom';
 
 type Step = 'category' | 'method' | 'photo' | 'details' | 'location' | 'submitted';
@@ -19,6 +20,7 @@ export default function LostFlow() {
   const [reward, setReward] = useState<string>('');
   const navigate = useNavigate();
   const redirectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const displayName = itemDisplayName(selectedCategory, itemDetails?.itemName);
 
   useEffect(() => {
     return () => {
@@ -32,7 +34,9 @@ export default function LostFlow() {
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
-    setTimeout(() => setCurrentStep('method'), 200);
+    // "Other" has no preset shape, so the first thing to fill is the item's own name.
+    const nextStep: Step = isOtherCategory(category) ? 'details' : 'method';
+    setTimeout(() => setCurrentStep(nextStep), 200);
   };
 
   const handlePhotoCapture = (photoUrl: string) => {
@@ -60,8 +64,8 @@ export default function LostFlow() {
     switch (currentStep) {
       case 'category': navigate('/'); break;
       case 'method': setCurrentStep('category'); break;
-      case 'photo':
-      case 'details': setCurrentStep('method'); break;
+      case 'photo': setCurrentStep('method'); break;
+      case 'details': setCurrentStep(isOtherCategory(selectedCategory) ? 'category' : 'method'); break;
       case 'location': setCurrentStep(capturedPhoto ? 'photo' : itemDetails ? 'details' : 'method'); break;
       default: navigate('/');
     }
@@ -146,7 +150,7 @@ export default function LostFlow() {
         return (
           <div className="animate-fade-in">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-3">Describe your {selectedCategory}</h1>
+              <h1 className="text-3xl font-bold text-foreground mb-3">{isOtherCategory(selectedCategory) ? 'Describe what you lost' : `Describe your ${selectedCategory}`}</h1>
               <p className="text-muted-foreground text-lg">
                 These details will be used to verify your ownership when the item is found
               </p>
@@ -177,7 +181,7 @@ export default function LostFlow() {
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-3">Submitted!</h1>
             <p className="text-muted-foreground text-lg mb-8">
-              We'll notify you if someone finds your {selectedCategory.toLowerCase()}
+              We'll notify you if someone finds your {displayName.toLowerCase()}
               {reward && <span className="block mt-1 text-primary font-medium">💰 Reward offered: {reward}</span>}
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">

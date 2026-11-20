@@ -6,6 +6,7 @@ import { CategorySelect } from '@/components/category-select';
 import { CameraCapture } from '@/components/camera-capture';
 import { LocationSelect } from '@/components/location-select';
 import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-form';
+import { itemDisplayName } from '@/lib/item-naming';
 import { useNavigate } from 'react-router-dom';
 
 type Step = 'category' | 'details' | 'camera' | 'location' | 'submitted';
@@ -17,6 +18,7 @@ export default function FoundFlow() {
   const [itemDetails, setItemDetails] = useState<ItemDetails | null>(null);
   const [location, setLocation] = useState<string>('');
   const navigate = useNavigate();
+  const displayName = itemDisplayName(detectedCategory, itemDetails?.itemName);
 
   const steps: Step[] = ['category', 'details', 'camera', 'location'];
 
@@ -64,7 +66,7 @@ export default function FoundFlow() {
         return (
           <div className="animate-fade-in">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-3">Describe the {detectedCategory}</h1>
+              <h1 className="text-3xl font-bold text-foreground mb-3">Describe the {displayName.toLowerCase()}</h1>
               <p className="text-muted-foreground text-lg">
                 These details help verify ownership without a photo
               </p>
@@ -78,13 +80,13 @@ export default function FoundFlow() {
           <div className="animate-fade-in">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-foreground mb-3">
-                {detectedCategory === 'Passport' || detectedCategory === 'Other' ? 'Scan Document' : `Capture ${detectedCategory}`}
+                {detectedCategory === 'Passport' ? 'Scan Document' : `Capture the ${displayName.toLowerCase()}`}
               </h1>
               <p className="text-muted-foreground text-lg">
-                {detectedCategory === 'Passport' || detectedCategory === 'Other' ? 'Position document flat and scan' : 'Take a clear photo of the item'}
+                {detectedCategory === 'Passport' ? 'Position document flat and scan' : 'Take a clear photo of the item'}
               </p>
             </div>
-            <CameraCapture onCapture={handlePhotoCapture} itemCategory={detectedCategory} />
+            <CameraCapture onCapture={handlePhotoCapture} itemCategory={displayName} />
           </div>
         );
 
@@ -93,7 +95,7 @@ export default function FoundFlow() {
           <div className="animate-fade-in">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-foreground mb-3">Where did you find it?</h1>
-              <p className="text-muted-foreground text-lg">Help the owner know where you found their {detectedCategory.toLowerCase()}</p>
+              <p className="text-muted-foreground text-lg">Help the owner know where you found their {displayName.toLowerCase()}</p>
             </div>
             <LocationSelect onConfirm={handleLocationConfirm} />
           </div>
@@ -107,7 +109,7 @@ export default function FoundFlow() {
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-3">Amazing!</h1>
 
-            <p className="text-muted-foreground text-lg mb-8">Your good deed is recorded. We'll match this with someone looking for their {detectedCategory.toLowerCase()}</p>
+            <p className="text-muted-foreground text-lg mb-8">Your good deed is recorded. We'll match this with someone looking for their {displayName.toLowerCase()}</p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>✓ Photo uploaded securely</p>
               <p>✓ Verification questions generated</p>

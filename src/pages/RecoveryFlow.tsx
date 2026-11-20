@@ -26,6 +26,7 @@ const demoItem = {
 };
 
 const demoItemDetails: ItemDetails = {
+  itemName: '',
   color: 'Blue',
   brand: 'Nike',
   condition: 'Small tear',

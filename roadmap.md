@@ -16,3 +16,7 @@
 # Light at the end of the path
 - [x] Make the path to camp visibly advance across reporting, match, verification, and meetup.
 - [x] Check the full journey and narrow-screen layout.
+
+# "Other" items
+- [x] Ask what the item is, in their own words, as the first field when "Other" is picked.
+- [x] Carry the typed name through lost, found, and festival copy and the ownership questions.
