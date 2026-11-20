@@ -31,7 +31,7 @@ export function FestivalLightPath({ current = 0, role = 'lost' }: { current?: nu
     <figure className="light-path relative isolate overflow-hidden rounded-lg" style={style} aria-label={`Path to Lostly camp: ${moments[step].chapter}`}>
       <img src={pathImage.url} alt="A boardwalk crossing the desert toward the glowing Lostly camp" className="h-full w-full object-cover" />
       <div className="light-path-dusk absolute inset-0" aria-hidden="true" />
-      <Footprints className="light-path-traveler absolute left-1/2 text-festival-light" aria-hidden="true" />
+      <Footprints className="light-path-traveler absolute left-1/2 text-festival-ink" aria-hidden="true" />
       <figcaption className="light-path-caption absolute inset-x-0 bottom-0 p-4 sm:p-5">
         <span className="text-xs font-semibold text-festival-ink">{String(step + 1).padStart(2, '0')} / 05 · {moments[step].chapter}</span>
         <span className="festival-heading mt-1 block text-xl text-festival-ink sm:text-2xl">{moments[step].line}</span>

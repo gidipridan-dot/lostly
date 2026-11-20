@@ -34,7 +34,7 @@
 @keyframes quest-stamp { from { opacity: 0; transform: scale(1.3) rotate(-16deg); } to { opacity: 1; transform: scale(1) rotate(-8deg); } }
 .festival-theme .light-path { aspect-ratio: 16 / 9; }
 .festival-theme .light-path-dusk { background: radial-gradient(circle at 50% 33%, transparent var(--light-radius), hsl(var(--festival-overlay) / var(--dusk)) calc(var(--light-radius) + 28%)); transition: background .9s ease; }
-.festival-theme .light-path-traveler { top: var(--traveler-top); width: 28px; height: 28px; margin-left: -14px; transform: scale(var(--traveler-scale)); transition: top .9s ease, transform .9s ease; }
+.festival-theme .light-path-traveler { top: var(--traveler-top); width: 28px; height: 28px; margin-left: -14px; transform: scale(var(--traveler-scale)); transition: top .9s ease, transform .9s ease; filter: drop-shadow(0 0 3px hsl(var(--festival-light) / 0.55)); }
 .festival-theme .light-path-caption { background: hsl(var(--festival-overlay) / .55); }
 @media (max-width: 639px) { .festival-theme .light-path { aspect-ratio: 2 / 1; } .festival-theme .light-path-caption { padding: 12px; } .festival-theme .light-path-caption .festival-heading { font-size: 18px; } }
 .festival-theme .film-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
