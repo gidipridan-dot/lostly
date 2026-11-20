@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Plus, X, Palette, Tag, AlertCircle, Package, Type } from 'lucide-react';
+import { ChevronDown, Plus, X, Palette, Tag, AlertCircle, Package, Type } from 'lucide-react';
 import { canSubmitItemDetails, isOtherCategory } from '@/lib/item-naming';
 
 export interface ItemDetails {
@@ -23,7 +23,7 @@ interface ItemDetailsFormProps {
 }
 
 const conditionOptions = ['Like new', 'Good', 'Scratched', 'Cracked screen', 'Small tear', 'Stained', 'Worn out'];
-const commonColors = ['Black', 'White', 'Blue', 'Red', 'Green', 'Brown', 'Gray', 'Pink', 'Yellow', 'Orange'];
+const commonColors = ['Black', 'White', 'Blue', 'Red', 'Green', 'Brown'];
 
 export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSubmit }) => {
   const needsName = isOtherCategory(category);
@@ -36,6 +36,7 @@ export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSu
   const [markInput, setMarkInput] = useState('');
   const [uniqueMarks, setUniqueMarks] = useState<string[]>([]);
   const [additionalNotes, setAdditionalNotes] = useState('');
+  const [showMore, setShowMore] = useState(false);
 
   const addContent = () => {
     if (contentInput.trim() && contents.length < 5) {
@@ -106,9 +107,19 @@ export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSu
           onChange={(e) => setColor(e.target.value)}
           className="bg-background border-border mt-1"
         />
-
       </div>
 
+      <button
+        type="button"
+        onClick={() => setShowMore(!showMore)}
+        aria-expanded={showMore}
+        className="flex w-full items-center justify-between rounded-lg border border-border px-4 py-3 text-sm font-medium text-foreground"
+      >
+        {showMore ? 'Fewer details' : 'Add more details (optional)'}
+        <ChevronDown className={`h-4 w-4 transition-transform ${showMore ? 'rotate-180' : ''}`} />
+      </button>
+
+      {showMore && <div className="space-y-5">
       {/* Brand */}
       <div className="space-y-2">
         <Label className="flex items-center gap-2 text-foreground font-medium">
@@ -218,6 +229,7 @@ export const ItemDetailsForm: React.FC<ItemDetailsFormProps> = ({ category, onSu
           rows={3}
         />
       </div>
+      </div>}
 
       <Button
         onClick={handleSubmit}

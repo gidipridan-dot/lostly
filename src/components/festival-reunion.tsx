@@ -6,7 +6,7 @@ import type { ItemDetails } from '@/components/item-details-form';
 import { nextReunionStage, sampleFinderDetails, type ReunionStage } from '@/lib/festival-recovery';
 import { FestivalLightPath } from '@/components/festival-light-path';
 import { FoundPathRecap } from '@/components/festival-finder-journey';
-import campImage from '@/assets/desert-camp.asset.json';
+import { DropPinMap } from '@/components/drop-pin-map';
 
 interface Props {
   category: string;
@@ -77,7 +77,7 @@ export function FestivalReunion({ category, details, place, photo, sampleMatch =
       {(stage === 'pickup' || stage === 'pass') && <div className="space-y-5">
         <p className="flex items-center gap-2 text-sm"><ShieldCheck className="h-4 w-4" /> Sample ownership confirmed</p>
         <h1 className="festival-heading text-4xl">Follow the trail to Lostly camp.</h1>
-        <img src={campImage.url} alt="Illustrative Lostly camp meetup" className="aspect-[16/9] w-full rounded-lg object-cover" />
+        <DropPinMap showCamp />
         <div className="space-y-4 border-b border-border pb-5"><p className="flex items-start gap-3"><MapPin className="mt-1 h-5 w-5 shrink-0" /><span><strong className="block">Lostly camp · Lost & Found desk</strong><span className="text-sm text-muted-foreground">Exact festival landmark to be confirmed. This is a sample meetup, not a live location.</span></span></p><p className="flex items-start gap-3"><Clock className="mt-1 h-5 w-5 shrink-0" /><span><strong className="block">Next step: check in with the crew</strong><span className="text-sm text-muted-foreground">In the live experience, crew-confirmed opening hours and directions would appear here.</span></span></p><p className="text-sm">Pickup is free. A thank-you is optional and never required to get your item back.</p></div>
         {stage === 'pickup' ? <><p className="text-muted-foreground">We’ll keep the handover with the camp crew — no need to find or contact the finder.</p><Button className="w-full" onClick={() => advance('reserve')}>Collect my camp pass · sample <ArrowRight /></Button></> : <>
           <div className="quest-pass rounded-lg border-2 border-dashed border-foreground bg-card p-6 text-center"><Tent className="mx-auto mb-3 h-8 w-8" /><p className="text-xs text-muted-foreground">SAMPLE PICKUP PASS · NOT A REAL RESERVATION</p><p className="my-4 text-3xl font-semibold">DUST-024</p><p className="text-sm">Show this pass to the Lostly crew.<br />They check the reference and hand you your {category.toLowerCase()}.</p></div>
