@@ -8,6 +8,7 @@ import { ItemDetailsForm, type ItemDetails } from '@/components/item-details-for
 import { CameraCapture } from '@/components/camera-capture';
 import { FestivalReunion } from '@/components/festival-reunion';
 import { FestivalQuestTrail } from '@/components/festival-quest-trail';
+import { FestivalLightPath } from '@/components/festival-light-path';
 import campImage from '@/assets/desert-camp.asset.json';
 
 const categories = [
@@ -101,8 +102,9 @@ export default function FestivalDemo() {
             <>
               <div className="mb-7 border-b border-border pb-5">
                 <p className="flex items-center gap-2 text-xs font-semibold uppercase"><Compass className="h-4 w-4" /> {isLost ? 'The lost-item side quest' : 'The good-karma side quest'}</p>
-                <FestivalQuestTrail current={0} />
-                <p className="text-sm text-muted-foreground">Chapter 01 · Gathering your clues · {progress + 1} of 4</p>
+                {isLost && <div className="mt-4"><FestivalLightPath current={0} /></div>}
+                {!isLost && <FestivalQuestTrail current={0} />}
+                <p className="mt-3 text-sm text-muted-foreground">Chapter 01 · Gathering your clues · {progress + 1} of 4</p>
               </div>
               <div key={step} className="quest-chapter">
               {step === 'category' && <><h1 className="festival-heading text-4xl">{isLost ? 'What’s missing?' : 'What did you find?'}</h1><p className="mb-7 mt-3 text-muted-foreground">{isLost ? 'Every good quest starts with something worth finding. What are we bringing home?' : 'A tiny act of kindness. A whole new ending to someone’s day.'}</p><div className="grid grid-cols-2 gap-3 sm:grid-cols-3">{categories.map(({name, icon: Icon}) => <Button key={name} variant="secondary" className="h-28 flex-col rounded-lg border border-border bg-card hover:scale-100 hover:border-primary" onClick={() => {setCategory(name); setStep('method');}}><Icon className="!h-7 !w-7" />{name}</Button>)}</div></>}

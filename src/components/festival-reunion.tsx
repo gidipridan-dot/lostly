@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { VerificationQuiz } from '@/components/verification-quiz';
 import type { ItemDetails } from '@/components/item-details-form';
 import { nextReunionStage, sampleFinderDetails, type ReunionStage } from '@/lib/festival-recovery';
-import { FestivalQuestTrail } from '@/components/festival-quest-trail';
+import { FestivalLightPath } from '@/components/festival-light-path';
 import campImage from '@/assets/desert-camp.asset.json';
 
 interface Props {
@@ -34,8 +34,8 @@ export function FestivalReunion({ category, details, place, photo, sampleMatch =
   return (
     <div className="space-y-7">
       <div className="border-b border-border pb-4">
-        <p className="text-xs text-muted-foreground">YOUR LOST-ITEM SIDE QUEST · DEMO</p>
-        <FestivalQuestTrail current={progress} />
+        <p className="mb-3 text-xs text-muted-foreground">YOUR LOST-ITEM SIDE QUEST · DEMO</p>
+        <FestivalLightPath current={progress} />
       </div>
       <div key={stage} className="quest-chapter">
       {stage === 'waiting' && <div className="space-y-5 py-5 text-center">

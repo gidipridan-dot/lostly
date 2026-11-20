@@ -12,3 +12,7 @@
 - [x] Replace checklist presentation with a quest trail, chapter moments, and reunion stamps.
 - [x] Give the festival ownership quiz a clue-hunting presentation without changing classic Lostly.
 - [x] Verify the side quest from clues to camp reunion on mobile and desktop.
+
+# Light at the end of the path
+- [x] Make the path to camp visibly advance across reporting, match, verification, and meetup.
+- [x] Check the full journey and narrow-screen layout.
