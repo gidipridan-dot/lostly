@@ -43,10 +43,10 @@ export const HowItWorks = () => {
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-heading font-bold text-foreground mb-6 heading-premium tracking-tighter">
+          <h2 className="display-heading text-heading text-foreground mb-6">
             How Lostly Transforms Your Venue
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light text-balance">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-normal text-balance">
             A behavioral shift embedded where people already are—your existing digital ecosystem
           </p>
         </div>

@@ -68,7 +68,7 @@ export const EnterpriseFeatures = () => {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="display-heading text-4xl md:text-5xl text-foreground mb-6">
             Enterprise-Grade Features
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -138,7 +138,7 @@ export const EnterpriseFeatures = () => {
         {/* Integration showcase */}
         <Collapsible open={expandedIntegrations} onOpenChange={setExpandedIntegrations}>
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
+            <h3 className="text-2xl font-semibold text-foreground mb-4">
               Integration Ecosystem
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">

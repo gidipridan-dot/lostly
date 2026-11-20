@@ -60,7 +60,7 @@ export const FAQ = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <HelpCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="display-heading text-4xl md:text-5xl text-foreground mb-6">
             Frequently Asked Questions
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -90,7 +90,7 @@ export const FAQ = () => {
 
         {/* Still have questions CTA */}
         <div className="mt-16 text-center bg-primary rounded-2xl p-8 shadow-strong">
-          <h3 className="text-2xl font-bold text-primary-foreground mb-4">
+          <h3 className="text-2xl font-semibold text-primary-foreground mb-4">
             Still Have Questions?
           </h3>
           <p className="text-primary-foreground/90 mb-6">

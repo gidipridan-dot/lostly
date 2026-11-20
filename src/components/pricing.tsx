@@ -79,7 +79,7 @@ export const Pricing = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="display-heading text-4xl md:text-5xl text-foreground mb-6">
             Transparent, Value-Based Pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

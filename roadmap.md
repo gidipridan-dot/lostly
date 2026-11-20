@@ -30,3 +30,8 @@
 # Homepage atmosphere
 - [x] Replace the oversized corporate opening with a calm camp-led introduction.
 - [x] Check legibility, navigation, and the festival entrance on phone and desktop.
+
+# Fonts
+- [x] Cut the font count to two families and one clear role for each.
+- [x] Put every section title in the serif display voice and keep panel titles at one weight.
+- [x] Check the landing page and festival pages on desktop.

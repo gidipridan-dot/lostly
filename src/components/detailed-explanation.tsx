@@ -71,7 +71,7 @@ export const DetailedExplanation = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="display-heading text-4xl md:text-5xl text-foreground mb-6">
             The Technology Behind Lostly
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -136,7 +136,7 @@ export const DetailedExplanation = () => {
         {/* Safety Deep Dive */}
         <div className="bg-primary rounded-2xl p-8 md:p-12 text-center shadow-strong mb-12">
           <Lock className="w-16 h-16 text-primary-foreground mx-auto mb-6" />
-          <h3 className="text-3xl font-bold text-primary-foreground mb-6">
+          <h3 className="text-3xl font-semibold text-primary-foreground mb-6">
             Safety-First Foundation
           </h3>
           <p className="text-primary-foreground/90 text-lg mb-8 max-w-3xl mx-auto">
@@ -167,7 +167,7 @@ export const DetailedExplanation = () => {
         <div className="bg-background border border-border rounded-2xl p-8 md:p-12">
           <div className="text-center mb-8">
             <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-3xl font-bold text-foreground mb-4">
+            <h3 className="text-3xl font-semibold text-foreground mb-4">
               Sustainable Economics
             </h3>
             <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">

@@ -20,7 +20,8 @@ export default {
 		extend: {
 			fontFamily: {
 				'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-				'mono': ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
+				'serif': ['Georgia', '"Times New Roman"', 'serif'],
+				'mono': ['ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
 			},
 			fontSize: {
 				'display': ['4rem', { lineHeight: '0.9', letterSpacing: '-0.02em' }],

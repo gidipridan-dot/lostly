@@ -21,10 +21,10 @@
   --festival-light: 51 90% 72%;
   --festival-light-foreground: 0 0% 12%;
   --festival-overlay: 0 0% 0%;
-  font-family: 'Trebuchet MS', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   letter-spacing: 0;
 }
-.festival-theme .festival-heading { font-family: Georgia, serif; letter-spacing: 0; }
+.festival-theme .festival-heading { font-family: Georgia, 'Times New Roman', serif; letter-spacing: 0; }
 .festival-theme .quest-chapter { animation: quest-arrive .4s ease-out; }
 .festival-theme .quest-beacon { animation: quest-beacon 2.4s ease-in-out infinite; }
 .festival-theme .quest-pass { position: relative; }
@@ -65,6 +65,13 @@
     transition: none !important;
   }
 }
+
+/* Typography system: two families only.
+   - Inter (the only webfont, loaded in index.html): all UI text, body, labels, buttons.
+   - Georgia (system serif, no download): display titles only — .display-heading on landing
+     sections, .festival-heading inside the festival demo.
+   Codes and numbers use the system mono stack. Never add a third family here.
+*/
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -253,6 +260,14 @@ All colors MUST be HSL.
   .heading-premium {
     @apply font-semibold tracking-tight leading-tight;
     font-variation-settings: 'wght' 600;
+  }
+
+  /* Display headings: the serif voice, for page and section titles only */
+  .display-heading {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.1;
   }
 
   .text-balance {
