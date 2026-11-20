@@ -30,6 +30,9 @@ function shuffle<T>(arr: T[]): T[] {
 
 function generateQuestions(category: string, details: ItemDetails): QuizQuestion[] {
   const questions: QuizQuestion[] = [];
+  // Plural items ("keys", "glasses") read as "your keys", singular as "the bag".
+  const lower = category.toLowerCase();
+  const itemRef = lower.endsWith('s') ? `your ${lower}` : `the ${lower}`;
 
   // Color question
   if (details.color) {
@@ -38,7 +41,7 @@ function generateQuestions(category: string, details: ItemDetails): QuizQuestion
     const picked = shuffle(decoys).slice(0, 3);
     const options = shuffle([details.color, ...picked]);
     questions.push({
-      question: `What color is the ${category.toLowerCase()}?`,
+      question: `What color is ${itemRef}?`,
       options,
       correctIndex: options.indexOf(details.color),
     });
@@ -51,7 +54,7 @@ function generateQuestions(category: string, details: ItemDetails): QuizQuestion
     const picked = shuffle(decoys).slice(0, 3);
     const options = shuffle([details.brand, ...picked]);
     questions.push({
-      question: `What brand is the ${category.toLowerCase()}?`,
+      question: `What brand is ${itemRef}?`,
       options,
       correctIndex: options.indexOf(details.brand),
     });
@@ -64,7 +67,7 @@ function generateQuestions(category: string, details: ItemDetails): QuizQuestion
     const picked = shuffle(decoys).slice(0, 3);
     const options = shuffle([details.condition, ...picked]);
     questions.push({
-      question: `Does the ${category.toLowerCase()} have any special marks or condition?`,
+      question: `Does ${itemRef} have any special marks or condition?`,
       options,
       correctIndex: options.indexOf(details.condition),
     });

@@ -13,7 +13,7 @@ export function FoundPathRecap({ category }: { category: string }) {
     <div className="rounded-lg border border-border bg-card p-5 text-left">
       <p className="mb-4 text-xs font-semibold">THE FOUND PATH · SAMPLE</p>
       <ol className="space-y-3 text-sm">
-        <li className="flex gap-3"><HeartHandshake className="h-5 w-5 shrink-0" /><span><strong>The finder</strong> picked up a {item} and brought it to camp.</span></li>
+        <li className="flex gap-3"><HeartHandshake className="h-5 w-5 shrink-0" /><span><strong>The finder</strong> picked up the {item} and brought it to camp.</span></li>
         <li className="flex gap-3"><Compass className="h-5 w-5 shrink-0" /><span><strong>The owner</strong> shared clues and proved the little things.</span></li>
         <li className="flex gap-3"><Tent className="h-5 w-5 shrink-0" /><span><strong>Lostly camp</strong> brought both paths together.</span></li>
       </ol>
