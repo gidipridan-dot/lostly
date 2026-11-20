@@ -1,34 +1,41 @@
 import { useState } from 'react';
-import { LocateFixed, MapPin, Tent } from 'lucide-react';
+import { LocateFixed, MapPin, Tent, Music, Sparkles, Wine, Sun, Home, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import festivalMap from '@/assets/festival-map.jpg';
 
 export interface Pin { x: number; y: number }
 
-const landmarks = [
-  { name: 'Camps area', x: 18, y: 20 },
-  { name: 'The dance floor', x: 38, y: 42 },
-  { name: 'Art installation', x: 80, y: 36 },
-  { name: 'Open playa', x: 55, y: 62 },
-  { name: 'Open bar', x: 17, y: 74 },
-];
-export const lostlyCamp: Pin = { x: 84, y: 82 };
+interface Zone { name: string; icon: LucideIcon; x: number; y: number; w: number; h: number; round?: boolean }
 
-function nearest(p: Pin) {
-  return landmarks.reduce((a, b) => (Math.hypot(b.x - p.x, b.y - p.y) < Math.hypot(a.x - p.x, a.y - p.y) ? b : a)).name;
+/** Simple flat 2D venue plan. Coordinates are % of the map box. */
+const zones: Zone[] = [
+  { name: 'Camps', icon: Home, x: 4, y: 5, w: 34, h: 26 },
+  { name: 'Art installation', icon: Sparkles, x: 64, y: 5, w: 32, h: 24 },
+  { name: 'Dance floor', icon: Music, x: 4, y: 40, w: 28, h: 22 },
+  { name: 'Open playa', icon: Sun, x: 38, y: 34, w: 30, h: 34, round: true },
+  { name: 'Open bar', icon: Wine, x: 4, y: 71, w: 30, h: 24 },
+];
+const camp: Zone = { name: 'Lostly camp', icon: Tent, x: 66, y: 71, w: 30, h: 24 };
+export const lostlyCamp: Pin = { x: camp.x + camp.w / 2, y: camp.y + camp.h / 2 };
+
+const all = [...zones, camp];
+function labelFor(p: Pin) {
+  const inside = all.find((z) => p.x >= z.x && p.x <= z.x + z.w && p.y >= z.y && p.y <= z.y + z.h);
+  if (inside) return `At ${inside.name}`;
+  const near = all.reduce((a, b) =>
+    Math.hypot(b.x + b.w / 2 - p.x, b.y + b.h / 2 - p.y) < Math.hypot(a.x + a.w / 2 - p.x, a.y + a.h / 2 - p.y) ? b : a);
+  return `On the path near ${near.name}`;
 }
 
 interface Props {
-  /** Called with a readable label when a pin is dropped. Omit for a read-only map. */
   onPin?: (label: string) => void;
-  /** Show the Lostly camp meetup pin. */
   showCamp?: boolean;
 }
 
-/** Illustrative festival map: tap to drop a pin, or use the phone's location. */
+/** Flat 2D festival plan: tap a spot to drop a pin, or use the phone's location. */
 export function DropPinMap({ onPin, showCamp = false }: Props) {
   const [pin, setPin] = useState<Pin | null>(null);
-  const drop = (p: Pin, label?: string) => { setPin(p); onPin?.(label ?? `Pin near ${nearest(p)}`); };
+  const [label, setLabel] = useState<string | null>(null);
+  const drop = (p: Pin, l?: string) => { const t = l ?? labelFor(p); setPin(p); setLabel(t); onPin?.(t); };
 
   const useMyLocation = () => {
     const fallback = () => drop({ x: 50, y: 50 }, 'My current location');
@@ -36,32 +43,46 @@ export function DropPinMap({ onPin, showCamp = false }: Props) {
     navigator.geolocation.getCurrentPosition(fallback, fallback, { timeout: 5000 });
   };
 
+  const renderZone = (z: Zone, highlight = false) => {
+    const Icon = z.icon;
+    return (
+      <div key={z.name}
+        className={`pointer-events-none absolute flex flex-col items-center justify-center gap-1 border text-center ${z.round ? 'rounded-full border-dashed' : 'rounded-xl'} ${highlight ? 'border-primary bg-primary text-primary-foreground' : 'border-border bg-card text-foreground'}`}
+        style={{ left: `${z.x}%`, top: `${z.y}%`, width: `${z.w}%`, height: `${z.h}%` }}>
+        <Icon className="h-5 w-5" />
+        <span className="px-1 text-[11px] font-medium leading-tight">{z.name}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-3">
       <div
         role={onPin ? 'button' : 'img'}
         aria-label={onPin ? 'Festival map — tap to drop a pin' : 'Festival map with Lostly camp'}
-        className={`relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border bg-muted ${onPin ? 'cursor-crosshair' : ''}`}
+        className={`relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-muted sm:aspect-[4/3] ${onPin ? 'cursor-crosshair' : ''}`}
         onClick={onPin ? (e) => {
           const r = e.currentTarget.getBoundingClientRect();
           drop({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
         } : undefined}
       >
-        <img src={festivalMap} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover" />
-        {landmarks.map((l) => (
-          <span key={l.name} className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/85 px-2 py-0.5 text-[11px] font-medium text-foreground shadow-sm" style={{ left: `${l.x}%`, top: `${l.y}%` }}>{l.name}</span>
-        ))}
-        {showCamp && (
-          <span className="pointer-events-none absolute flex -translate-x-1/2 -translate-y-full flex-col items-center text-primary" style={{ left: `${lostlyCamp.x}%`, top: `${lostlyCamp.y}%` }}>
-            <span className="rounded-full bg-primary px-2 py-0.5 text-[11px] font-semibold text-primary-foreground">Lostly camp</span>
-            <Tent className="h-6 w-6" />
-          </span>
-        )}
+        {/* paths */}
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full">
+          <g className="stroke-border" strokeWidth="1.2" strokeDasharray="2 2" fill="none" vectorEffect="non-scaling-stroke">
+            <path d="M21 31 L21 40 M18 62 L18 71 M32 51 L38 51 M53 34 L60 29 L80 29 M68 51 L81 51 L81 71 M34 83 L66 83 M53 68 L53 83" />
+          </g>
+        </svg>
+        {zones.map((z) => renderZone(z))}
+        {renderZone(camp, showCamp)}
         {pin && (
-          <MapPin className="pointer-events-none absolute h-8 w-8 -translate-x-1/2 -translate-y-full fill-primary text-primary-foreground quest-arrive" style={{ left: `${pin.x}%`, top: `${pin.y}%` }} />
+          <MapPin className="pointer-events-none absolute h-9 w-9 -translate-x-1/2 -translate-y-full fill-destructive text-destructive-foreground drop-shadow quest-arrive" style={{ left: `${pin.x}%`, top: `${pin.y}%` }} />
         )}
-        {onPin && !pin && <span className="pointer-events-none absolute inset-x-0 bottom-2 text-center text-xs text-muted-foreground">Tap the map to drop a pin</span>}
       </div>
+      {onPin && (
+        <p className="text-center text-sm text-muted-foreground">
+          {label ? <>📍 <span className="font-medium text-foreground">{label}</span></> : 'Tap the spot where you last had it'}
+        </p>
+      )}
       {onPin && (
         <Button type="button" variant="secondary" className="w-full rounded-lg hover:scale-100" onClick={useMyLocation}>
           <LocateFixed /> Use my current location
