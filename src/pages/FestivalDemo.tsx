@@ -55,7 +55,7 @@ export default function FestivalDemo() {
           </Link>
           <div className="flex items-center gap-3">
             <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">Festival concept</span>
-            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex"><Link to="/demo">Classic demo <ArrowRight /></Link></Button>
+            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex"><Link to="/">Lostly home <ArrowRight /></Link></Button>
           </div>
         </div>
       </header>

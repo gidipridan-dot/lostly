@@ -74,10 +74,10 @@ export const Navigation = () => {
             variant="hero" 
             size="lg"
             className="hidden md:inline-flex micro-bounce font-semibold px-6"
-            onClick={() => navigate('/demo')}
+            onClick={() => navigate('/festival')}
           >
             <Building className="w-4 h-4" />
-            Request Demo
+            View Festival Demo
           </Button>
         </div>
 
@@ -112,12 +112,12 @@ export const Navigation = () => {
                 size="lg"
                 className="w-full mt-4 micro-bounce"
                 onClick={() => {
-                  navigate('/demo');
+                  navigate('/festival');
                   setIsOpen(false);
                 }}
               >
                 <Building className="w-4 h-4" />
-                Request Demo
+                View Festival Demo
               </Button>
             </div>
           </div>

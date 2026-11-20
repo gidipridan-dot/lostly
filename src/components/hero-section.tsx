@@ -1,13 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MapPin, Shield, Users, Zap, Search, Package, Eye, Sparkles, ArrowRight } from "lucide-react";
+import { MapPin, Shield, Users, Zap, Tent, Sparkles, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { DemoModal } from "@/components/demo-modal";
+import campImage from "@/assets/desert-camp.asset.json";
 
 export const HeroSection = () => {
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -81,10 +79,10 @@ export const HeroSection = () => {
                 variant="hero" 
                 size="lg" 
                 className="w-full sm:w-auto min-w-48 text-lg font-semibold px-8 py-4 h-auto micro-glow"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => navigate('/festival')}
               >
                 <Sparkles className="w-5 h-5" />
-                Schedule Demo
+                View Festival Demo
                 <ArrowRight className="w-5 h-5" />
               </Button>
               <Button 
@@ -121,54 +119,22 @@ export const HeroSection = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Eye className="w-4 h-4 text-primary-foreground" />
+                      <Tent className="w-4 h-4 text-primary-foreground" />
                     </div>
-                    <h3 className="font-semibold text-lg heading-premium">Experience Lostly</h3>
+                    <h3 className="font-semibold text-lg heading-premium">Lostly at MidBurn</h3>
                   </div>
                   
-                  {/* Enhanced interface preview */}
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div 
-                        className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-4 text-white cursor-pointer hover-lift micro-bounce shadow-soft hover:shadow-strong"
-                        onClick={() => navigate('/lost')}
-                      >
-                        <Search className="w-6 h-6 mb-2" />
-                        <div className="font-semibold text-sm">Lost Item</div>
-                        <div className="text-xs opacity-80">3-step recovery</div>
-                      </div>
-                      <div 
-                        className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-4 text-white cursor-pointer hover-lift micro-bounce shadow-soft hover:shadow-strong"
-                        onClick={() => navigate('/found')}
-                      >
-                        <Package className="w-6 h-6 mb-2" />
-                        <div className="font-semibold text-sm">Found Item</div>
-                        <div className="text-xs opacity-80">Snap & help</div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-muted/50 rounded-xl p-4 border border-border">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                        <span className="font-semibold text-sm text-foreground">Recent Match</span>
-                      </div>
-                      <div className="text-sm text-muted-foreground mb-3">
-                        "Brown leather wallet found near Gate 12..."
-                      </div>
-                      <div className="flex gap-2">
-                        <Badge variant="secondary" className="text-xs font-medium">Verified</Badge>
-                        <Badge variant="secondary" className="text-xs font-medium">In Transit</Badge>
-                      </div>
-                    </div>
-                  </div>
+                  <img src={campImage.url} alt="Lostly camp at the desert festival" className="aspect-[4/3] w-full rounded-lg object-cover" />
+                  <p className="mt-4 text-lg font-semibold text-foreground">Lost in the dust? We’re with you.</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Illustrative MidBurn experience · No real reports</p>
                   
                   <Button 
                     variant="outline" 
                     size="sm" 
                     className="w-full mt-4 micro-bounce font-medium bg-background text-foreground border-2 border-foreground/20 hover:bg-foreground hover:text-background"
-                    onClick={() => navigate('/demo')}
+                    onClick={() => navigate('/festival')}
                   >
-                    Try Interactive Demo
+                    View Festival Demo
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </CardContent>
@@ -183,7 +149,6 @@ export const HeroSection = () => {
         </div>
       </div>
       
-      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </section>
   );
 };

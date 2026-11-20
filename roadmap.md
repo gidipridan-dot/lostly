@@ -20,3 +20,8 @@
 # "Other" items
 - [x] Ask what the item is, in their own words, as the first field when "Other" is picked.
 - [x] Carry the typed name through lost, found, and festival copy and the ownership questions.
+
+# One demo entrance
+- [x] Send all public demo entrances and old demo links to the festival journey.
+- [x] Replace the homepage mini-demo and mixed demo chooser with one festival preview.
+- [x] Verify homepage, old links, and mobile navigation.
