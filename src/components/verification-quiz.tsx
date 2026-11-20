@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, XCircle, HelpCircle, ShieldCheck, Sparkles, Home, PackageCheck, RotateCcw } from 'lucide-react';
+import { CheckCircle, XCircle, HelpCircle, ShieldCheck, Sparkles, Home, PackageCheck, RotateCcw, HeartHandshake } from 'lucide-react';
 import { type ItemDetails } from '@/components/item-details-form';
 
 interface QuizQuestion {
@@ -161,9 +161,9 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
         <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
           <PackageCheck className="w-10 h-10 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold text-foreground">Let's get it back to you</h2>
+        <h2 className="text-2xl font-bold text-foreground">Lost in the dust? We're with you.</h2>
         <p className="text-muted-foreground">
-          {totalQuestions} quick questions, then your item is on its way home.
+          {totalQuestions} quick questions — and there's a light at the end of the tunnel: your item, on its way home.
         </p>
         <Button onClick={() => setStage('quiz')} className="w-full">Let's go</Button>
       </div>
@@ -189,20 +189,22 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
           {passed ? <ShieldCheck className="w-10 h-10 text-primary" /> : <RotateCcw className="w-10 h-10 text-muted-foreground" />}
         </div>
         <h2 className="text-2xl font-bold text-foreground">
-          {passed ? 'Your item is waiting for you' : 'It happens'}
+          {passed ? 'You made it through the dust' : "Almost there — don't give up"}
         </h2>
         <p className="text-muted-foreground">
           {passed
-            ? `${correctSoFar} of ${totalQuestions} correct — ownership confirmed.`
-            : `${correctSoFar} of ${totalQuestions} correct. Details are sometimes remembered differently — give it another try.`}
+            ? `${correctSoFar} of ${totalQuestions} correct — it's official, this one is yours. Welcome home, little item.`
+            : `${correctSoFar} of ${totalQuestions} correct. The dust plays tricks on memory — we're still with you. One more go?`}
         </p>
         <Badge variant={passed ? 'default' : 'secondary'} className="text-sm">
           {passed ? 'Match confirmed' : `Need ${minRequired} correct`}
         </Badge>
         {!passed && (
           <div className="space-y-2 pt-2">
-            <Button onClick={handleRetry} className="w-full">Try again</Button>
-            <p className="text-xs text-muted-foreground">Still stuck? Contact the venue's lost & found staff.</p>
+            <Button onClick={handleRetry} className="w-full">Try again — we've got you</Button>
+            <p className="text-xs text-muted-foreground flex items-center justify-center gap-1.5">
+              <HeartHandshake className="w-3.5 h-3.5" /> Still stuck? The crew at the lost & found camp is happy to help.
+            </p>
           </div>
         )}
       </div>
@@ -233,13 +235,13 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
             </React.Fragment>
           );
         })}
-        <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-500 ${correctSoFar >= minRequired ? 'bg-primary text-primary-foreground animate-pop' : 'bg-muted text-muted-foreground'}`}>
+        <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-500 ${correctSoFar >= minRequired ? 'bg-primary text-primary-foreground animate-pop animate-glow-soft' : 'bg-muted text-muted-foreground'}`}>
           <Home className="w-4 h-4" />
         </div>
       </div>
       <div className="flex items-center justify-between text-sm text-muted-foreground">
         <span>Question {currentQ + 1} of {totalQuestions}</span>
-        <span className="font-medium text-foreground">{correctSoFar}/{minRequired} correct</span>
+        <span className="font-medium text-foreground">{correctSoFar}/{minRequired} steps to the light</span>
       </div>
 
       <h3 key={currentQ} className="text-lg font-semibold text-foreground animate-fade-in">{q.question}</h3>
@@ -271,12 +273,12 @@ export const VerificationQuiz: React.FC<VerificationQuizProps> = ({
               <p className="font-semibold text-foreground flex items-center justify-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-primary" /> Exactly!{' '}
                 <span className="font-normal text-muted-foreground">
-                  {correctSoFar >= minRequired ? "You're almost there." : 'One step closer to your item.'}
+                  {correctSoFar >= minRequired ? 'The light is right there — one last step.' : 'The dust is clearing. One step closer.'}
                 </span>
               </p>
             ) : (
               <p className="text-muted-foreground">
-                That's okay — {remainingNeeded <= questionsLeft ? `you can still make it (${remainingNeeded} more needed).` : 'keep going.'}
+                No worries, we're with you — {remainingNeeded <= questionsLeft ? `${remainingNeeded} more and you're there.` : 'keep going, the light is still on.'}
               </p>
             )}
           </div>
