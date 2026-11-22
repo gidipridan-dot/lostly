@@ -25,14 +25,14 @@ describe('item naming for the "Other" category', () => {
     assert.equal(canSubmitItemDetails('Other', { ...emptyDetails, color: 'Red' }), false);
   });
 
-  test('typing the item name (e.g. bandana) unlocks the rest of the report', () => {
+  test('typing the item name (e.g. bandana) alone unlocks the rest of the report', () => {
     assert.equal(
       canSubmitItemDetails('Other', { ...emptyDetails, itemName: 'bandana' }),
-      false,
-      'a name alone is still not a clue — at least one detail is required',
+      true,
+      'for Other, the name IS the clue — no extra detail required',
     );
     assert.equal(
-      canSubmitItemDetails('Other', { ...emptyDetails, itemName: '  bandana  ', color: 'Red' }),
+      canSubmitItemDetails('Other', { ...emptyDetails, itemName: '  bandana  ' }),
       true,
     );
     assert.equal(typedItemName('  bandana '), 'bandana');

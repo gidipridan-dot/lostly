@@ -49,8 +49,6 @@ export default function FestivalDemo() {
     else if (step === 'location') setStep(photo ? 'photo' : 'details');
     else setStep('location');
   };
-  const total = isLost ? 3 : 4;
-  const progress = step === 'category' ? 0 : step === 'details' || step === 'photo' ? 1 : step === 'location' ? 2 : 3;
   const name = itemDisplayName(category, details?.itemName).toLowerCase();
   return (
     <div className="festival-theme min-h-screen bg-background text-foreground">
@@ -114,7 +112,6 @@ export default function FestivalDemo() {
             <>
               <div className="mb-6">
                 <FestivalLightPath role={isLost ? 'lost' : 'found'} current={0} />
-                <div className="mt-4 flex items-center gap-2" aria-label={`Step ${progress + 1} of ${total}`}>{Array.from({ length: total }, (_, i) => <span key={i} className={`h-2 rounded-full transition-all duration-500 ${i === progress ? 'w-8 bg-primary' : i < progress ? 'w-2 bg-primary' : 'w-2 bg-border'}`} />)}<span className="ml-2 text-xs text-muted-foreground">{progress + 1} of {total}</span></div>
               </div>
               <div key={step} className="quest-chapter">
               {step === 'category' && <><h1 className="festival-heading text-4xl">{isLost ? 'Oh no. What went missing?' : 'You found something? Legend.'}</h1><Hint>{isLost ? 'Breathe. It happens to everyone out here. Just tap what it is.' : 'Tap what it is. Someone out there will be so glad.'}</Hint><div className="grid grid-cols-2 gap-3 sm:grid-cols-3">{categories.map(({name, icon: Icon}) => <Button key={name} variant="secondary" className="h-28 flex-col rounded-lg border border-border bg-card transition-transform hover:-translate-y-1 hover:border-primary active:scale-95" onClick={() => {setCategory(name); setStep('details');}}><Icon className="!h-7 !w-7" />{name}</Button>)}</div></>}

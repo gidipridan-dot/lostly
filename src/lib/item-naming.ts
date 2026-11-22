@@ -39,11 +39,11 @@ export interface ItemDetailsLike {
 }
 
 /**
- * An "Other" item cannot be submitted until the person has said what it is.
+ * An "Other" item only needs its plain-words name — the name IS the clue.
  * Every other category keeps the existing "at least one clue" rule.
  */
 export function canSubmitItemDetails(category: string, details: ItemDetailsLike): boolean {
-  if (isOtherCategory(category) && typedItemName(details.itemName) === '') return false;
+  if (isOtherCategory(category)) return typedItemName(details.itemName) !== '';
   return (
     typedItemName(details.color) !== '' ||
     typedItemName(details.brand) !== '' ||
