@@ -51,6 +51,8 @@
 .festival-theme .search-live { animation: search-breathe 1.8s ease-in-out infinite; }
 .festival-theme .film-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .festival-theme button { letter-spacing: 0; border-radius: 6px; }
+.festival-theme .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); background: hsl(var(--background) / .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid hsl(var(--border)); }
+.festival-theme .sticky-cta > * { max-width: 42rem; margin-inline: auto; }
 .festival-scene { min-height: 490px; }
 .festival-scrim { background: linear-gradient(90deg, hsl(var(--festival-overlay) / .78), hsl(var(--festival-overlay) / .36) 55%, hsl(var(--festival-overlay) / .05)); }
 .lostly-opening { display: flex; align-items: center; min-height: min(620px, calc(100svh - 144px)); }
