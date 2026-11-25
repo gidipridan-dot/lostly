@@ -365,7 +365,7 @@ All colors MUST be HSL.
   .editorial-home .design-button:active, .editorial-home .design-card:hover { transform: none; }
 }
 
-.festival-theme .light-path { height: min(40vh, 360px); -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent); mask-image: linear-gradient(to bottom, #000 60%, transparent); animation: light-path-in .4s ease both; }
+.festival-theme .light-path { height: min(30vh, 260px); -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent); mask-image: linear-gradient(to bottom, #000 60%, transparent); animation: light-path-in .4s ease both; }
 .festival-theme .light-path-img { object-position: center 40%; animation: light-path-drift 1.2s ease-out both; }
 .festival-theme .light-path-dusk { background: radial-gradient(circle at 50% 35%, transparent var(--light-radius), hsl(var(--festival-overlay) / var(--dusk)) calc(var(--light-radius) + 30%)); transition: background .9s ease; }
 .festival-theme .light-path-meta { margin-top: -8px; animation: light-path-up .4s ease .08s both; }
@@ -374,5 +374,5 @@ All colors MUST be HSL.
 @keyframes light-path-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes light-path-drift { from { transform: scale(1.04); } to { transform: scale(1); } }
 @keyframes light-path-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-@media (max-width: 639px) { .festival-theme .light-path { height: 220px; } }
+@media (max-width: 639px) { .festival-theme .light-path { height: 180px; } }
 @media (prefers-reduced-motion: reduce) { .festival-theme .light-path, .festival-theme .light-path-img, .festival-theme .light-path-meta { animation: none; } .festival-theme .light-path-seg { transition: none; } }
