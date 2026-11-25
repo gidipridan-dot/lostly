@@ -1,5 +1,5 @@
 import { DropPinMap } from '@/components/drop-pin-map';
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Camera, Check, Compass, FileText, HeartHandshake, MapPin, Search, Package, Tent, Sparkles, Smartphone, Key, Glasses, Backpack, Shirt, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ import { FestivalReunion } from '@/components/festival-reunion';
 import { FestivalQuestTrail } from '@/components/festival-quest-trail';
 import { FestivalFinderJourney } from '@/components/festival-finder-journey';
 import { FestivalLightPath } from '@/components/festival-light-path';
+import { JourneyLoader, preloadJourneyImage } from '@/components/journey-loader';
 import campImage from '@/assets/desert-camp.asset.json';
 
 const categories = [
@@ -35,6 +36,9 @@ export default function FestivalDemo() {
   const { pathname } = useLocation();
   const mode = pathname.endsWith('/lost') ? 'lost' : pathname.endsWith('/found') ? 'found' : pathname.endsWith('/claim') ? 'claim' : 'home';
   const [step, setStep] = useState<Step>('category');
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
+  useEffect(() => { if (step === 'location') preloadJourneyImage(); }, [step]);
   const [category, setCategory] = useState('');
   const [details, setDetails] = useState<ItemDetails | null>(null);
   const [photo, setPhoto] = useState('');
@@ -52,6 +56,7 @@ export default function FestivalDemo() {
   const name = itemDisplayName(category, details?.itemName).toLowerCase();
   return (
     <div className="festival-theme min-h-screen bg-background text-foreground">
+      {sending && <JourneyLoader task={() => new Promise((ok, fail) => { const q = new URLSearchParams(location.search); setTimeout(q.has('fail') ? fail : ok, q.has('slow') ? 6000 : 1200); })} onDone={() => { setSending(false); setStep('submitted'); }} onError={() => { setSending(false); setSendError(true); }} />}
       <header className="border-b border-border bg-background">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5 sm:px-8">
           <Link to="/festival" className="flex items-center gap-3" aria-label="MidBurn lost and found home">
@@ -104,6 +109,7 @@ export default function FestivalDemo() {
           {mode === 'claim' ? (
             <FestivalReunion category="Bag" details={sampleDetails} sampleMatch onHome={home} />
           ) : isLost && step === 'submitted' ? (
+
             <FestivalReunion category={itemDisplayName(category, details?.itemName)} details={details} place={place} photo={photo} onHome={home} />
           ) : step === 'submitted' ? (
             <FestivalFinderJourney category={itemDisplayName(category, details?.itemName)} place={place} reward={reward} onHome={home} />
@@ -116,7 +122,7 @@ export default function FestivalDemo() {
               {step === 'category' && <><h1 className="festival-heading text-[2rem] leading-tight sm:text-4xl">{isLost ? 'Oh no. What went missing?' : 'You found something? Legend.'}</h1><Hint>{isLost ? 'Tap what it is.' : 'Tap what it is.'}</Hint><div className="grid grid-cols-3 gap-3">{categories.map(({name, icon: Icon}) => <Button key={name} variant="secondary" className="h-auto flex-col gap-2 rounded-lg border p-4 border-border bg-card transition-transform hover:-translate-y-1 hover:border-primary active:scale-95" onClick={() => {setCategory(name); setStep('details');}}><Icon className="!h-6 !w-6" />{name}</Button>)}</div></>}
               {step === 'details' && <><h1 className="festival-heading text-[2rem] leading-tight sm:text-4xl">{isLost ? 'Tell us about it.' : 'What does it look like?'}</h1><Hint>{isOtherCategory(category) ? 'Just a name and a color. That’s plenty.' : `A color is enough. Anything else is a bonus.`}</Hint><Button variant="secondary" className="mb-6 w-full rounded-lg hover:scale-100" onClick={() => setStep('photo')}><Camera /> {isLost ? 'I have a photo instead' : 'Take a photo instead'}</Button><ItemDetailsForm category={category} onSubmit={(value) => {setDetails(value); setPhoto(''); setStep('location');}} /></>}
               {step === 'photo' && <><h1 className="festival-heading text-[2rem] leading-tight sm:text-4xl">Snap it.</h1><Hint>One clear photo of the {name}. No pressure to be perfect.</Hint><CameraCapture itemCategory={category} onCapture={(value) => {setPhoto(value); setStep('location');}} /></>}
-              {step === 'location' && <><h1 className="festival-heading text-[2rem] leading-tight sm:text-4xl">{isLost ? 'Where did you last see it?' : 'Where was it?'}</h1><Hint>{isLost ? 'A rough guess is fine. Tap the map.' : 'Tap the map. Roughly is fine.'}</Hint><div className="mb-6"><DropPinMap onPin={setPlace} /></div><Label htmlFor="festival-place">Or type a camp name or landmark</Label><Input id="festival-place" value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Whatever you remember" className="mb-6 mt-2" /><Button disabled={!place.trim()} className="w-full" onClick={() => setStep(isLost ? 'submitted' : 'reward')}>{isLost ? 'Send it to the crew' : 'Next'} <ArrowRight /></Button></>}
+              {step === 'location' && <><h1 className="festival-heading text-[2rem] leading-tight sm:text-4xl">{isLost ? 'Where did you last see it?' : 'Where was it?'}</h1>{sendError && <p role="alert" className="mb-4 rounded-md border border-border bg-card p-3 text-sm">The signal got lost in the dust. Try again?</p>}<Hint>{isLost ? 'A rough guess is fine. Tap the map.' : 'Tap the map. Roughly is fine.'}</Hint><div className="mb-6"><DropPinMap onPin={setPlace} /></div><Label htmlFor="festival-place">Or type a camp name or landmark</Label><Input id="festival-place" value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Whatever you remember" className="mb-6 mt-2" /><Button disabled={!place.trim()} className="w-full" onClick={() => { if (isLost) { setSendError(false); setSending(true); } else setStep('reward'); }}>{isLost ? 'Send it to the crew' : 'Next'} <ArrowRight /></Button></>}
               {step === 'reward' && <><HeartHandshake className="mb-4 h-10 w-10 text-primary" /><h1 className="festival-heading text-[2rem] leading-tight sm:text-4xl">A thank-you, if you like.</h1><Hint>Totally optional. Pick one and you’re done.</Hint><div className="space-y-3">{['Decline rewards', 'Accept rewards', 'Donate to charity'].map((name) => <Button key={name} variant={reward === name ? 'default' : 'secondary'} className="w-full rounded-lg hover:scale-100" aria-pressed={reward === name} onClick={() => setReward(name)}>{name}</Button>)}</div><Button className="mt-7 w-full" onClick={() => setStep('submitted')}>Done, send it <ArrowRight /></Button></>}
               </div>
             </>
