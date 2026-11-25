@@ -10,10 +10,25 @@ import { Pricing } from "@/components/pricing";
 import { FAQ } from "@/components/faq";
 import { LeadQualificationForm } from "@/components/lead-qualification-form";
 import { Footer } from "@/components/footer";
+import { useEffect, useRef } from "react";
 
 const Index = () => {
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sections = root.current?.querySelectorAll(':scope > section:not(.editorial-opening)');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('section-arrived');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.02 });
+    sections?.forEach((section) => { section.classList.add('editorial-section'); observer.observe(section); });
+    return () => observer.disconnect();
+  }, []);
   return (
-    <div className="min-h-screen">
+    <div ref={root} className="editorial-home min-h-screen bg-background text-foreground">
       <Navigation />
       <HeroSection />
       <ProblemSolution />

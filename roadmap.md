@@ -35,3 +35,8 @@
 - [x] Cut the font count to two families and one clear role for each.
 - [x] Put every section title in the serif display voice and keep panel titles at one weight.
 - [x] Check the landing page and festival pages on desktop.
+
+# Editorial visual refresh
+- [x] Refine homepage typography, photo contrast, navigation, and factual trust strip.
+- [x] Polish shared controls and restrained motion without changing the journeys.
+- [x] Check mobile, desktop, keyboard focus, and reduced motion.

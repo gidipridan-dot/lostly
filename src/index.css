@@ -21,10 +21,10 @@
   --festival-light: 51 90% 72%;
   --festival-light-foreground: 0 0% 12%;
   --festival-overlay: 0 0% 0%;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
   letter-spacing: 0;
 }
-.festival-theme .festival-heading { font-family: Georgia, 'Times New Roman', serif; letter-spacing: 0; }
+.festival-theme .festival-heading { font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif; letter-spacing: 0; }
 .festival-theme .quest-chapter { animation: quest-arrive .4s ease-out; }
 .festival-theme .quest-beacon { animation: quest-beacon 2.4s ease-in-out infinite; }
 .festival-theme .quest-pass { position: relative; }
@@ -66,12 +66,8 @@
   }
 }
 
-/* Typography system: two families only.
-   - Inter (the only webfont, loaded in index.html): all UI text, body, labels, buttons.
-   - Georgia (system serif, no download): display titles only — .display-heading on landing
-     sections, .festival-heading inside the festival demo.
-   Codes and numbers use the system mono stack. Never add a third family here.
-*/
+/* Typography: Instrument Serif for display, Geist for UI, Geist Mono for metadata.
+   Fonts load in index.html; type sizes and theme roles remain semantic tokens. */
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -79,6 +75,16 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    --type-12: .75rem;
+    --type-14: .875rem;
+    --type-16: 1rem;
+    --type-20: 1.25rem;
+    --type-28: 1.75rem;
+    --type-40: 2.5rem;
+    --type-64: 4rem;
+    --type-88: 5.5rem;
+    --success: 145 40% 30%;
+    --success-foreground: 0 0% 100%;
     /* Sleek & Clean Color Palette */
     --background: 0 0% 100%;
     --foreground: 0 0% 0%;
@@ -201,7 +207,7 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
@@ -264,13 +270,92 @@ All colors MUST be HSL.
 
   /* Display headings: the serif voice, for page and section titles only */
   .display-heading {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-weight: 500;
+    font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
     letter-spacing: 0;
-    line-height: 1.1;
+    line-height: 1.05;
   }
 
   .text-balance {
     text-wrap: balance;
   }
+}
+/* Editorial homepage: isolated from the festival's palette and gameplay. */
+.editorial-home {
+  --background: 42 31% 94%;
+  --foreground: 30 11% 7%;
+  --card: 42 31% 97%;
+  --card-foreground: 30 11% 7%;
+  --primary: 30 11% 7%;
+  --primary-foreground: 42 31% 94%;
+  --secondary: 40 21% 89%;
+  --secondary-foreground: 30 11% 7%;
+  --muted: 40 21% 89%;
+  --muted-foreground: 36 8% 39%;
+  --border: 30 11% 7% / .12;
+  --input: 30 11% 7% / .2;
+  --ring: 30 11% 7%;
+  --festival-ink: 42 31% 97%;
+  --festival-overlay: 30 11% 7%;
+  --shadow-editorial: 0 8px 24px hsl(var(--foreground) / .06);
+  letter-spacing: 0;
+}
+.editorial-home .container, .editorial-home .max-w-6xl { max-width: 1200px; }
+.editorial-home svg { stroke-width: 1.5; }
+.editorial-home .font-bold, .editorial-home .font-extrabold { font-weight: 600; }
+.editorial-home .text-xs { font-size: var(--type-12); }
+.editorial-home .text-sm { font-size: var(--type-14); }
+.editorial-home .text-base { font-size: var(--type-16); }
+.editorial-home .text-lg, .editorial-home .text-xl { font-size: var(--type-20); }
+.editorial-home .text-2xl, .editorial-home .text-3xl { font-size: var(--type-28); }
+.editorial-home h2.display-heading { font-size: var(--type-40); }
+.editorial-home .text-xs, .editorial-meta { font-family: 'Geist Mono', ui-monospace, monospace; font-size: var(--type-12); line-height: 1.5; letter-spacing: 0; text-transform: uppercase; }
+.editorial-home .design-card { border-radius: 8px; transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out; }
+.editorial-home .design-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-editorial); border-color: hsl(var(--foreground) / .25); }
+.editorial-home .design-button, .editorial-home .design-input, .editorial-home textarea { border-radius: 6px; }
+.editorial-home .design-button { transform: none; transition: background-color 200ms ease-out, color 200ms ease-out, transform 200ms ease-out; }
+.editorial-home .design-button:active { transform: translateY(1px); }
+.editorial-home .design-button svg { transition: transform 200ms ease-out; }
+.editorial-home .design-button:hover .lucide-arrow-right { transform: translateX(4px); }
+.editorial-home label { transition: color 200ms ease-out, transform 200ms ease-out; transform-origin: left; }
+.editorial-home div:has(> .design-input:focus) > label { transform: scale(.96); color: hsl(var(--foreground)); }
+.editorial-home .editorial-nav { margin-bottom: -80px; transition: background-color 200ms ease-out, color 200ms ease-out; border-bottom: 1px solid transparent; }
+.editorial-home .nav-over-photo { background: transparent; color: hsl(var(--festival-ink)); }
+.editorial-home .nav-solid { background: hsl(var(--background) / .98); color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+.editorial-nav-link { position: relative; }
+.editorial-nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms ease-out; }
+.editorial-nav-link:hover::after, .editorial-nav-link:focus-visible::after { transform: scaleX(1); }
+.editorial-home a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.editorial-home .lostly-opening { min-height: min(760px, calc(100svh - 96px)); align-items: flex-end; }
+.editorial-home .lostly-opening-content { padding-top: 136px; padding-bottom: 56px; }
+.editorial-home .lostly-opening h1 { font-size: var(--type-64); line-height: 1.05; }
+.editorial-home .lostly-opening img { animation: editorial-image-settle 8s ease-out both; }
+.editorial-home .lostly-opening .festival-scrim { background: linear-gradient(0deg, hsl(var(--festival-overlay) / .85), hsl(var(--festival-overlay) / .4) 65%, hsl(var(--festival-overlay) / .5)), linear-gradient(90deg, hsl(var(--festival-overlay) / .35), transparent 85%); }
+.editorial-home .editorial-cta { border: 1px solid hsl(var(--festival-ink) / .35); }
+.hero-reveal { animation: editorial-arrive 600ms ease-out both; }
+.hero-reveal:nth-child(2) { animation-delay: 60ms; }
+.hero-reveal:nth-child(3) { animation-delay: 120ms; }
+.hero-reveal:nth-child(4) { animation-delay: 180ms; }
+.editorial-section { opacity: 0; transform: translateY(12px); transition: opacity 500ms ease-out, transform 500ms ease-out; }
+.editorial-section.section-arrived { opacity: 1; transform: none; }
+@keyframes editorial-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes editorial-image-settle { from { transform: scale(1.05); } to { transform: scale(1); } }
+@media (min-width: 1440px) { .editorial-home .lostly-opening h1 { font-size: var(--type-88); } }
+@media (max-width: 639px) {
+  .editorial-home .lostly-opening { min-height: min(640px, calc(100svh - 96px)); }
+  .editorial-home .lostly-opening-content { padding-top: 120px; padding-bottom: 40px; }
+  .editorial-home .lostly-opening h1 { font-size: var(--type-40); }
+  .editorial-home h2.display-heading { font-size: var(--type-28); }
+  .editorial-home .editorial-trust p { padding: 16px 8px; }
+}
+@media (max-height: 500px) {
+  .editorial-home .lostly-opening { min-height: 360px; }
+  .editorial-home .lostly-opening-content { padding-top: 96px; padding-bottom: 24px; }
+  .editorial-home .lostly-opening h1 { font-size: var(--type-40); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .editorial-home *, .editorial-home *::before, .editorial-home *::after { animation: none !important; transition: none !important; }
+  .editorial-home .editorial-section { opacity: 1; transform: none; }
+  .editorial-home .design-button:active, .editorial-home .design-card:hover { transform: none; }
 }

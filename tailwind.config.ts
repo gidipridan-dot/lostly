@@ -19,19 +19,22 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-				'serif': ['Georgia', '"Times New Roman"', 'serif'],
-				'mono': ['ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
+				'sans': ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+				'serif': ['Instrument Serif', 'Georgia', '"Times New Roman"', 'serif'],
+				'mono': ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
 			},
 			fontSize: {
-				'display': ['4rem', { lineHeight: '0.9', letterSpacing: '-0.02em' }],
-				'heading': ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
+                'editorial-display': ['var(--type-64)', { lineHeight: '1.05' }],
+                'editorial-meta': ['var(--type-12)', { lineHeight: '1.5' }],
+				'display': ['4rem', { lineHeight: '0.9', letterSpacing: '0' }],
+				'heading': ['2.5rem', { lineHeight: '1.1', letterSpacing: '0' }],
 			},
 			letterSpacing: {
-				'tight': '-0.01em',
-				'tighter': '-0.02em',
+				'tight': '0',
+				'tighter': '0',
 			},
 			colors: {
+                success: { DEFAULT: 'hsl(var(--success))', foreground: 'hsl(var(--success-foreground))' },
 				festival: {
 					ink: 'hsl(var(--festival-ink))',
 					light: 'hsl(var(--festival-light))',
