@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, BellRing, Check, Clock, HeartHandshake, MapPin, PackageCheck, ShieldCheck, Tent } from 'lucide-react';
+import { ArrowRight, BellRing, Check, Clock, HeartHandshake, Loader2, MapPin, PackageCheck, ShieldCheck, Tent } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VerificationQuiz } from '@/components/verification-quiz';
 import type { ItemDetails } from '@/components/item-details-form';
 import { nextReunionStage, sampleFinderDetails, type ReunionStage } from '@/lib/festival-recovery';
+import { SEARCH_PHASES, SEARCH_TOTAL_MS, phaseIndexAt, searchRatioAt } from '@/lib/festival-search';
 import { FestivalLightPath } from '@/components/festival-light-path';
 import { FoundPathRecap } from '@/components/festival-finder-journey';
 import { DropPinMap } from '@/components/drop-pin-map';
@@ -21,12 +22,24 @@ export function FestivalReunion({ category, details, place, photo, sampleMatch =
   const [stage, setStage] = useState<ReunionStage>(sampleMatch ? 'notification' : 'waiting');
   const [finderDetails] = useState(() => sampleFinderDetails(details));
   const [verified, setVerified] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
   const advance = (event: Parameters<typeof nextReunionStage>[1]) => setStage((current) => nextReunionStage(current, event));
 
   useEffect(() => {
     if (stage !== 'waiting') return;
-    const timer = setTimeout(() => setStage((current) => nextReunionStage(current, 'found')), 3500);
-    return () => clearTimeout(timer);
+    setElapsed(0);
+    const start = Date.now();
+    let done = false;
+    const tick = setInterval(() => {
+      const ms = Date.now() - start;
+      setElapsed(ms);
+      if (ms >= SEARCH_TOTAL_MS && !done) {
+        done = true;
+        clearInterval(tick);
+        setStage((current) => nextReunionStage(current, 'found'));
+      }
+    }, 120);
+    return () => clearInterval(tick);
   }, [stage]);
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [stage]);
@@ -36,15 +49,30 @@ export function FestivalReunion({ category, details, place, photo, sampleMatch =
     <div className="space-y-7">
       <div className="border-b border-border pb-4">
         <p className="mb-3 text-xs text-muted-foreground">YOUR LOST-ITEM SIDE QUEST · DEMO</p>
-        <FestivalLightPath current={progress} />
+        <FestivalLightPath current={progress} compact={stage === 'waiting'} />
       </div>
       <div key={stage} className="quest-chapter">
-      {stage === 'waiting' && <div className="space-y-5 py-5 text-center">
-        <Tent className="mx-auto h-12 w-12" />
-        <h1 className="festival-heading text-4xl">Clues sent. You have a crew.</h1>
-        <p className="text-muted-foreground">Your sample {category.toLowerCase()} report is ready. Take a breath — you’re not searching alone.</p>
-        <p className="text-sm text-muted-foreground">Stay a while. There might be a little spark in the dust…</p>
-        <Button className="w-full" onClick={() => advance('found')}><BellRing /> Find the next spark · sample</Button>
+      {stage === 'waiting' && <div className="space-y-4 py-2 text-center">
+        <h1 className="festival-heading text-3xl sm:text-4xl">Clues sent. You have a crew.</h1>
+        <p className="text-sm text-muted-foreground">Your sample {category.toLowerCase()} is in the system. Watch the crew work.</p>
+        <div role="status" aria-live="polite" className="search-panel">
+          <div className="mb-2 flex items-center justify-between gap-3 text-xs text-muted-foreground festival-meta"><span className="search-live">Searching the dust</span><span>{Math.floor(elapsed / 1000)}s</span></div>
+          <div className="search-track"><span className="search-fill" style={{ width: `${searchRatioAt(elapsed) * 100}%` }} /></div>
+          <ol className="mt-3 space-y-2">
+            {SEARCH_PHASES.map((phase, index) => {
+              const active = phaseIndexAt(elapsed);
+              const state = index < active ? 'is-done' : index === active ? 'is-active' : '';
+              return <li key={phase.id} className={`search-phase flex items-start gap-3 ${state}`}>
+                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center">
+                  {index < active ? <Check className="h-4 w-4" /> : index === active ? <Loader2 className="h-4 w-4 animate-spin" /> : <span className="h-1.5 w-1.5 rounded-full bg-border" />}
+                </span>
+                <span className="min-w-0 text-left"><strong className="block text-sm font-semibold">{phase.label}</strong>{index === active && <span className="block text-sm text-muted-foreground">{phase.detail}</span>}</span>
+              </li>;
+            })}
+          </ol>
+          <p className="mt-3 border-t border-border pt-3 text-sm text-muted-foreground">This takes a moment on purpose. A person checks before anyone gets a ping.</p>
+        </div>
+        <Button variant="outline" className="w-full" onClick={() => advance('found')}><BellRing /> Skip ahead · find the next spark</Button>
       </div>}
 
       {stage === 'notification' && <div className="space-y-6 animate-fade-in">

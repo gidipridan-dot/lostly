@@ -16,14 +16,14 @@ const foundMoments = [
   { chapter: 'The Found Path', line: 'You were someone’s light.' },
 ];
 
-export function FestivalLightPath({ current = 0, role = 'lost' }: { current?: number; role?: 'lost' | 'found' }) {
+export function FestivalLightPath({ current = 0, role = 'lost', compact = false }: { current?: number; role?: 'lost' | 'found'; compact?: boolean }) {
   const moments = role === 'found' ? foundMoments : lostMoments;
   const step = Math.max(0, Math.min(current, moments.length - 1));
   const ratio = step / (moments.length - 1);
   const style = { '--light-radius': `${12 + ratio * 48}%`, '--dusk': `${0.7 - ratio * 0.55}` } as CSSProperties;
   return (
     <div className="light-path-wrap" style={style}>
-      <figure key={step} className="light-path relative isolate -mx-5 overflow-hidden sm:-mx-6" aria-hidden="true">
+      <figure key={step} className={`light-path relative isolate -mx-5 overflow-hidden sm:-mx-6 ${compact ? 'is-compact' : ''}`} aria-hidden="true">
         <img src={pathImage.url} alt="" className="light-path-img h-full w-full object-cover" />
         <div className="light-path-dusk absolute inset-0" />
       </figure>

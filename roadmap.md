@@ -40,3 +40,8 @@
 - [x] Refine homepage typography, photo contrast, navigation, and factual trust strip.
 - [x] Polish shared controls and restrained motion without changing the journeys.
 - [x] Check mobile, desktop, keyboard focus, and reduced motion.
+
+# Search pacing
+- [x] Make the crew's search visible after a lost report: named phases, a filling bar, and a slow reveal before the spark.
+- [x] Keep the waiting screen inside one phone screen and preserve a skip escape hatch.
+- [x] Check the reveal timing on a phone.
