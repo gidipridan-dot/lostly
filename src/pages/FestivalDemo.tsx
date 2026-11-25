@@ -56,10 +56,10 @@ export default function FestivalDemo() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5 sm:px-8">
           <Link to="/festival" className="flex items-center gap-3" aria-label="MidBurn lost and found home">
             <Tent className="h-7 w-7" />
-            <span className="leading-tight"><span className="block text-xl font-semibold">MIDBURN</span><span className="text-xs text-muted-foreground">LOST & FOUND</span></span>
+            <span className="leading-tight"><span className="block text-xl font-semibold">MIDBURN</span><span className="festival-meta text-xs text-muted-foreground">Lost & Found</span></span>
           </Link>
           <div className="flex items-center gap-3">
-            <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">Festival concept</span>
+            <span className="festival-meta rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">Festival concept</span>
             <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex"><Link to="/">Lostly home <ArrowRight /></Link></Button>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function FestivalDemo() {
           )}
         </main>
       )}
-      <footer className="border-t border-border px-5 py-5 text-center text-xs leading-relaxed text-muted-foreground">Illustrative MidBurn experience · No affiliation implied · No real reports or reservations.<br /><span className="mt-1 inline-block">Lostly camp · A little light in the dust.</span></footer>
+      <footer className="festival-meta border-t border-border px-5 py-5 text-center text-xs leading-relaxed text-muted-foreground">Illustrative MidBurn experience · No affiliation implied · No real reports or reservations.<br /><span className="mt-1 inline-block">Lostly camp · A little light in the dust.</span></footer>
     </div>
   );
 }
