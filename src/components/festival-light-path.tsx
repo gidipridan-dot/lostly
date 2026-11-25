@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'react';
-import { Footprints } from 'lucide-react';
 import pathImage from '@/assets/festival-light-path.asset.json';
 
 const lostMoments = [
@@ -21,22 +20,24 @@ export function FestivalLightPath({ current = 0, role = 'lost' }: { current?: nu
   const moments = role === 'found' ? foundMoments : lostMoments;
   const step = Math.max(0, Math.min(current, moments.length - 1));
   const ratio = step / (moments.length - 1);
-  const style = {
-    '--light-radius': `${12 + ratio * 48}%`,
-    '--dusk': `${0.86 - ratio * 0.66}`,
-    '--traveler-top': `${62 - ratio * 27}%`,
-    '--traveler-scale': `${1 - ratio * 0.45}`,
-  } as CSSProperties;
+  const style = { '--light-radius': `${12 + ratio * 48}%`, '--dusk': `${0.7 - ratio * 0.55}` } as CSSProperties;
   return (
-    <figure className="light-path relative isolate overflow-hidden rounded-lg" style={style} aria-label={`Path to Lostly camp: ${moments[step].chapter}`}>
-      <img src={pathImage.url} alt="A boardwalk crossing the desert toward the glowing Lostly camp" className="h-full w-full object-cover" />
-      <div className="light-path-dusk absolute inset-0" aria-hidden="true" />
-      <Footprints className="light-path-traveler absolute left-1/2 text-festival-ink" aria-hidden="true" />
-      <figcaption className="light-path-caption absolute inset-x-0 bottom-0 p-4 sm:p-5">
-        <span className="text-xs font-semibold text-festival-ink">{String(step + 1).padStart(2, '0')} / 05 · {moments[step].chapter}</span>
-        <span className="festival-heading mt-1 block text-xl text-festival-ink sm:text-2xl">{moments[step].line}</span>
-        <span className="mt-3 flex gap-1.5" aria-hidden="true">{moments.map((m, i) => <span key={m.chapter} className={`h-1 flex-1 rounded-full ${i <= step ? 'bg-festival-light' : 'bg-festival-ink/30'}`} />)}</span>
-      </figcaption>
-    </figure>
+    <div className="light-path-wrap" style={style}>
+      <figure key={step} className="light-path relative isolate -mx-5 overflow-hidden sm:-mx-6" aria-hidden="true">
+        <img src={pathImage.url} alt="" className="light-path-img h-full w-full object-cover" />
+        <div className="light-path-dusk absolute inset-0" />
+      </figure>
+      <div className="light-path-meta" aria-label={`Step ${step + 1} of 5: ${moments[step].chapter}`}>
+        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{String(step + 1).padStart(2, '0')} / 05 · {moments[step].chapter}</span>
+        <span className="mt-1 block font-serif text-sm italic text-muted-foreground">{moments[step].line}</span>
+        <span className="mt-3 flex gap-1.5" aria-hidden="true">
+          {moments.map((m, i) => (
+            <span key={m.chapter} className="h-0.5 flex-1 overflow-hidden rounded-full bg-border">
+              <span className={`light-path-seg block h-full bg-foreground ${i <= step ? 'is-on' : ''}`} />
+            </span>
+          ))}
+        </span>
+      </div>
+    </div>
   );
 }
