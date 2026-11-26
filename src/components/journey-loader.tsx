@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import pathImage from '@/assets/festival-light-path.asset.json';
+import pathImage from '@/assets/festival-light-path-hd.asset.json';
 
 const LINES = ['Sending your clues…', 'Lighting the path…', 'Telling the camps…'];
 export const JOURNEY_MIN_MS = 3600;

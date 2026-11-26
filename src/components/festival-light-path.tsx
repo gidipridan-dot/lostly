@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import pathImage from '@/assets/festival-light-path.asset.json';
+import pathImage from '@/assets/festival-light-path-hd.asset.json';
 
 const lostMoments = [
   { chapter: 'Lost in the dust', line: 'The light is far, but it is there.' },
